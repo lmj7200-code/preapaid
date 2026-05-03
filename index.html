@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마크통신 Ntelecom | 선불폰 비대면 개통 전문</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; color: #1a1a2e; line-height: 1.6; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue:        #1a56db;
+      --blue-dark:   #0e3fa8;
+      --blue-light:  #e8f0fe;
+      --blue-mid:    #4f8ef7;
+      --purple:      #6c2fd4;
+      --grad-main:   linear-gradient(135deg, #4f8ef7 0%, #1a56db 50%, #6c2fd4 100%);
+      --grad-hero:   linear-gradient(140deg, #4f8ef7 0%, #1a56db 45%, #5b21b6 100%);
+      --gray-bg:     #f4f6fb;
+      --gray:        #666;
+      --radius:      16px;
+      --shadow:      0 4px 20px rgba(79,142,247,.13);
+      --shadow-md:   0 8px 32px rgba(79,142,247,.18);
+      --shadow-3d:   0 10px 36px rgba(79,142,247,.2), 0 2px 0 rgba(255,255,255,.7) inset;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── 헤더 ── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,142,247,.12);
+      height: 68px; display: flex; align-items: center;
+      box-shadow: 0 2px 20px rgba(79,142,247,.08);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 1.05rem; font-weight: 900; letter-spacing: -.02em;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      white-space: nowrap;
+    }
+    .logo-img {
+      height: 28px; width: auto;
+      object-fit: contain; display: block;
+    }
+    nav { display: flex; gap: 16px; align-items: center; }
+    nav a { font-size: .82rem; font-weight: 600; color: #445; transition: color .2s; white-space: nowrap; }
+    nav a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--grad-main); color: #fff !important;
+      padding: 9px 20px; border-radius: 10px; font-weight: 700; font-size: .87rem;
+      box-shadow: 0 4px 14px rgba(79,142,247,.35); white-space: nowrap;
+      transition: transform .15s, box-shadow .15s !important;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,142,247,.45) !important; }
+
+    /* ── 히어로 ── */
+    .hero {
+      background: var(--grad-hero); color: #fff;
+      padding: 60px 24px 90px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-question {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 900;
+      letter-spacing: -.03em; margin-bottom: 36px;
+      text-shadow: 0 2px 16px rgba(0,0,0,.2);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(108,47,212,.38) 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 64px;
+      background: linear-gradient(to bottom right, transparent 49%, #fff 50%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35);
+      border-radius: 24px; padding: 6px 18px;
+      font-size: .82rem; font-weight: 600; margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-dot { width: 7px; height: 7px; background: #6ee7b7; border-radius: 50%; box-shadow: 0 0 8px #6ee7b7; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900;
+      letter-spacing: -.03em; line-height: 1.2; margin-bottom: 16px;
+      text-shadow: 0 2px 16px rgba(0,0,0,.2);
+    }
+    .hero h1 em { font-style: normal; color: #a5f3fc; }
+    .hero-sub {
+      font-size: 1.05rem; opacity: .9; margin-bottom: 36px; font-weight: 500; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-hero-main {
+      background: #fff; color: var(--blue);
+      font-weight: 800; font-size: 1rem; padding: 15px 36px; border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.18); transition: transform .15s, box-shadow .15s;
+      border: none; cursor: pointer;
+    }
+    .btn-hero-main:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.22); }
+    .btn-hero-sub {
+      background: rgba(255,255,255,.15); color: #fff;
+      font-weight: 600; font-size: 1rem; padding: 14px 30px; border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,.5); transition: background .2s, transform .15s;
+      backdrop-filter: blur(8px); cursor: pointer;
+    }
+    .btn-hero-sub:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
+    .hero-tagline {
+      font-size: clamp(1.42rem, 3vw, 1.72rem); font-weight: 700;
+      color: rgba(255,255,255,.85); margin-bottom: 10px; letter-spacing: -.01em;
+    }
+    .hero-guide-box {
+      margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .hero-guide-label {
+      font-size: .9rem; color: rgba(255,255,255,.75); font-weight: 500;
+    }
+    .hero-guide-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(10,10,30,.55); color: #fff;
+      font-size: .97rem; font-weight: 700;
+      padding: 14px 32px; border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(10px);
+      transition: background .2s, transform .15s;
+    }
+    .hero-guide-btn:hover { background: rgba(10,10,30,.75); transform: translateY(-2px); }
+
+    /* ── 개통 방법 선택 ── */
+    .guide-section { background: #fff; padding: 80px 24px; }
+    .guide-title { text-align: center; margin-bottom: 12px; }
+    .guide-title .tag {
+      display: inline-block; background: var(--grad-main); color: #fff;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+    }
+    .guide-title h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 8px; }
+    .guide-title p  { color: var(--gray); font-size: .93rem; margin-bottom: 44px; }
+
+    .cert-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .cert-card {
+      flex: 1; min-width: 280px; max-width: 420px;
+      border-radius: 22px; padding: 44px 36px; text-align: center;
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .cert-card:hover { transform: translateY(-8px); }
+    .cert-card.has {
+      background: linear-gradient(145deg, #eef3ff 0%, #dce8ff 100%);
+      border: 2px solid rgba(79,142,247,.25);
+      box-shadow: 0 8px 32px rgba(79,142,247,.15);
+    }
+    .cert-card.has:hover { box-shadow: 0 20px 48px rgba(79,142,247,.25); }
+    .cert-card.none {
+      background: linear-gradient(145deg, #f0f4ff 0%, #e4ecff 100%);
+      border: 2px solid rgba(108,47,212,.2);
+      box-shadow: 0 8px 32px rgba(108,47,212,.12);
+    }
+    .cert-card.none:hover { box-shadow: 0 20px 48px rgba(108,47,212,.22); }
+    .cert-icon-wrap {
+      width: 88px; height: 88px; border-radius: 50%;
+      margin: 0 auto 22px; display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; background: #fff;
+      box-shadow: 0 4px 16px rgba(79,142,247,.18);
+    }
+    .cert-card h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.02em; }
+    .cert-card.has  h3 { color: var(--blue); }
+    .cert-card.none h3 { color: var(--purple); }
+    .cert-apps {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .cert-app-tag {
+      background: #fff; border-radius: 8px; padding: 4px 10px;
+      font-size: .75rem; font-weight: 700; color: var(--blue);
+      box-shadow: 0 2px 6px rgba(79,142,247,.15);
+    }
+    .cert-card p { font-size: .88rem; color: #556; line-height: 1.7; margin-bottom: 26px; }
+    .cert-btn {
+      display: block; width: 100%; padding: 14px 20px;
+      border-radius: 12px; border: none; cursor: pointer;
+      font-weight: 800; font-size: .95rem; color: #fff;
+      transition: transform .15s, box-shadow .15s; letter-spacing: -.01em;
+    }
+    .cert-card.has  .cert-btn { background: var(--grad-main); box-shadow: 0 4px 16px rgba(79,142,247,.38); }
+    .cert-card.none .cert-btn { background: linear-gradient(135deg, #6c2fd4, #4a1ba0); box-shadow: 0 4px 16px rgba(108,47,212,.38); }
+    .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+    /* ── 4개 액션 카드 ── */
+    .action-section { background: var(--gray-bg); padding: 70px 24px; }
+    .action-grid { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+    .action-card {
+      flex: 1; min-width: 200px; max-width: 240px;
+      background: #fff; border-radius: 20px; padding: 30px 22px; text-align: center;
+      box-shadow: var(--shadow-3d); border: 1px solid rgba(255,255,255,.9);
+      transition: transform .2s, box-shadow .2s; cursor: pointer;
+    }
+    .action-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(79,142,247,.22); }
+    .action-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; background: var(--blue-light);
+    }
+    .action-card h3 { font-size: .97rem; font-weight: 800; color: #1a1a2e; margin-bottom: 6px; }
+    .action-card p  { font-size: .78rem; color: var(--gray); line-height: 1.55; }
+
+    /* ── 누구나 제약없이 ── */
+    .anyone-section { background: #fff; padding: 80px 24px; }
+    .anyone-inner {
+      display: flex; gap: 56px; align-items: center; flex-wrap: wrap;
+      max-width: 960px; margin: 0 auto;
+    }
+    .anyone-text { flex: 1; min-width: 260px; }
+    .anyone-text .tag {
+      display: inline-block; background: var(--grad-main); color: #fff;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
+      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+    }
+    .anyone-text h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
+      letter-spacing: -.02em; margin-bottom: 16px; line-height: 1.35;
+    }
+    .anyone-text h2 strong {
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .anyone-text p { color: var(--gray); font-size: .93rem; line-height: 1.8; margin-bottom: 28px; }
+    .anyone-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .anyone-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-light); color: var(--blue);
+      font-size: .82rem; font-weight: 700;
+      padding: 7px 14px; border-radius: 10px;
+    }
+    .anyone-cards { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
+    .anyone-card {
+      background: linear-gradient(135deg, #eef3ff, #f4f7ff);
+      border-radius: 14px; padding: 18px 20px;
+      border-left: 4px solid var(--blue);
+      box-shadow: var(--shadow);
+    }
+    .anyone-card h4 { font-size: .92rem; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+    .anyone-card p  { font-size: .8rem; color: var(--gray); }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--gray-bg); padding: 80px 24px; }
+    .faq-header { text-align: center; margin-bottom: 44px; }
+    .faq-header .tag {
+      display: inline-block; background: var(--grad-main); color: #fff;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+    }
+    .faq-header h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    details {
+      background: #fff; border-radius: var(--radius);
+      padding: 18px 22px; box-shadow: var(--shadow);
+      border: 1px solid rgba(79,142,247,.1);
+    }
+    summary {
+      font-weight: 700; font-size: .92rem; list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary .q-mark {
+      font-size: .82rem; font-weight: 900; color: var(--blue);
+      background: var(--blue-light); width: 24px; height: 24px;
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    summary .q-text { flex: 1; }
+    summary::after {
+      content: '+'; font-size: 1.2rem; flex-shrink: 0; font-weight: 700;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    details[open] summary::after { content: '−'; }
+    details p { margin-top: 12px; font-size: .85rem; color: #555; line-height: 1.8; padding-left: 30px; }
+
+    /* ── CTA 배너 ── */
+    .cta-section {
+      background: var(--grad-hero); color: #fff;
+      text-align: center; padding: 80px 24px;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(108,47,212,.4) 0%, transparent 60%); pointer-events:none; }
+    .cta-section h2 { font-size: clamp(1.5rem,3.5vw,2.2rem); font-weight: 900; margin-bottom: 12px; letter-spacing: -.03em; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
+    .cta-section p  { opacity: .88; margin-bottom: 36px; font-size: .97rem; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-main {
+      background: #fff; color: var(--blue); font-weight: 800; font-size: 1rem;
+      padding: 14px 36px; border-radius: 12px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.15); transition: transform .15s; border: none; cursor: pointer;
+    }
+    .btn-cta-main:hover { transform: translateY(-3px); }
+    .btn-cta-sub {
+      background: rgba(255,255,255,.15); color: #fff; font-weight: 600; font-size: 1rem;
+      padding: 13px 28px; border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,.5); transition: background .2s, transform .15s;
+      cursor: pointer;
+    }
+    .btn-cta-sub:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    /* ── 카카오 상담 플로팅 ── */
+    .kakao-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 300;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #FEE500; box-shadow: 0 6px 20px rgba(0,0,0,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .kakao-float:hover { transform: scale(1.1); box-shadow: 0 10px 28px rgba(0,0,0,.25); }
+
+    /* ── 개통 가이드 모달 ── */
+    .guide-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1500;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .guide-modal-overlay.active { display: flex; }
+    .guide-modal {
+      background: #fff; border-radius: 20px; width: 100%; max-width: 680px;
+      max-height: 88vh; overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.3);
+      animation: popupIn .3s ease;
+    }
+    .guide-modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      background: #f0f0f0; border: none; border-radius: 50%;
+      width: 34px; height: 34px; font-size: 1rem; cursor: pointer;
+      transition: background .2s;
+    }
+    .guide-modal-close:hover { background: #ddd; }
+    .guide-modal-header {
+      background: var(--grad-hero); color: #fff;
+      padding: 32px 32px 24px; border-radius: 20px 20px 0 0;
+    }
+    .guide-modal-header h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 6px; }
+    .guide-modal-header p  { opacity: .85; font-size: .9rem; }
+    .guide-tabs {
+      display: flex; border-bottom: 2px solid #eef; padding: 0 24px; gap: 4px;
+    }
+    .guide-tab {
+      padding: 14px 18px; font-size: .87rem; font-weight: 700;
+      border: none; background: none; cursor: pointer; color: #888;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color .2s, border-color .2s;
+    }
+    .guide-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .guide-tab-content { display: none; padding: 28px 28px 24px; }
+    .guide-tab-content.active { display: block; }
+    .guide-steps {
+      display: flex; align-items: flex-start; justify-content: center;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+    }
+    .guide-step {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      background: var(--blue-light); border-radius: 14px; padding: 16px 14px;
+      min-width: 110px; flex: 1; max-width: 140px; text-align: center;
+    }
+    .guide-step-num {
+      width: 24px; height: 24px; background: var(--blue); color: #fff;
+      border-radius: 50%; font-size: .75rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .guide-step-icon { font-size: 1.8rem; }
+    .guide-step-text strong { display: block; font-size: .85rem; font-weight: 800; color: #1a1a2e; margin-bottom: 2px; }
+    .guide-step-text span  { font-size: .75rem; color: var(--gray); line-height: 1.4; }
+    .guide-step-arrow { font-size: 1.2rem; color: #bbb; align-self: center; padding-top: 8px; }
+    /* 2열 큰 이미지 */
+    .guide-img-2col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+    }
+    .guide-img-2col img {
+      width: 100%; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    }
+    /* 안면인증 유의사항 */
+    .guide-face-caution {
+      margin-top: 28px; padding-top: 24px;
+      border-top: 2px solid var(--blue-light);
+    }
+    .guide-face-caution h4 {
+      font-size: 1.05rem; font-weight: 900; text-align: center;
+      margin-bottom: 20px; color: #1a1a2e;
+    }
+    .guide-caution-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .guide-caution-card {
+      background: var(--gray-bg); border-radius: 14px;
+      padding: 20px 14px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .guide-caution-card img { width: 100%; max-width: 140px; }
+    .guide-caution-card p { font-size: .82rem; color: #444; line-height: 1.5; font-weight: 600; }
+    .guide-cta-row { text-align: center; }
+    .guide-cta-btn {
+      display: inline-block; background: var(--grad-main); color: #fff;
+      font-weight: 800; font-size: 1rem; padding: 14px 36px; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(79,142,247,.35); transition: transform .15s;
+    }
+    .guide-cta-btn:hover { transform: translateY(-2px); }
+    .guide-notice-box {
+      background: #fff8e1; border-left: 4px solid #f59e0b;
+      border-radius: 10px; padding: 16px 18px; margin-bottom: 22px;
+      font-size: .88rem; line-height: 1.7; color: #555;
+    }
+    .guide-check-list {
+      background: var(--gray-bg); border-radius: 14px; padding: 20px 22px; margin-bottom: 20px;
+    }
+    .guide-check-list h4 { font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #1a1a2e; }
+    .guide-check-list ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .guide-check-list li { font-size: .88rem; color: #444; padding-left: 22px; position: relative; line-height: 1.5; }
+    .guide-check-list li::before { content: '✔'; position: absolute; left: 0; color: var(--blue); font-size: .8rem; }
+    .guide-time-box { background: var(--blue-light); border-radius: 14px; padding: 20px 22px; }
+    .guide-time-box h4 { font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #1a1a2e; }
+    .guide-time-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .guide-time-table th { background: var(--blue); color: #fff; padding: 10px 14px; text-align: center; }
+    .guide-time-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(79,142,247,.15); }
+    .guide-time-table tr:last-child td { border-bottom: none; }
+
+    /* ── 진입 팝업 ── */
+    .entry-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
+    .entry-overlay.active { display: flex; }
+    .entry-popup { position: relative; width: 100%; max-width: 420px; border-radius: 18px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.5); animation: popupIn .3s ease; }
+    @keyframes popupIn { from{opacity:0;transform:scale(.9) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .entry-bg { position: relative; background: linear-gradient(160deg, #0a1628 0%, #0d2137 50%, #091420 100%); min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .entry-bg::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 20%, rgba(0,180,255,.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 60%, rgba(0,100,200,.12) 0%, transparent 50%); }
+    .entry-bg::after { content:''; position:absolute; inset:0; background-image: linear-gradient(rgba(0,180,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,180,255,.05) 1px, transparent 1px); background-size:32px 32px; }
+    .entry-visual { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; padding:36px 24px 20px; gap:20px; }
+    .entry-face { width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,rgba(0,180,255,.15),rgba(0,100,255,.08)); border:2px solid rgba(0,200,255,.4); display:flex; align-items:center; justify-content:center; font-size:3.2rem; box-shadow:0 0 30px rgba(0,200,255,.25); flex-shrink:0; }
+    .entry-phone { width:70px; height:110px; background:linear-gradient(160deg,#0d3060,#0a1e40); border-radius:14px; border:2px solid rgba(0,200,255,.5); display:flex; align-items:center; justify-content:center; font-size:1.8rem; box-shadow:0 0 20px rgba(0,200,255,.3); flex-shrink:0; position:relative; }
+    .entry-phone::after { content:'🔒'; position:absolute; top:8px; right:-4px; font-size:.9rem; background:rgba(0,200,255,.8); border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; }
+    .entry-line { flex:1; height:2px; background:linear-gradient(90deg,rgba(0,200,255,.6),rgba(0,100,255,.3)); position:relative; }
+    .entry-line::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:8px; height:8px; border-radius:50%; background:#00c8ff; box-shadow:0 0 10px #00c8ff; animation:blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .entry-content { position:relative; z-index:1; padding:18px 24px 0; text-align:center; }
+    .entry-content h2 { color:#fff; font-size:1.55rem; font-weight:900; letter-spacing:-.02em; text-shadow:0 2px 16px rgba(0,150,255,.5); margin-bottom:4px; line-height:1.3; }
+    .entry-content h2 span { color:#00d4ff; }
+    .entry-btn-area { position:relative; z-index:1; background:rgba(0,0,0,.4); padding:16px 24px; display:flex; margin-top:18px; gap:12px; }
+    .entry-confirm-btn { flex:1; background:linear-gradient(135deg,#1a2d50,#0d1e3a); color:#fff; font-weight:800; font-size:.95rem; padding:13px 20px; border-radius:10px; border:1px solid rgba(0,200,255,.3); cursor:pointer; transition:background .2s; text-align:center; }
+    .entry-confirm-btn:hover { background:linear-gradient(135deg,#223a6a,#102545); }
+    .entry-hide-bar { background:rgba(0,0,0,.3); padding:10px 24px; display:flex; align-items:center; position:relative; z-index:10; }
+    .hide-btn { display:flex; align-items:center; gap:8px; background:none; border:none; cursor:pointer; font-size:.82rem; color:rgba(255,255,255,.7); font-weight:600; font-family:inherit; padding:0; }
+    .hide-box { width:18px; height:18px; border-radius:4px; border:2px solid rgba(255,255,255,.5); background:transparent; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.8rem; color:#fff; font-weight:900; transition:background .15s,border-color .15s; }
+    .hide-box.checked { background:#00c8ff; border-color:#00c8ff; }
+    .entry-close-btn { position:absolute; top:12px; right:12px; z-index:10; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .entry-close-btn:hover { background:rgba(255,255,255,.3); }
+
+    /* ── 푸터 ── */
+    footer { background: linear-gradient(160deg, #0d1117 0%, #1a1a3e 100%); color: #888; padding: 44px 24px; font-size: .82rem; line-height: 2; }
+    footer strong { color: #ccc; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; }
+    .footer-info p { margin-bottom: 2px; }
+    .footer-kakao {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FEE500; color: #1a1a1a;
+      padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: .88rem;
+      margin-top: 8px; transition: transform .15s;
+    }
+    .footer-kakao:hover { transform: translateY(-2px); }
+    .footer-bottom { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.07); color: #555; }
+
+    @media (max-width: 680px) {
+      nav a:not(.nav-cta) { display: none; }
+      .hero { padding: 64px 18px 80px; }
+      .cert-card { min-width: 100%; }
+      .anyone-inner { flex-direction: column; gap: 32px; }
+      .footer-inner { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span>마크통신 <em style="font-style:italic">Ntelecom</em></span>
+        <img src="https://www.n-telecom.co.kr/common/img/masterpage/logo.png" alt="Ntelecom 로고" class="logo-img" onerror="this.style.display='none'">
+      </a>
+      <nav>
+        <a href="sunbulpon-gaetong.html">셀프개통 방법</a>
+        <a href="sunbulpon-gaetong.html#plans">K망 / L망 요금제</a>
+        <a href="#">유심구매</a>
+        <a href="#faq">FAQ</a>
+        <a href="news.html">소식</a>
+        <a href="sunbulpon-gaetong.html" class="nav-cta">즉시개통하기 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 히어로 배너 + 인증서 유무 -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-tagline">앤텔레콤 선불폰 5분 이면 개통 가능합니다.</p>
+      <p class="hero-question">간편인증서가 있으신가요?</p>
+      <div class="cert-grid">
+        <!-- 인증서 있음 -->
+        <div class="cert-card has">
+          <div class="cert-icon-wrap">✅</div>
+          <h3>네, 있어요</h3>
+          <p style="font-weight:700;color:var(--blue);margin-bottom:12px;">간편인증서 보유</p>
+          <div class="cert-apps">
+            <span class="cert-app-tag">카카오</span>
+            <span class="cert-app-tag">토스</span>
+            <span class="cert-app-tag">PASS</span>
+            <span class="cert-app-tag">KB국민</span>
+            <span class="cert-app-tag">SOL신한</span>
+          </div>
+          <p>인증서 중 1개만 있으면<br>집에서 5분 만에 비대면 개통 완료!</p>
+          <a href="sunbulpon-gaetong.html" class="cert-btn">비대면 개통 진행 →</a>
+        </div>
+        <!-- 인증서 없음 -->
+        <div class="cert-card none">
+          <div class="cert-icon-wrap">🪪</div>
+          <h3>아뇨, 없어요</h3>
+          <p style="font-weight:700;color:var(--purple);margin-bottom:12px;">신분증만 보유</p>
+          <p>
+            간편인증서가 없어도 괜찮아요.<br>
+            본인명의 신분증 하나만 있으면<br>
+            가까운 매장에서 바로 개통 가능합니다.
+          </p>
+          <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank" class="cert-btn">방문개통 예약하기 →</a>
+        </div>
+      </div>
+      <div class="hero-guide-box">
+        <p class="hero-guide-label">셀프개통은 처음이신가요?</p>
+        <button class="hero-guide-btn" onclick="openGuideModal()">🔍 개통 가이드 보기 &gt;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4개 액션 카드 -->
+  <section class="action-section" id="contact">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:36px;">
+        <div class="tag" style="display:inline-block;background:var(--grad-main);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 3px 10px rgba(79,142,247,.3);">서비스</div>
+        <h2 style="font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;">마크통신 맞춤형 통신 가이드</h2>
+        <p style="color:var(--gray);font-size:.9rem;margin-top:8px;">누구나 제약 없이 이용할 수 있는 선불폰 및 충전식폰 서비스</p>
+      </div>
+      <div class="action-grid">
+
+        <a href="plans.html" class="action-card">
+          <div class="action-icon">📋</div>
+          <h3>요금제 찾기</h3>
+          <p>내 사용 패턴에 맞는 KT·LG 요금제 비교</p>
+        </a>
+        <a href="usim-guide.html" class="action-card">
+          <div class="action-icon">📦</div>
+          <h3>유심구매</h3>
+          <p>KT 바로유심·LG 원칩 구매처 안내</p>
+        </a>
+        <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank" class="action-card">
+          <div class="action-icon" style="background:#FFF9C4;">💬</div>
+          <h3>1:1 문의</h3>
+          <p>카카오톡으로 편하게 문의하세요</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 누구나 제약 없이 -->
+  <section class="anyone-section">
+    <div class="container">
+      <div class="anyone-inner">
+        <div class="anyone-text">
+          <div class="tag">MARK TELECOM</div>
+          <h2>
+            <strong>누구나 제약 없이</strong><br>
+            이용할 수 있습니다
+          </h2>
+          <p>
+            마크통신은 선불폰과 선불유심을 누구보다 빠르고<br>
+            안전하게 개통해 드립니다.<br>
+            복잡한 서류 없이, 매장 방문 없이, 지금 바로 시작하세요.
+          </p>
+          <div class="anyone-tags">
+            <span class="anyone-tag">✔ 신용불량자</span>
+            <span class="anyone-tag">✔ 통신 연체자</span>
+            <span class="anyone-tag">✔ 미납폰 보유자</span>
+            <span class="anyone-tag">✔ 외국인</span>
+            <span class="anyone-tag">✔ 일반 가입 거절자</span>
+          </div>
+        </div>
+        <div class="anyone-cards">
+          <div class="anyone-card">
+            <h4>⚡ 5분 즉시 개통</h4>
+            <p>간편인증 하나면 충분합니다. 카카오, 토스 등 5가지 인증서를 지원합니다.</p>
+          </div>
+          <div class="anyone-card">
+            <h4>🛡️ 안심 본인인증</h4>
+            <p>공인된 간편인증서로 본인확인을 진행하여 명의도용 걱정 없이 안전하게 개통됩니다.</p>
+          </div>
+          <div class="anyone-card">
+            <h4>📱 미납폰 그대로 사용</h4>
+            <p>LG망은 KT·LG·SK 미납이 있어도 기존 폰을 그대로 사용해 개통 가능합니다.</p>
+          </div>
+          <div class="anyone-card">
+            <h4>🏪 오프라인 매장 지원</h4>
+            <p>인증서가 없어도 괜찮습니다. 신분증 하나만 들고 가까운 매장을 방문해 주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <div class="tag">FAQ</div>
+        <h2>자주 묻는 질문</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">본인명의로 몇 회선까지 개통할 수 있나요?</span></summary>
+          <p>선불폰은 본인 명의로 최대 3회선까지 개통 가능합니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">타사 미납이 있어도 선불폰 개통이 가능한가요?</span></summary>
+          <p>네, 가능합니다. LG망(L망)은 KT·LG·SK 미납이 있어도 개통 가능합니다. KT망(K망)은 KT 미납 단말기의 경우 개통이 제한될 수 있습니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">개통 방법은 어떻게 되나요?</span></summary>
+          <p>간편인증서(카카오·토스·PASS 등) 보유 시 비대면 셀프개통이 가능합니다. 인증서가 없는 경우 본인명의 신분증을 지참하고 가까운 매장을 방문하시면 됩니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">유심만으로도 개통이 가능한가요?</span></summary>
+          <p>네, 단말기 없이 유심만으로도 개통 가능합니다. 호환 유심(KT망: 바로유심, LG망: 원칩)을 구매 후 개통 신청하시면 됩니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">번호이동도 가능한가요?</span></summary>
+          <p>네, 기존 번호를 유지하면서 선불폰으로 번호이동 개통이 가능합니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">신용불량자·파산자도 개통이 되나요?</span></summary>
+          <p>선불폰은 후불 계약이 아니기 때문에 신용조회 없이 개통 가능합니다. 신용불량·회생·파산 여부와 관계없이 누구나 개통하실 수 있습니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">미성년자도 개통이 가능한가요?</span></summary>
+          <p>미성년자의 경우 법정 대리인의 동의서 및 관련 서류가 추가로 필요합니다. 자세한 내용은 1:1 문의를 통해 안내받으실 수 있습니다.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">Q</span><span class="q-text">선불 요금제에도 약정이 있나요?</span></summary>
+          <p>선불 요금제는 기본적으로 약정이 없습니다. 단, 12개월 약정 할인 요금제를 선택하실 경우 약정 기간이 적용됩니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA 배너 -->
+  <!-- 푸터 -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-info">
+          <p><strong>마크통신 선불폰</strong></p>
+          <p>대표: 이명준 &nbsp;|&nbsp; 사업자등록번호: </p>
+          <p>카카오톡 채널로 편하게 문의하세요</p>
+          <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank" class="footer-kakao">💬 카카오톡 상담하기</a>
+        </div>
+        <div>
+          <p style="color:#aab;margin-bottom:12px;font-size:.8rem;">바로가기</p>
+          <p style="margin-bottom:6px;"><a href="sunbulpon-gaetong.html" style="color:#888;">셀프개통 방법</a></p>
+          <p style="margin-bottom:6px;"><a href="sunbulpon-gaetong.html#plans" style="color:#888;">선불 요금제</a></p>
+          <p style="margin-bottom:6px;"><a href="news.html" style="color:#888;">소식 / 블로그</a></p>
+          <p style="margin-bottom:6px;"><a href="#faq" style="color:#888;">FAQ</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 마크통신 Ntelecom. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 개통 가이드 모달 -->
+  <div class="guide-modal-overlay" id="guideModal">
+    <div class="guide-modal">
+      <button class="guide-modal-close" onclick="closeGuideModal()">✕</button>
+      <div class="guide-modal-header">
+        <h2>📋 셀프개통 가이드</h2>
+        <p>처음이셔도 걱정 마세요. 단계별로 안내해 드립니다.</p>
+      </div>
+
+      <!-- 탭 -->
+      <div class="guide-tabs">
+        <button class="guide-tab active" onclick="switchTab(0)">개통 절차</button>
+        <button class="guide-tab" onclick="switchTab(1)">안면인식 가이드</button>
+        <button class="guide-tab" onclick="switchTab(2)">주의사항 &amp; 시간</button>
+      </div>
+
+      <!-- 탭 0: 개통 절차 (이미지 2개씩 크게) -->
+      <div class="guide-tab-content active" id="gtab0">
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-00.jpg" alt="셀프개통 가이드 개요" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-01.jpg" alt="01 통신사 선택" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-02.jpg" alt="02 가입유형 선택" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-03.jpg" alt="03 안면인증 진행" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-04.jpg" alt="04 간편인증" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-05.jpg" alt="05 유심번호 입력" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-06.jpg" alt="06 요금제 선택 및 개통" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-07.jpg" alt="결제 방식 안내" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-cta-row">
+          <a href="sunbulpon-gaetong.html" class="guide-cta-btn" onclick="closeGuideModal()">지금 바로 개통하기 →</a>
+        </div>
+      </div>
+
+      <!-- 탭 1: 안면인식 가이드 -->
+      <div class="guide-tab-content" id="gtab1">
+        <div class="guide-notice-box">
+          <p>🔒 정확한 본인확인을 위해 개통 시 <strong>안면인증</strong>이 진행됩니다.<br>
+          <strong>신분증(주민등록증 또는 운전면허증)</strong>과 카메라가 작동하는 휴대폰을 준비해주세요.</p>
+        </div>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="guide-step-num">1</div>
+            <div class="guide-step-icon">📞</div>
+            <div class="guide-step-text">
+              <strong>전화번호 입력</strong>
+              <span>개통할 번호 입력</span>
+            </div>
+          </div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step">
+            <div class="guide-step-num">2</div>
+            <div class="guide-step-icon">📷</div>
+            <div class="guide-step-text">
+              <strong>QR코드 스캔</strong>
+              <span>휴대폰으로 QR 스캔</span>
+            </div>
+          </div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step">
+            <div class="guide-step-num">3</div>
+            <div class="guide-step-icon">🪪</div>
+            <div class="guide-step-text">
+              <strong>신분증 인증</strong>
+              <span>신분증 촬영 및 확인</span>
+            </div>
+          </div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step">
+            <div class="guide-step-num">4</div>
+            <div class="guide-step-icon">😊</div>
+            <div class="guide-step-text">
+              <strong>안면인증</strong>
+              <span>얼굴 촬영으로 본인확인</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 안면인증 시 유의사항 -->
+        <div class="guide-face-caution">
+          <h4>안면인증 시 유의사항</h4>
+          <div class="guide-caution-grid">
+            <div class="guide-caution-card">
+              <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide1.svg" alt="빛 반사 주의" onerror="this.style.display='none'">
+              <p>빛 반사가 생기지 않게 촬영해주세요</p>
+            </div>
+            <div class="guide-caution-card">
+              <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide2.svg" alt="가로 촬영" onerror="this.style.display='none'">
+              <p>신분증 앞면을 가이드에 맞춰 가로로 촬영해주세요</p>
+            </div>
+            <div class="guide-caution-card">
+              <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide3.svg" alt="실물 신분증" onerror="this.style.display='none'">
+              <p>훼손되지 않은 실물 신분증으로 촬영해주세요</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭 2: 주의사항 & 개통 가능 시간 -->
+      <div class="guide-tab-content" id="gtab2">
+        <div class="guide-check-list">
+          <h4>⚠️ 개통 전 꼭 확인하세요</h4>
+          <ul>
+            <li>미성년자 · 법인 · 외국인(여권) 개통 제한</li>
+            <li>유심 일련번호를 정확히 입력해 주세요</li>
+
+            <li>개통 완료 확인 후 유심 장착 및 이용 가능</li>
+            <li>본인명의 신분증(주민등록증 또는 운전면허증) 필수</li>
+          </ul>
+        </div>
+        <div class="guide-time-box">
+          <h4>🕐 개통 가능 시간</h4>
+          <table class="guide-time-table">
+            <thead>
+              <tr><th>구분</th><th>번호이동</th><th>신규개통</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>KT망</td><td>10:00 ~ 19:50</td><td>08:00 ~ 21:50</td></tr>
+              <tr><td>LG망</td><td>10:00 ~ 19:50</td><td>08:00 ~ 21:50</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오 플로팅 버튼 -->
+  <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank" class="kakao-float" title="카카오톡 상담">💬</a>
+
+  <!-- 진입 팝업 -->
+  <div class="entry-overlay" id="entryPopup">
+    <div class="entry-popup">
+      <button class="entry-close-btn" onclick="closeEntry()">✕</button>
+      <div class="entry-bg">
+        <div class="entry-visual">
+          <div class="entry-face">🤖</div>
+          <div class="entry-line"></div>
+          <div class="entry-phone">📱</div>
+        </div>
+        <div class="entry-content">
+          <h2><span>6월</span> 안면인식 시스템 도입</h2>
+        </div>
+        <div class="entry-btn-area">
+          <button class="entry-confirm-btn" onclick="location.href='face-auth.html'">안면인식 하는법 확인</button>
+        </div>
+        <div class="entry-hide-bar">
+          <button class="hide-btn" type="button" onclick="toggleCheck()">
+            <span class="hide-box" id="hideBox"></span>
+            하루 동안 팝업 끔
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* 개통 가이드 모달 */
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function switchTab(idx) {
+      document.querySelectorAll('.guide-tab').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+      document.querySelectorAll('.guide-tab-content').forEach(function(c,i){ c.classList.toggle('active', i===idx); });
+    }
+    document.getElementById('guideModal').addEventListener('click', function(e){
+      if (e.target === this) closeGuideModal();
+    });
+
+    var popupChecked = false;
+    function toggleCheck() {
+      popupChecked = !popupChecked;
+      var box = document.getElementById('hideBox');
+      if (popupChecked) { box.textContent = '✕'; box.classList.add('checked'); }
+      else { box.textContent = ''; box.classList.remove('checked'); }
+    }
+    function closeEntry() {
+      if (popupChecked) { localStorage.setItem('popupHideDate', new Date().toDateString()); }
+      document.getElementById('entryPopup').classList.remove('active');
+    }
+    (function() {
+      try {
+        if (localStorage.getItem('popupHideDate') !== new Date().toDateString()) {
+          document.getElementById('entryPopup').classList.add('active');
+        }
+      } catch(e) { document.getElementById('entryPopup').classList.add('active'); }
+    })();
+  </script>
+</body>
+</html>

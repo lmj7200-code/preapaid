@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ntelecomsafe.com)",
+      "Bash(where npx *)",
+      "Bash(where npm *)",
+      "Bash(where yarn *)",
+      "Bash(where bun *)",
+      "Bash(where deno *)",
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(where py *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python.exe\" --version)",
+      "Bash(py -3 --version)",
+      "Bash(where.exe node *)",
+      "Read(//c/Program Files/**)",
+      "Bash(\"C:/Users/PC/AppData/Local/ms-playwright-go/1.57.0/node.exe\" --version)",
+      "WebFetch(domain:modutelecom.com)",
+      "WebFetch(domain:www.n-telecom.co.kr)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

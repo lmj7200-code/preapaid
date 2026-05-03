@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K망 / L망 요금제 | 마크통신 Ntelecom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; color: #1a1a2e; line-height: 1.6; background: #f0f4ff; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #1a56db; --blue-light: #e8f0fe;
+      --pink: #e91e8c; --pink-light: #fce4ec;
+      --grad-main: linear-gradient(135deg,#4f8ef7 0%,#1a56db 50%,#6c2fd4 100%);
+      --radius: 20px; --shadow: 0 8px 32px rgba(79,142,247,.15);
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,142,247,.15);
+      height: 68px; display: flex; align-items: center;
+      box-shadow: 0 2px 20px rgba(79,142,247,.1);
+    }
+    .header-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo { display: flex; align-items: center; gap: 6px; font-size: 1.05rem; font-weight: 900; letter-spacing: -.02em; background: var(--grad-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; white-space: nowrap; }
+    .logo-img { height: 28px; width: auto; object-fit: contain; display: block; }
+    nav { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    nav a { font-size: .82rem; font-weight: 600; color: #444; transition: color .2s; white-space: nowrap; }
+    nav a:hover { color: var(--blue); }
+    nav a.active { color: var(--blue); font-weight: 800; border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    nav a.nav-cta { background: var(--grad-main); color: #fff !important; padding: 9px 22px; border-radius: 10px; font-weight: 700; font-size: .88rem; box-shadow: 0 4px 14px rgba(79,142,247,.4); transition: transform .15s, box-shadow .15s !important; }
+    nav a.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,142,247,.5) !important; }
+
+    /* ── 비디오 모달 ── */
+    .video-modal-overlay { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,.8); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px; }
+    .video-modal-overlay.active { display:flex; }
+    .video-modal { background:#fff; border-radius:20px; width:100%; max-width:760px; box-shadow:0 32px 80px rgba(0,0,0,.5); overflow:hidden; }
+    .video-modal-header { display:flex; justify-content:space-between; align-items:flex-start; padding:20px 24px 16px; background:linear-gradient(135deg,#4f8ef7,#1a56db); }
+    .video-modal-header h3 { color:#fff; font-size:1.1rem; font-weight:800; }
+    .video-modal-sub { color:rgba(255,255,255,.8); font-size:.82rem; margin-top:4px; }
+    .video-modal-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1rem; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .video-wrap { position:relative; padding-bottom:56.25%; height:0; }
+    .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; }
+    .video-modal-footer { padding:12px 20px; background:#f7f9ff; font-size:.8rem; color:#666; text-align:center; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%);
+      padding: 56px 24px 64px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-tag { display:inline-block; background:rgba(255,255,255,.2); color:#fff; font-size:.8rem; font-weight:700; border-radius:20px; padding:5px 16px; margin-bottom:18px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.3); }
+    .hero h1 { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 12px; line-height: 1.2; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,.85); max-width: 520px; margin: 0 auto 24px; }
+    .hero-badges { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .hero-badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:30px; padding:7px 20px; font-size:.85rem; font-weight:700; backdrop-filter:blur(8px); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── 망 탭 ── */
+    .net-tabs-wrap { padding: 48px 0 0; }
+    .net-tabs { display:flex; gap:12px; justify-content:center; margin-bottom:32px; }
+    .net-tab {
+      padding: 13px 36px; border:none; border-radius:30px; font-size:1rem; font-weight:800;
+      cursor:pointer; font-family:inherit; transition:all .25s;
+      background:#fff; color:#aaa; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .net-tab.active.kt { background: var(--blue); color:#fff; box-shadow: 0 6px 20px rgba(26,86,219,.35); }
+    .net-tab.active.lg { background: var(--pink); color:#fff; box-shadow: 0 6px 20px rgba(233,30,140,.35); }
+    .net-tab:not(.active):hover { background:#f0f4ff; color:#555; }
+
+    /* ── 타입 탭 ── */
+    .type-tabs-wrap { display:flex; justify-content:center; margin-bottom:36px; background:#fff; border-radius:16px; padding:6px; box-shadow:0 2px 12px rgba(0,0,0,.06); width:fit-content; margin-left:auto; margin-right:auto; }
+    .type-tab { padding:9px 24px; border:none; border-radius:12px; font-size:.88rem; font-weight:700; cursor:pointer; font-family:inherit; color:#999; background:transparent; transition:all .2s; }
+    .type-tab.active { background:var(--grad-main); color:#fff; box-shadow:0 4px 14px rgba(79,142,247,.35); }
+
+    /* ── 요금제 섹션 ── */
+    .plan-section { display:none; }
+    .plan-section.active { display:block; }
+
+    .plan-note { background:#fff8e1; border:1px solid #ffe082; border-radius:12px; padding:12px 18px; font-size:.85rem; color:#795548; font-weight:600; margin-bottom:20px; }
+
+    /* ── 요금제 카드 그리드 ── */
+    .plan-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    @media(max-width:900px) { .plan-cards { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:520px) { .plan-cards { grid-template-columns:1fr; } }
+
+    .plan-card {
+      background:#fff; border-radius:16px; padding:18px 16px 14px;
+      box-shadow:0 4px 18px rgba(79,142,247,.1);
+      display:flex; flex-direction:column;
+      position:relative; overflow:hidden;
+      transition: transform .2s, box-shadow .2s;
+      border: 2px solid transparent;
+    }
+    .plan-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(79,142,247,.18); }
+    .plan-card.popular { border-color: #ffd700; }
+    .kt-card.popular { border-color: var(--blue); }
+    .lg-card.popular { border-color: var(--pink); }
+
+    .pc-popular { display:inline-block; font-size:.68rem; font-weight:800; border-radius:6px; padding:2px 8px; margin-bottom:6px; }
+    .kt-card .pc-popular { background:var(--blue); color:#fff; }
+    .lg-card .pc-popular { background:var(--pink); color:#fff; }
+
+    .pc-badge-sm { display:inline-block; font-size:.68rem; font-weight:800; border-radius:5px; padding:2px 8px; margin-bottom:7px; }
+    .kt-badge-sm { background:var(--blue-light); color:var(--blue); }
+    .lg-badge-sm { background:var(--pink-light); color:var(--pink); }
+
+    .pc-name { font-size:.95rem; font-weight:900; color:#1a1a2e; margin-bottom:3px; line-height:1.3; }
+    .pc-desc { font-size:.73rem; color:#888; margin-bottom:10px; }
+
+    .pc-specs-detail { display:flex; flex-direction:column; gap:7px; border-top:1px solid #f0f0f0; padding-top:10px; flex:1; }
+    .pc-spec-row { display:flex; gap:8px; font-size:.79rem; }
+    .pc-spec-label { flex-shrink:0; width:30px; color:#888; font-weight:700; padding-top:2px; }
+    .pc-spec-val b { color:#222; font-weight:700; display:block; line-height:1.4; }
+    .pc-spec-val small { color:#999; font-size:.68rem; line-height:1.3; display:block; margin-top:1px; }
+    .hl-kt .pc-spec-val b { color:var(--blue); }
+    .hl-lg .pc-spec-val b { color:var(--pink); }
+
+    .pc-footer { display:flex; justify-content:space-between; align-items:flex-end; margin-top:12px; padding-top:10px; border-top:1px solid #f0f0f0; }
+    .pc-daily { font-size:.72rem; color:#aaa; }
+    .pc-price-wrap { text-align:right; }
+    .pc-price-prefix { font-size:.68rem; font-weight:600; color:#888; display:block; }
+    .pc-price { font-size:1.2rem; font-weight:900; color:#1a1a2e; }
+
+    /* ── CTA 섹션 ── */
+    .cta-section { background:linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%); padding:56px 0; margin-top:56px; }
+    .cta-box { background:rgba(255,255,255,.12); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); border-radius:var(--radius); padding:36px 40px; text-align:center; }
+    .cta-box h3 { font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:12px; }
+    .cta-box p { color:rgba(255,255,255,.85); font-size:.95rem; margin-bottom:24px; }
+    .cta-btn { display:inline-block; background:#fff; color:var(--blue); font-weight:800; font-size:.95rem; border-radius:30px; padding:13px 36px; transition:transform .2s; }
+    .cta-btn:hover { transform:translateY(-2px); }
+
+    footer { background:#1a1a2e; color:rgba(255,255,255,.5); text-align:center; padding:28px 24px; font-size:.82rem; }
+
+    @media(max-width:600px) {
+      .hero h1 { font-size:1.6rem; }
+      nav { gap:10px; }
+      nav a { font-size:.75rem; }
+      .net-tab { padding:11px 24px; font-size:.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span>마크통신 <em style="font-style:italic">Ntelecom</em></span>
+      <img src="https://www.n-telecom.co.kr/common/img/masterpage/logo.png" alt="Ntelecom 로고" class="logo-img" onerror="this.style.display='none'">
+    </a>
+    <nav>
+      <a href="sunbulpon-gaetong.html">셀프개통 방법</a>
+      <a href="plans.html" class="active">K망 / L망 요금제</a>
+      <a href="usim-guide.html">유심구매</a>
+      <a href="#" onclick="openVideoModal();return false;">😊 안면인식</a>
+      <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">FAQ</a>
+      <a href="news.html">소식</a>
+      <a href="#" class="nav-cta">개통 신청 →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 안면인식 영상 모달 -->
+<div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+  <div class="video-modal">
+    <div class="video-modal-header">
+      <div>
+        <h3>😊 안면인식 상세 가이드</h3>
+        <p class="video-modal-sub">영상으로 단계별 촬영 방법을 확인하세요</p>
+      </div>
+      <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+    </div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="video-modal-footer">
+      <span>📱 실제 안면인식 진행 화면을 영상으로 안내해 드립니다</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-tag">📡 요금제 안내</div>
+  <h1>K망 · L망 선불폰<br>요금제 한눈에 비교</h1>
+  <p>KT망과 LG망 선불 · 약정 · 후불 요금제를 모두 확인하고 나에게 맞는 플랜을 선택하세요.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">📘 K망 (KT)</span>
+    <span class="hero-badge">💗 L망 (LG)</span>
+    <span class="hero-badge">💰 월 12,100원~</span>
+  </div>
+</section>
+
+<!-- ── 요금제 본문 ── -->
+<div class="container">
+  <div class="net-tabs-wrap">
+
+    <!-- 망 선택 탭 -->
+    <div class="net-tabs">
+      <button class="net-tab active kt" id="netTabKt" onclick="switchNet(0)">📘 K망 (KT)</button>
+      <button class="net-tab lg" id="netTabLg" onclick="switchNet(1)">💗 L망 (LG)</button>
+    </div>
+
+    <!-- 요금제 타입 탭 -->
+    <div class="type-tabs-wrap">
+      <button class="type-tab active" id="typeTab0" onclick="switchType(0)">선불 요금제</button>
+      <button class="type-tab" id="typeTab1" onclick="switchType(1)">약정 요금제</button>
+      <button class="type-tab" id="typeTab2" onclick="switchType(2)">플랫폼 (후불)</button>
+    </div>
+
+    <!-- ▶ K망 선불 -->
+    <div class="plan-section active" id="pn0t0">
+      <div class="plan-cards">
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불 기본1</p>
+          <p class="pc-desc">소량 데이터 · 기본 통화</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>30건</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 404원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">12,100원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불 기본2</p>
+          <p class="pc-desc">소량 데이터 · 기본 통화</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>500MB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>30건</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 514원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">15,400원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불 무제한 300M</p>
+          <p class="pc-desc">무제한 저속 데이터 + 무제한 통화!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>무제한(최대 1Mbps)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,100원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불 베이직 1.4GB</p>
+          <p class="pc-desc">일반 데이터 + 무제한 통화!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>1.4GB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 50분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,200원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">36,000원</span></div></div>
+        </div>
+        <div class="plan-card kt-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불396 10.3GB</p>
+          <p class="pc-desc">선불 무제한 데이터 10.3GB!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-kt"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,320원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,600원</span></div></div>
+        </div>
+        <div class="plan-card kt-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불459 20.3GB</p>
+          <p class="pc-desc">선불 무제한 데이터 20.3GB!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-kt"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>20.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,530원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">45,900원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불770 10GB+일2GB</p>
+          <p class="pc-desc">넉넉한 데이터 + 매일 2GB 추가!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,567원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+          <p class="pc-name">LTE 선불859 100GB</p>
+          <p class="pc-desc">대용량 100GB 선불 데이터!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,863원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▶ K망 약정 -->
+    <div class="plan-section" id="pn0t1">
+      <div class="plan-note">📅 12개월 약정 요금제입니다.</div>
+      <div class="plan-cards">
+        <div class="plan-card kt-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+          <p class="pc-name">LTE 선불299 10.3GB (12개월)</p>
+          <p class="pc-desc">12개월 약정 최저가 인기 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-kt"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 997원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">29,900원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+          <p class="pc-name">LTE 선불399 20.3GB (12개월)</p>
+          <p class="pc-desc">20.3GB 대용량 12개월 약정!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>20.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,330원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,900원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+          <p class="pc-name">LTE 선불770 10GB+일2GB (12개월)</p>
+          <p class="pc-desc">매일 2GB 추가 12개월 약정!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,567원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+          <p class="pc-name">LTE 선불 비디오 100GB (12개월)</p>
+          <p class="pc-desc">대용량 100GB 12개월 약정!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,863원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▶ K망 플랫폼(후불) -->
+    <div class="plan-section" id="pn0t2">
+      <div class="plan-note">💳 후불 결제 방식입니다. 매월 자동 청구됩니다.</div>
+      <div class="plan-cards">
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 7GB+</p>
+          <p class="pc-desc">7GB 데이터 후불 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>7GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 650원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">19,500원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 10GB+</p>
+          <p class="pc-desc">10GB 데이터 후불 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 743원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">22,300원</span></div></div>
+        </div>
+        <div class="plan-card kt-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 11GB+일2GB</p>
+          <p class="pc-desc">11GB + 매일 2GB 추가 후불!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-kt"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,250원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">37,500원</span></div></div>
+        </div>
+        <div class="plan-card kt-card">
+          <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 100GB+</p>
+          <p class="pc-desc">대용량 100GB 후불 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,440원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">43,200원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▶ L망 선불 -->
+    <div class="plan-section" id="pn1t0">
+      <div class="plan-cards">
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불 기본1</p>
+          <p class="pc-desc">소량 데이터 · 기본 통화</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>30건</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 404원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">12,100원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불 데이터 2.5GB</p>
+          <p class="pc-desc">2.5GB 데이터 + 기본 통화</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>2.5GB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>100분(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>50건</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 567원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">17,000원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불 300분</p>
+          <p class="pc-desc">300분 통화 특화 요금제</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>300분(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>300건</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 693원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">20,800원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불 무제한 300M</p>
+          <p class="pc-desc">무제한 저속 데이터 + 무제한 통화!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>무제한(최대 1Mbps)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,100원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div></div>
+        </div>
+        <div class="plan-card lg-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불396 10.3GB</p>
+          <p class="pc-desc">선불 무제한 데이터 10.3GB!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-lg"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,320원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,600원</span></div></div>
+        </div>
+        <div class="plan-card lg-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불770 10GB+일2GB</p>
+          <p class="pc-desc">넉넉한 데이터 + 매일 2GB 추가!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-lg"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,567원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+          <p class="pc-name">LTE 선불 매일 5GB</p>
+          <p class="pc-desc">매일 5GB 무제한 데이터!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,863원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▶ L망 약정 -->
+    <div class="plan-section" id="pn1t1">
+      <div class="plan-note">📅 약정 요금제입니다 (6개월 / 12개월).</div>
+      <div class="plan-cards">
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[약정 6개월]</span>
+          <p class="pc-name">LTE 선불330 10.3GB (6개월)</p>
+          <p class="pc-desc">6개월 약정 알뜰 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,100원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div></div>
+        </div>
+        <div class="plan-card lg-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+          <p class="pc-name">LTE 선불299 10.3GB (12개월)</p>
+          <p class="pc-desc">12개월 약정 최저가 인기 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-lg"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 997원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">29,900원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+          <p class="pc-name">LTE 선불494 11GB+일2GB (12개월)</p>
+          <p class="pc-desc">11GB+매일2GB 12개월 약정!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,647원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">49,400원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+          <p class="pc-name">LTE 선불 매일 5GB (12개월)</p>
+          <p class="pc-desc">매일 5GB 12개월 약정!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>기본제공</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 2,863원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ▶ L망 플랫폼(후불) -->
+    <div class="plan-section" id="pn1t2">
+      <div class="plan-note">💳 후불 결제 방식입니다. 매월 자동 청구됩니다.</div>
+      <div class="plan-cards">
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 7GB+</p>
+          <p class="pc-desc">7GB 데이터 후불 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>7GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 597원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">17,900원</span></div></div>
+        </div>
+        <div class="plan-card lg-card popular">
+          <span class="pc-popular">⭐ 인기</span>
+          <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 11GB+일2GB</p>
+          <p class="pc-desc">11GB + 매일 2GB 추가 후불!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row hl-lg"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,223원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">36,700원</span></div></div>
+        </div>
+        <div class="plan-card lg-card">
+          <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+          <p class="pc-name">알뜰 플랫폼 매일 5GB</p>
+          <p class="pc-desc">매일 5GB 무제한 후불 요금제!</p>
+          <div class="pc-specs-detail">
+            <div class="pc-spec-row"><span class="pc-spec-label">데이터</span><div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">통화</span><div class="pc-spec-val"><b>무제한</b></div></div>
+            <div class="pc-spec-row"><span class="pc-spec-label">문자</span><div class="pc-spec-val"><b>무제한</b></div></div>
+          </div>
+          <div class="pc-footer"><span class="pc-daily">일 기본료 1,440원</span><div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">43,200원</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /net-tabs-wrap -->
+</div><!-- /container -->
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h3>마음에 드는 요금제를 찾으셨나요?</h3>
+      <p>유심을 구매하고 5분 안에 비대면으로 셀프개통 완료!</p>
+      <a href="https://www.n-telecom.co.kr/thesmall/view/open/selfopen_explain.aspx" target="_blank" class="cta-btn">셀프개통 시작하기 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 마크통신 Ntelecom. 앤텔레콤 공식 판매점.</p>
+</footer>
+
+<script>
+  var curNet = 0;
+  var curType = 0;
+
+  function switchNet(n) {
+    curNet = n;
+    document.getElementById('netTabKt').classList.toggle('active', n === 0);
+    document.getElementById('netTabKt').classList.toggle('kt', true);
+    document.getElementById('netTabLg').classList.toggle('active', n === 1);
+    document.getElementById('netTabLg').classList.toggle('lg', true);
+    _updateSection();
+  }
+
+  function switchType(t) {
+    curType = t;
+    [0,1,2].forEach(function(i){
+      document.getElementById('typeTab'+i).classList.toggle('active', i === t);
+    });
+    _updateSection();
+  }
+
+  function _updateSection() {
+    document.querySelectorAll('.plan-section').forEach(function(el){ el.classList.remove('active'); });
+    var id = 'pn' + curNet + 't' + curType;
+    var el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  }
+
+  function openVideoModal() {
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/vTsXP8Y5JXQ?autoplay=1';
+    document.getElementById('videoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoModal() {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>

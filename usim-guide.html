@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>유심 구매 가이드 | 마크통신 Ntelecom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; color: #1a1a2e; line-height: 1.6; background: #f0f4ff; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --blue: #1a56db; --blue-light: #e8f0fe;
+      --pink: #e91e8c; --pink-light: #fce4ec;
+      --grad-main: linear-gradient(135deg,#4f8ef7 0%,#1a56db 50%,#6c2fd4 100%);
+      --radius: 20px; --shadow: 0 8px 32px rgba(79,142,247,.15);
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,142,247,.15);
+      height: 68px; display: flex; align-items: center;
+      box-shadow: 0 2px 20px rgba(79,142,247,.1);
+    }
+    .header-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo { display: flex; align-items: center; gap: 6px; font-size: 1.05rem; font-weight: 900; letter-spacing: -.02em; background: var(--grad-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; white-space: nowrap; }
+    .logo-img { height: 28px; width: auto; object-fit: contain; display: block; }
+    nav { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    nav a { font-size: .82rem; font-weight: 600; color: #444; transition: color .2s; white-space: nowrap; }
+    nav a:hover { color: var(--blue); }
+    nav a.active { color: var(--blue); font-weight: 800; border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    nav a.nav-cta { background: var(--grad-main); color: #fff !important; padding: 9px 22px; border-radius: 10px; font-weight: 700; font-size: .88rem; box-shadow: 0 4px 14px rgba(79,142,247,.4); transition: transform .15s, box-shadow .15s !important; }
+    nav a.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,142,247,.5) !important; }
+
+    /* ── 비디오 모달 ── */
+    .video-modal-overlay { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,.8); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px; }
+    .video-modal-overlay.active { display:flex; }
+    .video-modal { background:#fff; border-radius:20px; width:100%; max-width:760px; box-shadow:0 32px 80px rgba(0,0,0,.5); overflow:hidden; }
+    .video-modal-header { display:flex; justify-content:space-between; align-items:flex-start; padding:20px 24px 16px; background:linear-gradient(135deg,#4f8ef7,#1a56db); }
+    .video-modal-header h3 { color:#fff; font-size:1.1rem; font-weight:800; }
+    .video-modal-sub { color:rgba(255,255,255,.8); font-size:.82rem; margin-top:4px; }
+    .video-modal-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1rem; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .video-wrap { position:relative; padding-bottom:56.25%; height:0; }
+    .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; }
+    .video-modal-footer { padding:12px 20px; background:#f7f9ff; font-size:.8rem; color:#666; text-align:center; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%);
+      padding: 64px 24px 72px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-tag { display:inline-block; background:rgba(255,255,255,.2); color:#fff; font-size:.8rem; font-weight:700; border-radius:20px; padding:5px 16px; margin-bottom:18px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.3); }
+    .hero h1 { font-size: 2.4rem; font-weight: 900; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+    .hero p { font-size: 1.05rem; color: rgba(255,255,255,.85); max-width: 540px; margin: 0 auto 28px; }
+    .hero-badges { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .hero-badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:30px; padding:7px 20px; font-size:.85rem; font-weight:700; backdrop-filter:blur(8px); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 64px 0; }
+
+    /* ── SECTION HEADER ── */
+    .sec-head { text-align:center; margin-bottom:48px; }
+    .sec-tag { display:inline-block; background:var(--grad-main); color:#fff; font-size:.78rem; font-weight:800; border-radius:20px; padding:5px 16px; margin-bottom:14px; }
+    .sec-title { font-size:1.9rem; font-weight:900; color:#1a1a2e; margin-bottom:10px; }
+    .sec-desc { color:#666; font-size:.95rem; }
+
+    /* ── USIM CARDS ── */
+    .usim-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+    @media(max-width:700px) { .usim-grid { grid-template-columns:1fr; } }
+
+    .ug-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .25s,box-shadow .25s; }
+    .ug-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(79,142,247,.2); }
+
+    .ug-card-top { padding:22px 24px 0; }
+    .ug-net-badge { display:inline-block; font-size:.76rem; font-weight:800; border-radius:20px; padding:4px 14px; margin-bottom:12px; }
+    .kt-badge { background:var(--blue-light); color:var(--blue); }
+    .lg-badge { background:var(--pink-light); color:var(--pink); }
+    .ug-name { font-size:1.35rem; font-weight:900; color:#1a1a2e; margin-bottom:4px; }
+    .ug-price { font-size:1.05rem; font-weight:700; margin-bottom:16px; }
+    .kt-price { color:var(--blue); }
+    .lg-price { color:var(--pink); }
+
+    .ug-img-wrap { padding:0 24px 20px; overflow:hidden; height:240px; }
+    .ug-img-wrap img { width:100%; height:auto; border-radius:14px; display:block; }
+
+    .ug-body { padding:0 24px 24px; }
+
+    /* 구매처 탭 */
+    .ug-tabs { display:flex; gap:8px; margin-bottom:16px; }
+    .ug-tab { flex:1; padding:8px 0; border:none; border-radius:10px; font-size:.82rem; font-weight:700; cursor:pointer; background:#f0f4ff; color:#888; transition:all .2s; font-family:inherit; }
+    .ug-tab.active.kt { background:var(--blue); color:#fff; }
+    .ug-tab.active.lg { background:var(--pink); color:#fff; }
+
+    .ug-tab-content { display:none; }
+    .ug-tab-content.active { display:block; }
+
+    .ug-points { display:flex; flex-direction:column; gap:10px; }
+    .ug-point { display:flex; align-items:flex-start; gap:10px; font-size:.85rem; color:#333; line-height:1.5; }
+    .ug-check { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:900; flex-shrink:0; margin-top:1px; }
+    .kt-check { background:var(--blue-light); color:var(--blue); }
+    .lg-check { background:var(--pink-light); color:var(--pink); }
+
+    .ug-stores-wrap { margin-top:14px; border-radius:12px; padding:11px 14px; font-size:.81rem; font-weight:600; display:flex; align-items:center; gap:8px; }
+    .kt-stores-wrap { background:#f0f4ff; color:var(--blue); border:1px solid #d0deff; }
+    .lg-stores-wrap { background:#fff0f8; color:var(--pink); border:1px solid #f9c0d8; }
+
+    .ug-divider { height:1px; background:#f0f0f0; margin:20px 0; }
+
+    .ug-footer { display:flex; flex-direction:column; gap:6px; }
+    .ug-footer-row { display:flex; justify-content:space-between; align-items:center; font-size:.82rem; }
+    .ug-footer-label { color:#999; font-weight:500; }
+    .ug-footer-val { color:#333; font-weight:700; }
+
+    .ug-cta { display:block; width:100%; margin-top:20px; padding:13px 0; border:none; border-radius:12px; font-size:.9rem; font-weight:800; cursor:pointer; text-align:center; font-family:inherit; transition:opacity .2s; text-decoration:none; }
+    .kt-cta { background:linear-gradient(135deg,#4f8ef7,#1a56db); color:#fff; }
+    .lg-cta { background:linear-gradient(135deg,#f06292,#e91e8c); color:#fff; }
+    .ug-cta:hover { opacity:.88; }
+
+    /* ── HOW TO BUY ── */
+    .how-section { background:#fff; }
+    .how-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    @media(max-width:700px) { .how-grid { grid-template-columns:1fr; } }
+    .how-card { background:#f7f9ff; border-radius:16px; padding:28px 24px; text-align:center; }
+    .how-icon { font-size:2.2rem; margin-bottom:14px; }
+    .how-step { display:inline-block; font-size:.72rem; font-weight:800; background:var(--grad-main); color:#fff; border-radius:20px; padding:3px 12px; margin-bottom:10px; }
+    .how-title { font-size:1rem; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
+    .how-desc { font-size:.83rem; color:#666; line-height:1.6; }
+
+    /* ── NOTICE ── */
+    .notice-section { background:linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%); padding:56px 0; }
+    .notice-box { background:rgba(255,255,255,.12); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); border-radius:var(--radius); padding:36px 40px; text-align:center; }
+    .notice-box h3 { font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:12px; }
+    .notice-box p { color:rgba(255,255,255,.85); font-size:.95rem; margin-bottom:24px; }
+    .notice-cta { display:inline-block; background:#fff; color:var(--blue); font-weight:800; font-size:.95rem; border-radius:30px; padding:13px 36px; transition:transform .2s; }
+    .notice-cta:hover { transform:translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer { background:#1a1a2e; color:rgba(255,255,255,.5); text-align:center; padding:28px 24px; font-size:.82rem; }
+
+    @media(max-width:600px) {
+      .hero h1 { font-size:1.7rem; }
+      .sec-title { font-size:1.4rem; }
+      nav { gap:10px; }
+      nav a { font-size:.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span>마크통신 <em style="font-style:italic">Ntelecom</em></span>
+      <img src="https://www.n-telecom.co.kr/common/img/masterpage/logo.png" alt="Ntelecom 로고" class="logo-img" onerror="this.style.display='none'">
+    </a>
+    <nav>
+      <a href="sunbulpon-gaetong.html">셀프개통 방법</a>
+      <a href="plans.html">K망 / L망 요금제</a>
+      <a href="usim-guide.html" class="active">유심구매</a>
+      <a href="#" onclick="openVideoModal();return false;">😊 안면인식</a>
+      <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">FAQ</a>
+      <a href="news.html">소식</a>
+      <a href="#" class="nav-cta">개통 신청 →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 안면인식 영상 모달 -->
+<div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+  <div class="video-modal">
+    <div class="video-modal-header">
+      <div>
+        <h3>😊 안면인식 상세 가이드</h3>
+        <p class="video-modal-sub">영상으로 단계별 촬영 방법을 확인하세요</p>
+      </div>
+      <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+    </div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="video-modal-footer">
+      <span>📱 실제 안면인식 진행 화면을 영상으로 안내해 드립니다</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-tag">📶 유심 구매 가이드</div>
+  <h1>선불폰 호환 유심<br>한눈에 비교하세요</h1>
+  <p>선불폰 개통에 반드시 필요한 유심! KT 바로유심과 LG 원칩의 구매처와 방법을 안내해 드립니다.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">💳 각 8,800원</span>
+    <span class="hero-badge">📡 NFC 기능 지원</span>
+    <span class="hero-badge">🏪 편의점 구매 가능</span>
+  </div>
+</section>
+
+<!-- ── USIM CARDS ── -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">호환 유심 선택</div>
+      <h2 class="sec-title">내 요금제 망에 맞는 유심을 선택하세요</h2>
+      <p class="sec-desc">K망(KT)과 L망(LG) 요금제는 서로 다른 유심을 사용합니다</p>
+    </div>
+    <div class="usim-grid">
+
+      <!-- KT 바로유심 -->
+      <div class="ug-card">
+        <div class="ug-card-top">
+          <span class="ug-net-badge kt-badge">K망 (KT) 전용</span>
+          <div class="ug-name">KT 바로유심</div>
+          <div class="ug-price kt-price">8,800원 · NFC 지원</div>
+        </div>
+        <div class="ug-img-wrap">
+          <img src="https://ntelecomsafe.com/kt-usim-guide.png" alt="KT 바로유심" onerror="this.style.display='none'">
+        </div>
+        <div class="ug-body">
+          <div class="ug-tabs">
+            <button class="ug-tab active kt" onclick="switchUsimTab(this,'kt-off')">🏪 오프라인</button>
+            <button class="ug-tab kt" onclick="switchUsimTab(this,'kt-on')">🚚 온라인 배송</button>
+          </div>
+
+          <div class="ug-tab-content active" id="kt-off">
+            <div class="ug-points">
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>이마트24 또는 CU, GS25 편의점 방문</span></div>
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>[진열대 또는 카운터] 문의하여 구매</span></div>
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>NFC 기능 지원 (티머니 / 삼성페이 등)</span></div>
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>유심핀 포함되어 있음</span></div>
+            </div>
+            <div class="ug-stores-wrap kt-stores-wrap">🏪 이마트24 &nbsp;·&nbsp; GS25 &nbsp;·&nbsp; CU</div>
+          </div>
+
+          <div class="ug-tab-content" id="kt-on">
+            <div class="ug-points">
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>바로배송유심(NFC) — 2시간 내 퀵 배송</span></div>
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>배송 가능 지역 확인 후 주문</span></div>
+              <div class="ug-point"><div class="ug-check kt-check">✓</div><span>NFC 기능 동일 지원</span></div>
+            </div>
+            <div class="ug-stores-wrap kt-stores-wrap">📦 퀵 배송 — 주문 후 약 2시간 이내 도착</div>
+            <a href="https://www.n-telecom.co.kr/thesmall/view/buyusim/buyusim_step1.aspx" target="_blank" class="ug-cta kt-cta" style="margin-top:14px;">🛒 구매하러 가기 →</a>
+          </div>
+
+          <div class="ug-divider"></div>
+          <div class="ug-footer">
+            <div class="ug-footer-row"><span class="ug-footer-label">가격</span><span class="ug-footer-val">8,800원</span></div>
+            <div class="ug-footer-row"><span class="ug-footer-label">기능</span><span class="ug-footer-val">NFC (교통카드 / 삼성페이)</span></div>
+            <div class="ug-footer-row"><span class="ug-footer-label">유심핀</span><span class="ug-footer-val">포함</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LG 원칩 -->
+      <div class="ug-card">
+        <div class="ug-card-top">
+          <span class="ug-net-badge lg-badge">L망 (LG U+) 전용</span>
+          <div class="ug-name">LG 원칩 (모두의 유심)</div>
+          <div class="ug-price lg-price">8,800원 · NFC 지원</div>
+        </div>
+        <div class="ug-img-wrap">
+          <img src="https://ntelecomsafe.com/lg-usim-guide.png" alt="LG 원칩" onerror="this.style.display='none'">
+        </div>
+        <div class="ug-body">
+          <div class="ug-tabs">
+            <button class="ug-tab active lg" onclick="switchUsimTab(this,'lg-off')">🏪 오프라인</button>
+            <button class="ug-tab lg" onclick="switchUsimTab(this,'lg-on')">🚚 온라인 배송</button>
+          </div>
+
+          <div class="ug-tab-content active" id="lg-off">
+            <div class="ug-points">
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>지하철 역사 내 KORAIL 자판기</span></div>
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>[편의점] 이마트24, 스토리웨이</span></div>
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>NFC 기능 지원, 유심핀 포함</span></div>
+            </div>
+            <div class="ug-stores-wrap lg-stores-wrap">🏪 이마트24 &nbsp;·&nbsp; 스토리웨이 &nbsp;·&nbsp; 지하철자판기</div>
+          </div>
+
+          <div class="ug-tab-content" id="lg-on">
+            <div class="ug-points">
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>배민B마트 / 쿠팡 주문 배송</span></div>
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>주문 시간: 매일 10:00 ~ 22:00</span></div>
+              <div class="ug-point"><div class="ug-check lg-check">✓</div><span>uplusmvno.com 에서도 구매 가능</span></div>
+            </div>
+            <div class="ug-stores-wrap lg-stores-wrap">📦 배민B마트 &nbsp;·&nbsp; 쿠팡</div>
+            <a href="https://www.n-telecom.co.kr/thesmall/view/buyusim/buyusim_step1.aspx" target="_blank" class="ug-cta lg-cta" style="margin-top:14px;">🛒 구매하러 가기 →</a>
+          </div>
+
+          <div class="ug-divider"></div>
+          <div class="ug-footer">
+            <div class="ug-footer-row"><span class="ug-footer-label">가격</span><span class="ug-footer-val">8,800원</span></div>
+            <div class="ug-footer-row"><span class="ug-footer-label">기능</span><span class="ug-footer-val">NFC (교통카드 / 삼성페이)</span></div>
+            <div class="ug-footer-row"><span class="ug-footer-label">유심핀</span><span class="ug-footer-val">포함</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── NOTICE ── -->
+<section class="notice-section">
+  <div class="container">
+    <div class="notice-box">
+      <h3>유심 구매 후 바로 셀프개통 하세요!</h3>
+      <p>신분증과 간편인증서(카카오·토스·PASS 등)만 있으면<br>5분 안에 비대면으로 개통 완료됩니다.</p>
+      <a href="sunbulpon-gaetong.html" class="notice-cta">📋 셀프개통 방법 보러가기 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 마크통신 Ntelecom. 앤텔레콤 공식 판매점.</p>
+</footer>
+
+<script>
+  function openVideoModal() {
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/vTsXP8Y5JXQ?autoplay=1';
+    document.getElementById('videoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoModal() {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function switchUsimTab(btn, targetId) {
+    // 같은 카드 내 탭 처리
+    var card = btn.closest('.ug-card');
+    card.querySelectorAll('.ug-tab').forEach(function(t){ t.classList.remove('active'); });
+    card.querySelectorAll('.ug-tab-content').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(targetId).classList.add('active');
+  }
+</script>
+</body>
+</html>

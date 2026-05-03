@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선불폰 안심개통 | Anthlecome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Pretendard:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.6;
+      background: #f0f4ff;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── 변수 ── */
+    :root {
+      --grad-main:  linear-gradient(135deg, #4f8ef7 0%, #1a56db 50%, #6c2fd4 100%);
+      --grad-card:  linear-gradient(160deg, #ffffff 0%, #eef3ff 100%);
+      --grad-hero:  linear-gradient(140deg, #4f8ef7 0%, #1a56db 45%, #5b21b6 100%);
+      --blue:       #1a56db;
+      --blue-dark:  #0e3fa8;
+      --blue-light: #e8f0fe;
+      --purple:     #6c2fd4;
+      --gray-bg:    #eef2ff;
+      --gray:       #555;
+      --radius:     16px;
+      --shadow-sm:  0 2px 8px rgba(79,142,247,.12);
+      --shadow:     0 8px 32px rgba(79,142,247,.18);
+      --shadow-3d:  0 12px 40px rgba(79,142,247,.22), 0 2px 0 rgba(255,255,255,.7) inset;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── 헤더 ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,142,247,.15);
+      height: 68px;
+      display: flex; align-items: center;
+      box-shadow: 0 2px 20px rgba(79,142,247,.1);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 1.05rem; font-weight: 900; letter-spacing: -.02em;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; white-space: nowrap;
+    }
+    .logo-img {
+      height: 28px; width: auto;
+      object-fit: contain; display: block;
+    }
+    nav { display: flex; gap: 16px; align-items: center; }
+    nav a { font-size: 0.82rem; font-weight: 600; color: #444; transition: color .2s; white-space: nowrap; }
+    nav a:hover { color: var(--blue); }
+    nav a.active {
+      color: var(--blue); font-weight: 800;
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 2px;
+    }
+    .nav-cta {
+      background: var(--grad-main);
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-weight: 700; font-size: 0.88rem;
+      box-shadow: 0 4px 14px rgba(79,142,247,.4);
+      transition: transform .15s, box-shadow .15s !important;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,142,247,.5) !important; }
+
+    /* ── 히어로 ── */
+    .hero {
+      background: var(--grad-hero);
+      color: #fff;
+      padding: 88px 24px 108px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(108,47,212,.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, rgba(255,255,255,.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to bottom right, transparent 49%, #f0f4ff 50%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 24px;
+      padding: 7px 20px;
+      font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 26px;
+      backdrop-filter: blur(8px);
+    }
+    .badge-dot {
+      width: 8px; height: 8px; background: #6ee7b7; border-radius: 50%;
+      box-shadow: 0 0 8px #6ee7b7;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 900; letter-spacing: -.03em;
+      line-height: 1.2; margin-bottom: 18px;
+      text-shadow: 0 2px 16px rgba(0,0,0,.2);
+    }
+    .hero p { font-size: 1.05rem; opacity: .88; margin-bottom: 6px; font-weight: 500; }
+    .hero-sub { font-size: 1rem; opacity: .85; margin-bottom: 28px; font-weight: 500; }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 36px;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 30px; padding: 7px 18px;
+      font-size: .85rem; font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .hero-guide-box { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .hero-guide-label { font-size: .88rem; color: rgba(255,255,255,.75); font-weight: 500; }
+    .hero-guide-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(10,10,30,.55); color: #fff;
+      font-size: .97rem; font-weight: 700;
+      padding: 13px 30px; border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(10px); cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .hero-guide-btn:hover { background: rgba(10,10,30,.75); transform: translateY(-2px); }
+    .btn-white {
+      display: inline-block;
+      background: #fff; color: var(--blue);
+      font-weight: 800; font-size: 1rem;
+      padding: 15px 36px; border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.18), 0 1px 0 rgba(255,255,255,.9) inset;
+      transition: transform .15s, box-shadow .15s;
+      border: none; cursor: pointer; letter-spacing: -.01em;
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.22); }
+    .btn-outline {
+      display: inline-block;
+      background: rgba(255,255,255,.12); color: #fff;
+      font-weight: 600; font-size: 1rem;
+      padding: 14px 30px; border-radius: 12px;
+      border: 1.5px solid rgba(255,255,255,.5);
+      transition: background .2s, transform .15s;
+      cursor: pointer; backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
+
+    /* ── 특징 배지 ── */
+    .features {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+      padding: 60px 24px;
+      background: var(--gray-bg);
+    }
+    .feat-card {
+      background: var(--grad-card);
+      border-radius: var(--radius);
+      padding: 15px 13px; text-align: center; width: 100px;
+      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(255,255,255,.8);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .feat-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(79,142,247,.25), 0 2px 0 rgba(255,255,255,.8) inset;
+    }
+    .feat-card .icon { font-size: 1.2rem; margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(79,142,247,.3)); }
+    .feat-card h3 {
+      font-size: .72rem; font-weight: 800;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── 섹션 공통 ── */
+    .section { padding: 80px 24px; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--grad-main);
+      color: #fff;
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(79,142,247,.3);
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900; margin-bottom: 8px; letter-spacing: -.02em;
+    }
+    .section-desc { color: var(--gray); font-size: .95rem; }
+
+    /* ── 준비물 ── */
+    .prep-list {
+      display: flex; flex-wrap: nowrap; justify-content: center; gap: 22px;
+    }
+    .prep-item {
+      background: var(--grad-card);
+      border-radius: var(--radius);
+      padding: 28px 20px; flex: 1; max-width: 300px; min-width: 0; text-align: center;
+      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(255,255,255,.8);
+      transition: transform .2s;
+    }
+    .prep-item:hover { transform: translateY(-4px); }
+    .prep-item .icon { font-size: 2.6rem; margin-bottom: 12px; filter: drop-shadow(0 2px 6px rgba(79,142,247,.3)); }
+    .prep-item .prep-title {
+      font-weight: 900;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-size: 1.05rem; margin-bottom: 10px;
+    }
+    .prep-item .prep-desc {
+      font-size: .82rem; color: var(--gray); line-height: 1.7;
+      -webkit-text-fill-color: initial;
+    }
+    .prep-item .prep-desc strong { color: #1a56db; font-weight: 700; }
+    .prep-cert {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+      margin-top: 12px;
+    }
+    .cert-item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      width: 60px;
+    }
+    .cert-logo {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .8rem; color: #fff;
+      box-shadow: 0 3px 10px rgba(0,0,0,.15);
+      letter-spacing: -.02em;
+    }
+    .cert-logo.kakao { background: #FEE500; color: #3C1E1E; font-size: .65rem; }
+    .cert-logo.toss  { background: linear-gradient(135deg, #0064FF, #4DA6FF); }
+    .cert-logo.pass  { background: linear-gradient(135deg, #E5004F, #FF4D88); font-size: .75rem; }
+    .cert-logo.kb    { background: linear-gradient(135deg, #FFBC00, #FF9500); color: #5C3D00; font-size: .7rem; }
+    .cert-logo.sol   { background: linear-gradient(135deg, #0071BC, #00A3E0); font-size: .6rem; line-height: 1.2; text-align: center; }
+    .cert-name { font-size: .72rem; color: #555; font-weight: 600; }
+
+    /* ── 통신망 비교 ── */
+    .network-compare {
+      display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
+      max-width: 960px; margin: 0 auto;
+    }
+    .net-card {
+      flex: 1; min-width: 280px; max-width: 440px;
+      background: var(--grad-card);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(255,255,255,.9);
+    }
+    .net-card.kt { border-top: 4px solid #1a56db; }
+    .net-card.lg { border-top: 4px solid #e91e8c; }
+    .net-badge {
+      display: inline-block;
+      font-size: .78rem; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .net-badge.kt { background: #e8f0fe; color: #1a56db; }
+    .net-badge.lg { background: #fce4ec; color: #e91e8c; }
+    .net-card h3 {
+      font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; letter-spacing: -.02em;
+    }
+    .net-card.kt h3 { color: #1a56db; }
+    .net-card.lg h3 { color: #e91e8c; }
+    .net-card .net-sub { font-size: .87rem; color: var(--gray); margin-bottom: 22px; }
+    .net-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .net-feat {
+      background: #f7f9ff; border-radius: 12px;
+      padding: 14px 12px; text-align: center;
+    }
+    .net-feat .nf-icon { font-size: 1.5rem; margin-bottom: 6px; }
+    .net-feat .nf-text { font-size: .82rem; font-weight: 700; color: #333; }
+    .net-highlight {
+      border-radius: 10px; padding: 12px 16px;
+      font-size: .84rem; font-weight: 600;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .net-highlight.blue { background: #e8f0fe; color: #1a56db; }
+    .net-highlight.pink { background: #fce4ec; color: #c2185b; }
+    .net-warning {
+      background: #fff3f3; border-radius: 10px;
+      padding: 12px 16px;
+      font-size: .82rem; color: #c62828;
+      font-weight: 600;
+      display: flex; align-items: flex-start; gap: 8px;
+      line-height: 1.5;
+    }
+
+    /* ── 단계 프로세스 ── */
+    .steps-bg { background: linear-gradient(160deg, #e8eeff 0%, #f0f4ff 100%); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px; max-width: 960px; margin: 0 auto;
+    }
+    .step-card {
+      background: var(--grad-card);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      border-left: 4px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(255,255,255,.9);
+      border-left: 4px solid var(--blue);
+      transition: transform .2s;
+    }
+    .step-card:hover { transform: translateY(-3px); }
+    .step-num {
+      font-size: .75rem; font-weight: 800;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .step-card h3 { font-size: .98rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -.01em; }
+    .step-card p { font-size: .84rem; color: var(--gray); }
+
+    /* ── 요금제 보기 버튼 ── */
+    .net-plan-btn {
+      display: block; width: 100%; margin-top: 16px;
+      padding: 12px; border-radius: 10px;
+      font-weight: 700; font-size: .9rem; cursor: pointer;
+      border: none; transition: transform .15s, box-shadow .15s;
+    }
+    .net-plan-btn.kt { background: var(--grad-main); color: #fff; box-shadow: 0 4px 14px rgba(26,86,219,.3); }
+    .net-plan-btn.lg { background: linear-gradient(135deg, #e91e8c, #c2185b); color: #fff; box-shadow: 0 4px 14px rgba(233,30,140,.3); }
+    .net-plan-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+
+    /* ── 모달 ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,10,30,.55);
+      backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #fff; border-radius: 20px;
+      width: 100%; max-width: 760px; max-height: 88vh;
+      overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-header {
+      position: sticky; top: 0; z-index: 10;
+      padding: 24px 28px 16px;
+      background: #fff;
+      border-bottom: 1px solid #eef0f6;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-size: 1.2rem; font-weight: 900; letter-spacing: -.02em; }
+    .modal-header h3.kt { color: #1a56db; }
+    .modal-header h3.lg { color: #e91e8c; }
+    .modal-close {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #f0f0f0; border: none; cursor: pointer;
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: #e0e0e0; }
+    .modal-body { padding: 20px 28px 28px; }
+    .plan-tab-btns {
+      display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .plan-tab-btn {
+      padding: 7px 18px; border-radius: 20px; border: none; cursor: pointer;
+      font-size: .82rem; font-weight: 700;
+      background: #f0f0f0; color: #666;
+      transition: background .2s, color .2s;
+    }
+    .plan-tab-btn.active.kt { background: #1a56db; color: #fff; }
+    .plan-tab-btn.active.lg { background: #e91e8c; color: #fff; }
+    .plan-tab { display: none; }
+    .plan-tab.active { display: block; }
+    .plan-table-wrap { overflow-x: auto; }
+    .modal table { font-size: .83rem; }
+    .modal thead th { padding: 10px 10px; font-size: .8rem; }
+    .modal tbody td { padding: 9px 10px; }
+    .popular-badge {
+      display: inline-block;
+      background: #fff3cd; color: #856404;
+      font-size: .7rem; font-weight: 700;
+      padding: 1px 8px; border-radius: 10px; margin-left: 4px;
+    }
+
+    /* ── 요금제 표 ── */
+    .plans-tables {
+      display: flex; flex-wrap: wrap; gap: 28px; justify-content: center;
+    }
+    .plan-group { flex: 1; min-width: 280px; max-width: 460px; }
+    .plan-group-title {
+      font-size: 1rem; font-weight: 800;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: .87rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    thead th {
+      background: var(--grad-main); color: #fff;
+      padding: 12px 12px; text-align: center; font-weight: 700;
+    }
+    tbody td {
+      padding: 11px 12px; text-align: center;
+      border-bottom: 1px solid rgba(79,142,247,.1);
+      background: #fff;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: var(--blue-light); }
+    .price { font-weight: 800; color: var(--blue); }
+
+    /* ── FAQ ── */
+    .faq-bg { background: var(--gray-bg); }
+    .faq-list {
+      max-width: 720px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    details {
+      background: var(--grad-card);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-3d);
+      border: 1px solid rgba(255,255,255,.8);
+    }
+    summary {
+      font-weight: 700; font-size: .93rem;
+      list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+'; font-size: 1.2rem; flex-shrink: 0;
+      background: var(--grad-main);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    details[open] summary::after { content: '−'; }
+    details p { margin-top: 12px; font-size: .86rem; color: #555; line-height: 1.75; }
+
+    /* ── CTA 배너 ── */
+    .cta-banner {
+      background: var(--grad-hero);
+      color: #fff; text-align: center;
+      padding: 80px 24px;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(108,47,212,.4) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-banner h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
+    .cta-banner p { opacity: .88; margin-bottom: 36px; font-size: .97rem; }
+
+    /* ── 푸터 ── */
+    footer {
+      background: linear-gradient(160deg, #0d1117 0%, #1a1a3e 100%);
+      color: #888;
+      padding: 40px 24px;
+      font-size: .82rem; line-height: 2;
+    }
+    footer strong { color: #ccc; }
+    footer .footer-bottom { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); color: #555; }
+
+    /* ── 진입 팝업 ── */
+    .entry-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .entry-overlay.active { display: flex; }
+    .entry-popup {
+      position: relative;
+      width: 100%; max-width: 420px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.5);
+      animation: popupIn .3s ease;
+    }
+    @keyframes popupIn {
+      from { opacity:0; transform: scale(.9) translateY(20px); }
+      to   { opacity:1; transform: scale(1) translateY(0); }
+    }
+    .entry-bg {
+      position: relative;
+      background: linear-gradient(160deg, #0a1628 0%, #0d2137 50%, #091420 100%);
+      padding: 0 0 0 0;
+      min-height: 380px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    /* 사무실 배경 효과 */
+    .entry-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(0,180,255,.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 60%, rgba(0,100,200,.12) 0%, transparent 50%);
+    }
+    /* 격자 패턴 */
+    .entry-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,180,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,180,255,.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .entry-visual {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 36px 24px 20px;
+      gap: 20px;
+    }
+    /* 얼굴 아이콘 */
+    .entry-face {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,180,255,.15), rgba(0,100,255,.08));
+      border: 2px solid rgba(0,200,255,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem;
+      box-shadow: 0 0 30px rgba(0,200,255,.25), 0 0 60px rgba(0,100,255,.1);
+      flex-shrink: 0;
+    }
+    /* 폰 아이콘 */
+    .entry-phone {
+      width: 70px; height: 110px;
+      background: linear-gradient(160deg, #0d3060, #0a1e40);
+      border-radius: 14px;
+      border: 2px solid rgba(0,200,255,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 0 20px rgba(0,200,255,.3);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .entry-phone::after {
+      content: '🔒';
+      position: absolute; top: 8px; right: -4px;
+      font-size: .9rem;
+      background: rgba(0,200,255,.8);
+      border-radius: 50%; width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* 연결선 */
+    .entry-line {
+      flex: 1; height: 2px;
+      background: linear-gradient(90deg, rgba(0,200,255,.6), rgba(0,100,255,.3));
+      position: relative;
+    }
+    .entry-line::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #00c8ff;
+      box-shadow: 0 0 10px #00c8ff;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .entry-content {
+      position: relative; z-index: 1;
+      padding: 18px 24px 0;
+      text-align: center;
+    }
+    .entry-content h2 {
+      color: #fff;
+      font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em;
+      text-shadow: 0 2px 16px rgba(0,150,255,.5);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .entry-content h2 span { color: #00d4ff; }
+    .entry-btn-area {
+      position: relative; z-index: 1;
+      background: rgba(0,0,0,.4);
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 18px;
+      gap: 12px;
+    }
+    .entry-confirm-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #1a2d50, #0d1e3a);
+      color: #fff; font-weight: 800; font-size: .95rem;
+      padding: 13px 20px; border-radius: 10px;
+      border: 1px solid rgba(0,200,255,.3);
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+      text-align: center;
+    }
+    .entry-confirm-btn:hover {
+      background: linear-gradient(135deg, #223a6a, #102545);
+      box-shadow: 0 0 16px rgba(0,200,255,.25);
+    }
+    .entry-hide-bar {
+      background: rgba(0,0,0,.3);
+      padding: 10px 24px;
+      display: flex; align-items: center;
+      position: relative; z-index: 10;
+    }
+    .hide-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: none; border: none; cursor: pointer;
+      font-size: .82rem; color: rgba(255,255,255,.7);
+      font-weight: 600; font-family: inherit;
+      padding: 0;
+    }
+    .hide-box {
+      width: 18px; height: 18px; border-radius: 4px;
+      border: 2px solid rgba(255,255,255,.5);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: .8rem; color: #fff; font-weight: 900;
+      transition: background .15s, border-color .15s;
+    }
+    .hide-box.checked {
+      background: #00c8ff; border-color: #00c8ff;
+    }
+    .entry-close-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .entry-close-btn:hover { background: rgba(255,255,255,.3); }
+
+    /* ── 유심 구매 ── */
+    .usim-cards { display:flex; flex-wrap:wrap; gap:24px; justify-content:center; max-width:960px; margin:0 auto; }
+    .usim-card { flex:1; min-width:280px; max-width:440px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow-3d); border:1px solid rgba(255,255,255,.9); }
+    .kt-usim { background:linear-gradient(160deg,#e8f4ff 0%,#dbeeff 100%); }
+    .lg-usim { background:linear-gradient(160deg,#fff0f6 0%,#fce4ec 100%); }
+    .usim-card-badge { display:inline-block; font-weight:800; font-size:.9rem; padding:8px 20px; border-radius:30px; margin:20px 20px 0; }
+    .kt-badge { background:#1a56db; color:#fff; }
+    .lg-badge { background:#e91e8c; color:#fff; }
+    .usim-card-img { width:calc(100% - 40px); display:block; margin:14px 20px; border-radius:12px; }
+    .usim-info-list { list-style:none; padding:0 20px 16px; display:flex; flex-direction:column; gap:8px; }
+    .usim-info-list li { font-size:.87rem; color:#333; padding-left:20px; position:relative; line-height:1.5; }
+    .usim-info-list li::before { content:'•'; position:absolute; left:0; color:#1a56db; font-weight:900; }
+    .usim-info-list.check li::before { content:'✔'; color:#6c2fd4; font-size:.8rem; top:1px; }
+    .usim-highlight { background:#fff176; color:#333; font-weight:700; padding:0 3px; border-radius:3px; }
+    .usim-card-footer { background:rgba(255,255,255,.75); padding:16px 20px; border-top:1px solid rgba(0,0,0,.06); display:flex; flex-direction:column; gap:4px; }
+    .usim-network-tag { font-size:.74rem; font-weight:700; color:#1a56db; background:#e8f0fe; border-radius:12px; padding:2px 10px; display:inline-block; width:fit-content; }
+    .usim-network-tag.lg-tag { color:#e91e8c; background:#fce4ec; }
+    .usim-card-footer strong { font-size:1.05rem; font-weight:900; color:#1a1a2e; }
+    .usim-price { font-size:.85rem; color:#555; }
+    .usim-stores { font-size:.82rem; color:#777; }
+    .usim-guide-note { text-align:center; margin-top:24px; font-size:.9rem; color:#555; }
+    .usim-guide-link { color:#1a56db; font-weight:700; text-decoration:underline; }
+
+    /* ── 개통 절차 ── */
+    .proc-list { display:flex; flex-direction:column; gap:20px; max-width:800px; margin:0 auto; }
+    .proc-item { display:flex; gap:20px; align-items:flex-start; background:var(--grad-card); border-radius:var(--radius); padding:28px 28px; box-shadow:var(--shadow-3d); border:1px solid rgba(255,255,255,.9); }
+    .proc-num { flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--grad-main); color:#fff; font-size:1.2rem; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(79,142,247,.35); }
+    .proc-body { flex:1; min-width:0; }
+    .proc-icon { font-size:1.6rem; margin-bottom:8px; }
+    .proc-body h3 { font-size:1.05rem; font-weight:900; margin-bottom:8px; letter-spacing:-.01em; }
+    .proc-body p { font-size:.88rem; color:#444; line-height:1.7; margin-top:4px; }
+    .proc-sub { font-size:.82rem !important; color:#888 !important; margin-top:6px; }
+    .proc-warning { background:#fff8e1; border-left:3px solid #f59e0b; border-radius:8px; padding:10px 14px; font-size:.82rem; color:#666; margin-top:12px; line-height:1.5; }
+    .proc-warning.warn-red { background:#fff3f3; border-left-color:#e53e3e; }
+    .proc-warning a { color:#1a56db; font-weight:700; }
+    .proc-link { display:inline-block; margin-top:12px; color:#1a56db; font-weight:700; font-size:.87rem; padding:8px 16px; background:#e8f0fe; border-radius:8px; transition:background .2s; }
+    .proc-link:hover { background:#d0e1fc; }
+    .proc-cert-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .proc-cert { padding:5px 14px; border-radius:20px; font-size:.8rem; font-weight:700; }
+    .proc-cert.kakao { background:#FEE500; color:#3C1E1E; }
+    .proc-cert.toss   { background:#0064FF; color:#fff; }
+    .proc-cert.pass   { background:#E5004F; color:#fff; }
+    .proc-cert.kb     { background:#FFBC00; color:#5C3D00; }
+    .proc-cert.sol    { background:#0071BC; color:#fff; }
+    .usim-form-img { width:100%; border-radius:12px; margin:14px 0; box-shadow:0 4px 16px rgba(0,0,0,.12); }
+    .usim-info-table { width:100%; border-collapse:collapse; font-size:.85rem; margin-top:12px; border-radius:10px; overflow:hidden; box-shadow:var(--shadow); }
+    .usim-info-table thead th { background:var(--grad-main); color:#fff; padding:10px 14px; text-align:center; font-weight:700; }
+    .usim-info-table tbody td { padding:12px 14px; text-align:center; border-bottom:1px solid rgba(79,142,247,.1); background:#fff; line-height:1.6; }
+    .usim-info-table tbody tr:last-child td { border-bottom:none; }
+    .proc-kakao-btn { display:inline-flex; align-items:center; gap:8px; margin-top:14px; background:linear-gradient(135deg,#FEE500,#FFD700); color:#3C1E1E; font-weight:800; font-size:.92rem; padding:12px 22px; border-radius:10px; box-shadow:0 4px 14px rgba(254,229,0,.4); transition:transform .15s; }
+    .proc-kakao-btn:hover { transform:translateY(-2px); }
+
+    /* ── 반응형 ── */
+    @media (max-width: 680px) {
+      nav a:not(.nav-cta) { display: none; }
+      .hero { padding: 64px 18px 80px; }
+      .section { padding: 56px 18px; }
+      .features { padding: 40px 18px; }
+      .proc-item { padding:20px 18px; gap:14px; }
+      .proc-num { width:36px; height:36px; font-size:1rem; }
+      .usim-cards { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span>마크통신 <em style="font-style:italic">Ntelecom</em></span>
+        <img src="https://www.n-telecom.co.kr/common/img/masterpage/logo.png" alt="Ntelecom 로고" class="logo-img" onerror="this.style.display='none'">
+      </a>
+      <nav>
+        <a href="sunbulpon-gaetong.html" class="active">셀프개통 방법</a>
+        <a href="plans.html">K망 / L망 요금제</a>
+        <a href="usim-guide.html">유심구매</a>
+        <a href="#" onclick="openVideoModal();return false;">😊 안면인식</a>
+        <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">FAQ</a>
+        <a href="news.html">소식</a>
+        <a href="#" class="nav-cta">개통 신청 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      신용조회 없음 · 통신미납 있어도 OK · 전국 비대면 개통
+    </div>
+    <h1>5분 비대면 셀프개통</h1>
+    <p class="hero-sub">선불폰 · 선불유심 개통 전문 &nbsp;|&nbsp; 대리점 방문 없이 5분이면 끝</p>
+    <div class="hero-tags">
+      <span class="hero-tag">⚡ 5분 즉시 개통</span>
+      <span class="hero-tag">🔓 신용조회 없음</span>
+      <span class="hero-tag">📶 KT · LG 선택</span>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-white" href="https://www.n-telecom.co.kr/thesmall/view/open/selfopen_explain.aspx" target="_blank">셀프개통 시작하기 →</a>
+      <a class="btn-outline" href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank">💬 1:1 문의하기</a>
+    </div>
+    <div class="hero-guide-box">
+      <p class="hero-guide-label">셀프개통은 처음이신가요?</p>
+      <button class="hero-guide-btn" onclick="openGuideModal()">🔍 개통 가이드 보기 &gt;</button>
+    </div>
+  </section>
+
+  <!-- 준비물 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">STEP 0</div>
+        <h2 class="section-title">준비물 안내</h2>
+        <p class="section-desc">개통 전 아래 3가지를 미리 준비해 주세요</p>
+      </div>
+      <div class="prep-list">
+        <div class="prep-item">
+          <div class="icon">📶</div>
+          <p class="prep-title">① 호환 유심</p>
+          <p class="prep-desc">
+            <strong>K망:</strong> 바로유심<br>
+            (이마트24 / GS25 / CU 편의점에서 구매 가능)<br><br>
+            <strong>L망:</strong> 원칩<br>
+            (이마트24 / 스토리웨이 / 배민B마트 / 지하철자판기에서 구매 가능)
+          </p>
+          <button class="prep-usim-btn" onclick="openUsimInfo()">🛒 유심 구매처 & 사진 보기</button>
+        </div>
+        <div class="prep-item">
+          <div class="icon">🪪</div>
+          <p class="prep-title">② 신분증</p>
+          <p class="prep-desc">
+            주민등록증 또는 운전면허증<br>
+            2개 중 1개 필요
+          </p>
+        </div>
+        <div class="prep-item">
+          <div class="icon">🔐</div>
+          <p class="prep-title">③ 간편인증서 1개</p>
+          <p class="prep-desc">아래 인증서 중 1개 필요</p>
+          <div class="prep-cert">
+            <div class="cert-item">
+              <div class="cert-logo kakao">TALK</div>
+              <span class="cert-name">카카오</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo toss">토스</div>
+              <span class="cert-name">토스</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo pass">PASS</div>
+              <span class="cert-name">PASS</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo kb">KB</div>
+              <span class="cert-name">KB국민</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-logo sol">SOL<br>Bank</div>
+              <span class="cert-name">SOL신한</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 1 통신망 선택 -->
+  <section class="section" id="plans">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">STEP 1</div>
+        <h2 class="section-title">통신망 선택 — K망 vs L망</h2>
+        <p class="section-desc">선불폰 개통 시 KT망(K망)과 LG망(L망) 중 선택합니다. 상황에 맞는 망을 골라주세요.</p>
+      </div>
+      <div class="network-compare">
+
+        <!-- KT -->
+        <div class="net-card kt">
+          <span class="net-badge kt">K망 (KT)</span>
+          <h3>KT 선불폰</h3>
+          <p class="net-sub">다양한 부가서비스와 안정적인 품질</p>
+          <div class="net-features">
+            <div class="net-feat">
+              <div class="nf-icon">📶</div>
+              <div class="nf-text">무제한 요금제</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">📡</div>
+              <div class="nf-text">핫스팟 가능</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">💰</div>
+              <div class="nf-text">월 1만원대~</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">➕</div>
+              <div class="nf-text">다양한 부가서비스</div>
+            </div>
+          </div>
+          <div class="net-highlight blue">✔ 투넘버, 로밍, 착신전환 등 지원</div>
+          <div class="net-warning">⚠ KT 미납이 있는 경우 KT로 개통 불가능합니다.</div>
+          <button class="net-plan-btn kt" onclick="openModal('kt')">📋 KT 요금제 보기</button>
+        </div>
+
+        <!-- LG -->
+        <div class="net-card lg">
+          <span class="net-badge lg">L망 (LG)</span>
+          <h3>LG 선불폰</h3>
+          <p class="net-sub">뛰어난 호환성과 간편한 개통</p>
+          <div class="net-features">
+            <div class="net-feat">
+              <div class="nf-icon">📶</div>
+              <div class="nf-text">무제한 요금제</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">📱</div>
+              <div class="nf-text">전 통신사 미납폰 개통</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">💰</div>
+              <div class="nf-text">월 1만원대~</div>
+            </div>
+            <div class="net-feat">
+              <div class="nf-icon">💳</div>
+              <div class="nf-text">ESIM 개통지원</div>
+            </div>
+          </div>
+          <div class="net-highlight pink">✔ 미납/연체/정지 폰 그대로 사용 가능</div>
+          <div class="net-warning" style="background:#e8f5e9; color:#2e7d32;">ℹ️ KT 및 LG, SK 미납이 있어도 사용 가능합니다.</div>
+          <button class="net-plan-btn lg" onclick="openModal('lg')">📋 LG 요금제 보기</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 개통 절차 STEP 2~6 -->
+  <section class="section steps-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">STEP 2 ~ 6</div>
+        <h2 class="section-title">선불폰 개통 절차 (5분)</h2>
+        <p class="section-desc">아래 절차에 따라 진행하면 5분 안에 개통이 완료됩니다</p>
+      </div>
+      <div class="proc-list">
+
+        <div class="proc-item">
+          <div class="proc-num">1</div>
+          <div class="proc-body">
+            <div class="proc-icon">🌐</div>
+            <h3>셀프개통 페이지 접속</h3>
+            <p>앤텔레콤 셀프개통 페이지에 접속합니다. <strong>Wi-Fi 또는 다른 기기의 데이터</strong>를 이용해 접속하세요.</p>
+            <div class="proc-warning">개통 전이라 유심 데이터는 아직 사용할 수 없습니다. Wi-Fi 환경에서 진행하세요.</div>
+            <a href="https://www.n-telecom.co.kr/thesmall/view/open/selfopen_explain.aspx" target="_blank" class="proc-link">셀프개통 페이지 바로가기 →</a>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">2</div>
+          <div class="proc-body">
+            <div class="proc-icon">🪪</div>
+            <h3>신분증 촬영</h3>
+            <p><strong>신분증(주민등록증 또는 운전면허증)</strong>을 준비하여 안내에 따라 촬영합니다. 정보를 정확히 인식할 수 있도록 빛 반사에 주의하세요.</p>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">3</div>
+          <div class="proc-body">
+            <div class="proc-icon">🔐</div>
+            <h3>본인 인증</h3>
+            <p>카카오·토스·PASS·KB(국민)·SOL(신한) 등 <strong>간편인증서</strong>로 본인 확인을 진행합니다.</p>
+            <div class="proc-cert-row">
+              <span class="proc-cert kakao">카카오</span>
+              <span class="proc-cert toss">토스</span>
+              <span class="proc-cert pass">PASS</span>
+              <span class="proc-cert kb">KB국민</span>
+              <span class="proc-cert sol">SOL신한</span>
+            </div>
+            <div class="proc-warning warn-red">⚠ 간편인증서가 없으면 비대면 셀프개통이 불가합니다. <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank">가까운 매장 안내받기</a></div>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">4</div>
+          <div class="proc-body">
+            <div class="proc-icon">💳</div>
+            <h3>유심 정보 입력</h3>
+            <p>유심 뒷면에 적힌 <strong>모델코드와 일련번호</strong>를 입력합니다. 아래 이미지와 표를 참고하세요.</p>
+            <img src="https://ntelecomsafe.com/usim-form.png" alt="유심 정보 입력 가이드 - 모델코드 및 일련번호 위치" class="usim-form-img" onerror="this.style.display='none'">
+            <table class="usim-info-table">
+              <thead><tr><th>버전</th><th>모델코드</th><th>일련번호</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>L망</td>
+                  <td>알파벳 1개<br>+ 숫자 4개<br>(U8680 등)</td>
+                  <td>8자리 숫자</td>
+                </tr>
+                <tr>
+                  <td>K망</td>
+                  <td>없음</td>
+                  <td>898로 시작되는<br>19자리 숫자</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">5</div>
+          <div class="proc-body">
+            <div class="proc-icon">📋</div>
+            <h3>요금제 선택</h3>
+            <p>K망(KT) 또는 L망(LG) 요금제 중 원하는 요금제를 선택합니다.</p>
+            <a href="#plans" class="proc-link">전체 요금제 비교 보기 →</a>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">6</div>
+          <div class="proc-body">
+            <div class="proc-icon">✅</div>
+            <h3>개통 완료</h3>
+            <p>요금제를 최종 확인하고 개통을 완료합니다. <strong>완료 즉시</strong> 통화·문자·데이터 사용이 가능합니다.</p>
+            <p class="proc-sub">바로 연결되지 않으면 휴대폰을 재부팅해 주세요.</p>
+          </div>
+        </div>
+
+        <div class="proc-item">
+          <div class="proc-num">7</div>
+          <div class="proc-body">
+            <div class="proc-icon">💰</div>
+            <h3>요금 충전</h3>
+            <p>선불폰은 요금을 미리 충전해서 사용합니다. 개통 완료 후 요금을 충전하면 통화·문자·데이터를 사용할 수 있습니다.</p>
+            <a href="http://pf.kakao.com/_GxnWFxj/chat" target="_blank" class="proc-kakao-btn">💬 카카오톡 채널 문의하기 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 요금제 비교표 (제거됨) -->
+  <section class="section" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">요금제</div>
+        <h2 class="section-title">KT · LG 선불 Best 요금제</h2>
+        <p class="section-desc">원하는 통신망과 요금제를 선택하세요</p>
+      </div>
+      <div class="plans-tables">
+
+        <div class="plan-group">
+          <p class="plan-group-title">📡 K망 (KT)</p>
+          <table>
+            <thead>
+              <tr>
+                <th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>선불 기본1</td>
+                <td class="price">12,100원</td>
+                <td>50분 · 30건</td>
+                <td>300MB</td>
+              </tr>
+              <tr>
+                <td>선불 LTE 396</td>
+                <td class="price">39,600원</td>
+                <td>무제한</td>
+                <td>10.3GB + 3Mbps</td>
+              </tr>
+              <tr>
+                <td>선불 LTE 459</td>
+                <td class="price">45,900원</td>
+                <td>무제한</td>
+                <td>20.3GB + 3Mbps</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="plan-group">
+          <p class="plan-group-title">📡 L망 (LG U+)</p>
+          <table>
+            <thead>
+              <tr>
+                <th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>선불 기본1</td>
+                <td class="price">12,100원</td>
+                <td>50분 · 30건</td>
+                <td>300MB</td>
+              </tr>
+              <tr>
+                <td>선불 LTE 396</td>
+                <td class="price">39,600원</td>
+                <td>무제한</td>
+                <td>10.3GB + 3Mbps</td>
+              </tr>
+              <tr>
+                <td>선불 770</td>
+                <td class="price">77,000원</td>
+                <td>무제한</td>
+                <td>10GB + 매일 2GB + 3Mbps</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-desc">선불폰 개통에 대해 궁금한 점을 확인하세요</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>개통 시 필요한 준비물은 무엇인가요?</summary>
+          <p>신분증, 호환 유심, 간편인증서(카카오·PASS 등) 3가지가 필요합니다.</p>
+        </details>
+        <details>
+          <summary>개통까지 얼마나 걸리나요?</summary>
+          <p>신청 완료 후 평균 5분 이내에 개통이 완료됩니다.</p>
+        </details>
+        <details>
+          <summary>신용불량자도 개통이 가능한가요?</summary>
+          <p>네, 선불폰은 신용조회 없이 개통 가능합니다. 통신미납이 있어도 개통할 수 있습니다.</p>
+        </details>
+        <details>
+          <summary>KT 미납 단말기도 개통할 수 있나요?</summary>
+          <p>KT 미납 단말기는 K망(KT)으로는 개통이 불가하며, L망(LG U+)으로만 개통 가능합니다.</p>
+        </details>
+        <details>
+          <summary>번호이동도 가능한가요?</summary>
+          <p>네, 기존 번호를 유지하면서 선불폰으로 번호이동 개통이 가능합니다.</p>
+        </details>
+        <details>
+          <summary>어떤 유심을 구매해야 하나요?</summary>
+          <p>개통하실 통신망(KT망/LG망)에 맞는 호환 유심을 준비하시면 됩니다. 유심 구매는 상단 메뉴에서 가능합니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA 배너 -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>지금 바로 5분 만에 개통하세요</h2>
+      <p>대리점 방문 없이, 신용조회 없이, 비대면으로 간편하게</p>
+      <div class="hero-btns">
+        <a class="btn-white" href="https://www.n-telecom.co.kr/thesmall/view/open/selfopen_explain.aspx" target="_blank">셀프개통 시작하기 →</a>
+        <a class="btn-outline" href="#">💬 1:1 문의하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container">
+      <p><strong>마크통신 선불폰</strong></p>
+      <p>대표: 이명준 &nbsp;|&nbsp; 사업자등록번호:</p>
+      <div class="footer-bottom">
+        <p>© 2024 Anthlecome. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 진입 팝업 -->
+  <div class="entry-overlay" id="entryPopup">
+    <div class="entry-popup">
+      <button class="entry-close-btn" onclick="closeEntry()">✕</button>
+      <div class="entry-bg">
+        <div class="entry-visual">
+          <div class="entry-face">🤖</div>
+          <div class="entry-line"></div>
+          <div class="entry-phone">📱</div>
+        </div>
+        <div class="entry-content">
+          <h2><span>6월</span> 안면인식 시스템 도입</h2>
+        </div>
+        <div class="entry-btn-area">
+          <button class="entry-confirm-btn" onclick="location.href='face-auth.html'">안면인식 하는법 확인</button>
+        </div>
+        <div class="entry-hide-bar">
+          <button class="hide-btn" type="button" onclick="toggleCheck()">
+            <span class="hide-box" id="hideBox"></span>
+            하루 동안 팝업 끔
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KT 요금제 모달 -->
+  <div class="modal-overlay" id="modal-kt" onclick="closeModalOutside(event,'modal-kt')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="kt">📡 KT 선불 요금제</h3>
+        <button class="modal-close" onclick="closeModal('modal-kt')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="plan-tab-btns">
+          <button class="plan-tab-btn active kt" onclick="switchTab(this,'kt-tab1','kt')">선불 요금제</button>
+          <button class="plan-tab-btn kt" onclick="switchTab(this,'kt-tab2','kt')">약정 요금제</button>
+          <button class="plan-tab-btn kt" onclick="switchTab(this,'kt-tab3','kt')">플랫폼(후불)</button>
+        </div>
+        <div class="plan-tab active" id="kt-tab1">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>선불 기본1</td><td class="price">12,100원</td><td>50분·30건</td><td>300MB</td></tr>
+                <tr><td>선불 기본2</td><td class="price">15,400원</td><td>50분·30건</td><td>500MB</td></tr>
+                <tr><td>300M 라이트</td><td class="price">33,000원</td><td>무제한(영상 30분)</td><td>무제한 300MB (1Mbps)</td></tr>
+                <tr><td>선불 베이직</td><td class="price">36,000원</td><td>무제한(영상 50분)</td><td>1.4GB</td></tr>
+                <tr><td>선불 396 <span class="popular-badge">인기</span></td><td class="price">39,600원</td><td>무제한(영상 30분)</td><td>10.3GB + 3Mbps</td></tr>
+                <tr><td>선불 459 <span class="popular-badge">인기</span></td><td class="price">45,900원</td><td>무제한(영상 30분)</td><td>20.3GB + 3Mbps</td></tr>
+                <tr><td>선불 770</td><td class="price">77,000원</td><td>무제한(영상 200분)</td><td>10GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>선불 859</td><td class="price">85,900원</td><td>무제한(영상 300분)</td><td>100GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="plan-tab" id="kt-tab2">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>선불 299 (12개월)</td><td class="price">29,900원</td><td>무제한(영상 30분)</td><td>10.3GB + 3Mbps</td></tr>
+                <tr><td>선불 399 (12개월)</td><td class="price">39,900원</td><td>무제한(영상 30분)</td><td>20.3GB + 3Mbps</td></tr>
+                <tr><td>선불 770 (12개월)</td><td class="price">77,000원</td><td>무제한(영상 200분)</td><td>10GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>선불 비디오 (12개월)</td><td class="price">85,900원</td><td>무제한(영상 300분)</td><td>100GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="plan-tab" id="kt-tab3">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>알뜰 플랫폼 7GB+</td><td class="price">19,500원</td><td>무제한(영상 300분)</td><td>7GB (1Mbps)</td></tr>
+                <tr><td>알뜰 플랫폼 10GB+</td><td class="price">22,300원</td><td>무제한(영상 300분)</td><td>10GB (1Mbps)</td></tr>
+                <tr><td>알뜰 플랫폼 11GB+일2GB</td><td class="price">37,500원</td><td>무제한(영상 300분)</td><td>11GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>알뜰 플랫폼 100GB+</td><td class="price">43,200원</td><td>무제한(영상 300분)</td><td>100GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LG 요금제 모달 -->
+  <div class="modal-overlay" id="modal-lg" onclick="closeModalOutside(event,'modal-lg')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="lg">📡 LG 선불 요금제</h3>
+        <button class="modal-close" onclick="closeModal('modal-lg')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="plan-tab-btns">
+          <button class="plan-tab-btn active lg" onclick="switchTab(this,'lg-tab1','lg')">선불 요금제</button>
+          <button class="plan-tab-btn lg" onclick="switchTab(this,'lg-tab2','lg')">약정 요금제</button>
+          <button class="plan-tab-btn lg" onclick="switchTab(this,'lg-tab3','lg')">플랫폼(후불)</button>
+        </div>
+        <div class="plan-tab active" id="lg-tab1">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>선불 기본1</td><td class="price">12,100원</td><td>50분·30건</td><td>300MB</td></tr>
+                <tr><td>선불 데이터 2.5GB</td><td class="price">17,000원</td><td>100분·50건</td><td>2.5GB</td></tr>
+                <tr><td>선불 300분</td><td class="price">20,800원</td><td>300분·300건</td><td>300MB (400Kbps)</td></tr>
+                <tr><td>300M 라이트</td><td class="price">33,000원</td><td>무제한(영상 50분)</td><td>300MB (1Mbps)</td></tr>
+                <tr><td>선불 396 <span class="popular-badge">인기</span></td><td class="price">39,600원</td><td>무제한(영상 30분)</td><td>10.3GB + 3Mbps</td></tr>
+                <tr><td>선불 770 <span class="popular-badge">인기</span></td><td class="price">77,000원</td><td>무제한(영상 300분)</td><td>10GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>선불 매일 5GB</td><td class="price">85,900원</td><td>무제한(영상 300분)</td><td>매일 5GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="plan-tab" id="lg-tab2">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>선불 330 (6개월)</td><td class="price">33,000원</td><td>무제한(영상 30분)</td><td>10.3GB + 3Mbps</td></tr>
+                <tr><td>선불 299 (12개월)</td><td class="price">29,900원</td><td>무제한(영상 50분)</td><td>10.3GB + 3Mbps</td></tr>
+                <tr><td>선불 494 (12개월)</td><td class="price">49,400원</td><td>무제한(영상 300분)</td><td>11GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>선불 매일 5GB (12개월)</td><td class="price">85,900원</td><td>무제한(영상 300분)</td><td>매일 5GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="plan-tab" id="lg-tab3">
+          <div class="plan-table-wrap">
+            <table>
+              <thead><tr><th>요금제</th><th>월 요금</th><th>통화/문자</th><th>데이터</th></tr></thead>
+              <tbody>
+                <tr><td>알뜰 플랫폼 7GB+</td><td class="price">17,900원</td><td>무제한(영상 300분)</td><td>7GB (1Mbps)</td></tr>
+                <tr><td>알뜰 플랫폼 11GB+일2GB</td><td class="price">36,700원</td><td>무제한(영상 300분)</td><td>11GB + 매일 2GB (3Mbps)</td></tr>
+                <tr><td>알뜰 플랫폼 매일 5GB</td><td class="price">43,200원</td><td>무제한(영상 300분)</td><td>매일 5GB (5Mbps)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var popupChecked = false;
+
+    function toggleCheck() {
+      popupChecked = !popupChecked;
+      var box = document.getElementById('hideBox');
+      if (popupChecked) {
+        box.textContent = '✕';
+        box.classList.add('checked');
+      } else {
+        box.textContent = '';
+        box.classList.remove('checked');
+      }
+    }
+
+    function closeEntry() {
+      if (popupChecked) {
+        localStorage.setItem('popupHideDate', new Date().toDateString());
+      }
+      document.getElementById('entryPopup').classList.remove('active');
+    }
+
+    (function showPopupIfNeeded() {
+      try {
+        var hideDate = localStorage.getItem('popupHideDate');
+        var today = new Date().toDateString();
+        if (hideDate !== today) {
+          document.getElementById('entryPopup').classList.add('active');
+        }
+      } catch(e) {
+        document.getElementById('entryPopup').classList.add('active');
+      }
+    })();
+    function openModal(type) {
+      document.getElementById('modal-' + type).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function closeModalOutside(e, id) {
+      if (e.target === document.getElementById(id)) closeModal(id);
+    }
+    function switchTab(btn, tabId, type) {
+      const modal = btn.closest('.modal');
+      modal.querySelectorAll('.plan-tab-btn').forEach(b => b.classList.remove('active'));
+      modal.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+          m.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+        closeVideoModal();
+        closeGuideModal();
+      }
+    });
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       요금제 비교 모달
+  ════════════════════════════════════════════ -->
+  <div class="plan-cmp-overlay" id="planCmpModal" onclick="if(event.target===this)closePlanModal()">
+    <div class="plan-cmp-modal">
+
+      <!-- 헤더 -->
+      <div class="plan-cmp-header">
+        <div>
+          <h2>📡 선불폰 요금제</h2>
+          <p>망 유형과 요금제를 선택하세요</p>
+        </div>
+        <button class="plan-cmp-close" onclick="closePlanModal()">✕</button>
+      </div>
+
+      <!-- K망 / L망 선택 -->
+      <div class="plan-net-tabs">
+        <button class="plan-net-tab active kt" onclick="switchPlanNet(0)">📘 K망 (KT)</button>
+        <button class="plan-net-tab lg" onclick="switchPlanNet(1)">💗 L망 (LG)</button>
+      </div>
+
+      <!-- 요금제 타입 탭 -->
+      <div class="plan-type-tabs">
+        <button class="plan-type-tab active" onclick="switchPlanType(0)">선불 요금제</button>
+        <button class="plan-type-tab" onclick="switchPlanType(1)">약정 요금제</button>
+        <button class="plan-type-tab" onclick="switchPlanType(2)">플랫폼 (후불)</button>
+      </div>
+
+      <!-- 요금제 카드 본문 -->
+      <div class="plan-cmp-body">
+
+        <!-- ▶ K망 선불 -->
+        <div class="plan-section active" id="pn0t0">
+          <div class="plan-cards">
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불 기본1</p>
+              <p class="pc-desc">소량 데이터 · 기본 통화</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>30건</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 404원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">12,100원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불 기본2</p>
+              <p class="pc-desc">소량 데이터 · 기본 통화</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>500MB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>30건</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 514원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">15,400원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불 무제한 300M</p>
+              <p class="pc-desc">무제한 저속 데이터 + 무제한 통화!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>무제한(최대 1Mbps)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,100원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불 베이직 1.4GB</p>
+              <p class="pc-desc">일반 데이터 + 무제한 통화!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>1.4GB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 50분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,200원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">36,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card popular">
+              <span class="pc-popular">⭐ 인기</span>
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불396 10.3GB</p>
+              <p class="pc-desc">선불 무제한 데이터 10.3GB!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-kt">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,320원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,600원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card popular">
+              <span class="pc-popular">⭐ 인기</span>
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불459 20.3GB</p>
+              <p class="pc-desc">선불 무제한 데이터 20.3GB!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-kt">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>20.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,530원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">45,900원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불770 10GB+일2GB</p>
+              <p class="pc-desc">넉넉한 데이터 + 매일 2GB 추가!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,567원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[선불]</span>
+              <p class="pc-name">LTE 선불859 100GB</p>
+              <p class="pc-desc">대용량 100GB 선불 데이터!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,863원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ▶ K망 약정 -->
+        <div class="plan-section" id="pn0t1">
+          <div class="plan-note">📅 12개월 약정 요금제입니다.</div>
+          <div class="plan-cards">
+            <div class="plan-card kt-card popular">
+              <span class="pc-popular">⭐ 인기</span>
+              <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+              <p class="pc-name">LTE 선불299 10.3GB (12개월)</p>
+              <p class="pc-desc">12개월 약정 최저가 인기 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-kt">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 997원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">29,900원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+              <p class="pc-name">LTE 선불399 20.3GB (12개월)</p>
+              <p class="pc-desc">20.3GB 대용량 12개월 약정!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>20.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,330원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,900원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+              <p class="pc-name">LTE 선불770 10GB+일2GB (12개월)</p>
+              <p class="pc-desc">매일 2GB 추가 12개월 약정!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,567원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[약정]</span>
+              <p class="pc-name">LTE 선불 비디오 100GB (12개월)</p>
+              <p class="pc-desc">대용량 100GB 12개월 약정!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 200분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,863원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ▶ K망 플랫폼(후불) -->
+        <div class="plan-section" id="pn0t2">
+          <div class="plan-note">💳 후불 결제 방식입니다. 매월 자동 청구됩니다.</div>
+          <div class="plan-cards">
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 7GB+</p>
+              <p class="pc-desc">7GB 데이터 후불 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>7GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 650원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">19,500원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 10GB+</p>
+              <p class="pc-desc">10GB 데이터 후불 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 743원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">22,300원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card popular">
+              <span class="pc-popular">⭐ 인기</span>
+              <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 11GB+일2GB</p>
+              <p class="pc-desc">11GB + 매일 2GB 추가 후불!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-kt">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,250원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">37,500원</span></div>
+              </div>
+            </div>
+            <div class="plan-card kt-card">
+              <span class="pc-badge-sm kt-badge-sm">KT[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 100GB+</p>
+              <p class="pc-desc">대용량 100GB 후불 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>100GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,440원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">43,200원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ▶ L망 선불 -->
+        <div class="plan-section" id="pn1t0">
+          <div class="plan-cards">
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불 기본1</p>
+              <p class="pc-desc">소량 데이터 · 기본 통화</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>50분(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>30건</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 404원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">12,100원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불 데이터 2.5GB</p>
+              <p class="pc-desc">2.5GB 데이터 + 기본 통화</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>2.5GB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>100분(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>50건</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 567원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">17,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불 300분</p>
+              <p class="pc-desc">300분 통화 특화 요금제</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>300MB</b><small>(소진 시 이용 불가)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>300분(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>300건</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 693원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">20,800원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불 무제한 300M</p>
+              <p class="pc-desc">무제한 저속 데이터 + 무제한 통화!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>무제한(최대 1Mbps)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,100원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card popular">
+              <span class="pc-popular pc-popular-lg">⭐ 인기</span>
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불396 10.3GB</p>
+              <p class="pc-desc">선불 무제한 데이터 10.3GB!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-lg">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,320원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">39,600원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card popular">
+              <span class="pc-popular pc-popular-lg">⭐ 인기</span>
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불770 10GB+일2GB</p>
+              <p class="pc-desc">넉넉한 데이터 + 매일 2GB 추가!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-lg">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,567원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">77,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[선불]</span>
+              <p class="pc-name">LTE 선불 매일 5GB</p>
+              <p class="pc-desc">매일 5GB 무제한 데이터!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,863원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ▶ L망 약정 -->
+        <div class="plan-section" id="pn1t1">
+          <div class="plan-note">📅 약정 요금제입니다 (6개월 / 12개월).</div>
+          <div class="plan-cards">
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[약정 6개월]</span>
+              <p class="pc-name">LTE 선불330 10.3GB (6개월)</p>
+              <p class="pc-desc">6개월 약정 알뜰 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,100원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">33,000원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card popular">
+              <span class="pc-popular pc-popular-lg">⭐ 인기</span>
+              <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+              <p class="pc-name">LTE 선불299 10.3GB (12개월)</p>
+              <p class="pc-desc">12개월 약정 최저가 인기 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-lg">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>10.3GB+3Mbps</b><small>(데이터 소진 시 최대 3Mbps 속도제어(요금제 변경 시 300M 데이터만 적용))</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 30분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 997원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">29,900원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+              <p class="pc-name">LTE 선불494 11GB+일2GB (12개월)</p>
+              <p class="pc-desc">11GB+매일2GB 12개월 약정!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,647원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">49,400원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[약정 12개월]</span>
+              <p class="pc-name">LTE 선불 매일 5GB (12개월)</p>
+              <p class="pc-desc">매일 5GB 12개월 약정!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>기본제공(부가/영상 300분)</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>기본제공</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 2,863원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">85,900원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ▶ L망 플랫폼(후불) -->
+        <div class="plan-section" id="pn1t2">
+          <div class="plan-note">💳 후불 결제 방식입니다. 매월 자동 청구됩니다.</div>
+          <div class="plan-cards">
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 7GB+</p>
+              <p class="pc-desc">7GB 데이터 후불 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>7GB</b><small>(소진 시 최대 1Mbps 속도제어)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 597원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">17,900원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card popular">
+              <span class="pc-popular pc-popular-lg">⭐ 인기</span>
+              <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 11GB+일2GB</p>
+              <p class="pc-desc">11GB + 매일 2GB 추가 후불!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row hl-lg">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>11GB + 매일 2GB(3Mbps)</b><small>(기본 소진 후 매일 2GB 추가 제공)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,223원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">36,700원</span></div>
+              </div>
+            </div>
+            <div class="plan-card lg-card">
+              <span class="pc-badge-sm lg-badge-sm">LG[플랫폼]</span>
+              <p class="pc-name">알뜰 플랫폼 매일 5GB</p>
+              <p class="pc-desc">매일 5GB 무제한 후불 요금제!</p>
+              <div class="pc-specs-detail">
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">데이터</span>
+                  <div class="pc-spec-val"><b>매일 5GB(5Mbps)</b><small>(소진 시 5Mbps 속도 유지)</small></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">통화</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+                <div class="pc-spec-row">
+                  <span class="pc-spec-label">문자</span>
+                  <div class="pc-spec-val"><b>무제한</b></div>
+                </div>
+              </div>
+              <div class="pc-footer">
+                <span class="pc-daily">일 기본료 1,440원</span>
+                <div class="pc-price-wrap"><span class="pc-price-prefix">월</span><span class="pc-price">43,200원</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /plan-cmp-body -->
+
+      <!-- 하단 CTA -->
+      <div class="plan-cmp-footer">
+        <span>요금제 선택 후 개통을 진행하세요</span>
+        <a href="https://www.n-telecom.co.kr/thesmall/view/open/selfopen_explain.aspx" target="_blank" class="plan-cmp-cta">셀프개통 시작하기 →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 유심 구매 안내 팝업 -->
+  <div class="usim-info-overlay" id="usimInfoModal" onclick="if(event.target===this)closeUsimInfo()">
+    <div class="usim-info-box">
+      <div class="usim-info-header">
+        <h3>📶 호환 유심 구매 안내</h3>
+        <button class="usim-info-close" onclick="closeUsimInfo()">✕</button>
+      </div>
+      <div class="usim-info-cards">
+        <!-- KT 바로유심 -->
+        <div class="usim-ic kt-ic">
+          <span class="usim-ic-badge kt-b">K망 전용 · 8,800원</span>
+          <p class="usim-ic-name">KT 바로유심 (NFC)</p>
+          <div class="usim-ic-img-wrap"><img src="https://ntelecomsafe.com/kt-usim-guide.png" class="usim-ic-img" alt="KT 바로유심" onerror="this.style.display='none'"></div>
+          <div class="usim-ic-points">
+            <div class="usim-point kt-point"><span class="upc">✓</span><span>이마트24 또는 CU편의점 방문</span></div>
+            <div class="usim-point kt-point"><span class="upc">✓</span><span>[진열대 또는 카운터] 문의</span></div>
+            <div class="usim-point kt-point"><span class="upc">✓</span><span>NFC 기능 지원 (티머니/삼성페이 등)</span></div>
+            <div class="usim-point kt-point"><span class="upc">✓</span><span>유심핀 포함되어 있음</span></div>
+          </div>
+          <div class="usim-ic-stores kt-stores">📍 이마트24 · GS25 · CU</div>
+        </div>
+        <!-- LG 원칩 -->
+        <div class="usim-ic lg-ic">
+          <span class="usim-ic-badge lg-b">L망 전용 · 8,800원</span>
+          <p class="usim-ic-name">LG 원칩 — 모두의 유심 (NFC)</p>
+          <div class="usim-ic-img-wrap"><img src="https://ntelecomsafe.com/lg-usim-guide.png" class="usim-ic-img" alt="LG 원칩" onerror="this.style.display='none'"></div>
+          <div class="usim-ic-points">
+            <div class="usim-point lg-point"><span class="upc">✓</span><span>지하철 역사 내 KORAIL 자판기</span></div>
+            <div class="usim-point lg-point"><span class="upc">✓</span><span>[편의점] 이마트24, 스토리웨이</span></div>
+            <div class="usim-point lg-point"><span class="upc">✓</span><span>[배송] 배민B마트 / 쿠팡</span></div>
+            <div class="usim-point lg-point"><span class="upc">✓</span><span>NFC 기능 지원, 유심핀 포함</span></div>
+          </div>
+          <div class="usim-ic-stores lg-stores">📍 이마트24 · 스토리웨이 · 지하철자판기 · 배민B마트</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 안면인식 영상 모달 -->
+  <div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+    <div class="video-modal">
+      <div class="video-modal-header">
+        <div>
+          <h3>😊 안면인식 상세 가이드</h3>
+          <p class="video-modal-sub">영상으로 단계별 촬영 방법을 확인하세요</p>
+        </div>
+        <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+      </div>
+      <div class="video-wrap">
+        <iframe id="videoFrame" src="" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-modal-footer">
+        <span>📱 실제 안면인식 진행 화면을 영상으로 안내해 드립니다</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 개통 가이드 모달 -->
+  <div class="guide-modal-overlay" id="guideModal">
+    <div class="guide-modal">
+      <button class="guide-modal-close" onclick="closeGuideModal()">✕</button>
+      <div class="guide-modal-header">
+        <h2>📋 셀프개통 가이드</h2>
+        <p>처음이셔도 걱정 마세요. 단계별로 안내해 드립니다.</p>
+      </div>
+      <div class="guide-tabs">
+        <button class="guide-tab active" onclick="switchGuideTab(0)">준비물</button>
+        <button class="guide-tab" onclick="switchGuideTab(1)">개통 절차</button>
+        <button class="guide-tab" onclick="switchGuideTab(2)">안면인식 가이드</button>
+        <button class="guide-tab" onclick="switchGuideTab(3)">주의사항 &amp; 시간</button>
+      </div>
+
+      <!-- 탭0: 준비물 -->
+      <div class="guide-tab-content active" id="sgtab0">
+        <div class="gprep-list">
+          <div class="gprep-item">
+            <div class="gprep-icon">📶</div>
+            <div class="gprep-body">
+              <strong>① 호환 유심</strong>
+              <div class="gprep-usim-summary">
+                <div class="gprep-usim-row"><span class="gprep-badge">K망</span><span><b>KT 바로유심</b> · 8,800원 · 이마트24 / GS25 / CU</span></div>
+                <div class="gprep-usim-row"><span class="gprep-badge lg">L망</span><span><b>LG 원칩</b> · 8,800원 · 이마트24 / 스토리웨이 / 배민B마트</span></div>
+              </div>
+              <button class="usim-detail-btn" onclick="openUsimInfo()">🛒 유심 구매처 & 사진 자세히 보기 →</button>
+            </div>
+          </div>
+          <div class="gprep-item">
+            <div class="gprep-icon">🪪</div>
+            <div class="gprep-body">
+              <strong>② 신분증</strong>
+              <p>주민등록증 또는 운전면허증 중 1개</p>
+            </div>
+          </div>
+          <div class="gprep-item">
+            <div class="gprep-icon">🔐</div>
+            <div class="gprep-body">
+              <strong>③ 간편인증서 1개</strong>
+              <div class="gprep-certs">
+                <span class="gprep-cert kakao">카카오</span>
+                <span class="gprep-cert toss">토스</span>
+                <span class="gprep-cert pass">PASS</span>
+                <span class="gprep-cert kb">KB국민</span>
+                <span class="gprep-cert sol">SOL신한</span>
+              </div>
+              <p class="gprep-warn">⚠ 간편인증서가 없으면 비대면 셀프개통 불가</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭1: 개통 절차 -->
+      <div class="guide-tab-content" id="sgtab1">
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-00.jpg" alt="셀프개통 가이드 개요" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-01.jpg" alt="01 통신사 선택" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-02.jpg" alt="02 가입유형 선택" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-03.jpg" alt="03 안면인증 진행" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-04.jpg" alt="04 간편인증" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-05.jpg" alt="05 유심번호 입력" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-img-2col">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-06.jpg" alt="06 요금제 선택 및 개통" onerror="this.style.display='none'">
+          <img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/platform-rule-07.jpg" alt="결제 방식 안내" onerror="this.style.display='none'">
+        </div>
+        <div class="guide-cta-row">
+          <a href="#" class="guide-cta-btn" onclick="closeGuideModal()">지금 바로 개통하기 →</a>
+        </div>
+      </div>
+      <!-- 탭2: 안면인식 가이드 -->
+      <div class="guide-tab-content" id="sgtab2">
+        <div class="guide-notice-box">
+          <p>🔒 정확한 본인확인을 위해 개통 시 <strong>안면인증</strong>이 진행됩니다.<br>
+          <strong>신분증(주민등록증 또는 운전면허증)</strong>과 카메라가 작동하는 휴대폰을 준비해주세요.</p>
+        </div>
+        <div style="text-align:center; margin-bottom:22px;">
+          <button class="face-video-btn" onclick="openVideoModal()">▶ 상세 안면인식 방법 영상 보기</button>
+        </div>
+        <div class="guide-steps">
+          <div class="guide-step"><div class="guide-step-num">1</div><div class="guide-step-icon">📞</div><div class="guide-step-text"><strong>전화번호 입력</strong><span>개통할 번호 입력</span></div></div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step"><div class="guide-step-num">2</div><div class="guide-step-icon">📷</div><div class="guide-step-text"><strong>QR코드 스캔</strong><span>휴대폰으로 QR 스캔</span></div></div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step"><div class="guide-step-num">3</div><div class="guide-step-icon">🪪</div><div class="guide-step-text"><strong>신분증 인증</strong><span>신분증 촬영 및 확인</span></div></div>
+          <div class="guide-step-arrow">→</div>
+          <div class="guide-step"><div class="guide-step-num">4</div><div class="guide-step-icon">😊</div><div class="guide-step-text"><strong>안면인증</strong><span>얼굴 촬영으로 본인확인</span></div></div>
+        </div>
+        <div class="guide-face-caution">
+          <h4>안면인증 시 유의사항</h4>
+          <div class="guide-caution-grid">
+            <div class="guide-caution-card"><img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide1.svg" alt="빛 반사 주의" onerror="this.style.display='none'"><p>빛 반사가 생기지 않게 촬영해주세요</p></div>
+            <div class="guide-caution-card"><img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide2.svg" alt="가로 촬영" onerror="this.style.display='none'"><p>신분증 앞면을 가이드에 맞춰 가로로 촬영해주세요</p></div>
+            <div class="guide-caution-card"><img src="https://www.n-telecom.co.kr/common/img/open/selfopen_explain/face_guide3.svg" alt="실물 신분증" onerror="this.style.display='none'"><p>훼손되지 않은 실물 신분증으로 촬영해주세요</p></div>
+          </div>
+        </div>
+      </div>
+      <!-- 탭3: 주의사항 & 시간 -->
+      <div class="guide-tab-content" id="sgtab3">
+        <div class="guide-check-list">
+          <h4>⚠️ 개통 전 꼭 확인하세요</h4>
+          <ul>
+            <li>미성년자 · 법인 · 외국인(여권) 개통 제한</li>
+            <li>유심 일련번호를 정확히 입력해 주세요</li>
+            <li>개통 완료 확인 후 유심 장착 및 이용 가능</li>
+            <li>본인명의 신분증(주민등록증 또는 운전면허증) 필수</li>
+          </ul>
+        </div>
+        <div class="guide-time-box">
+          <h4>🕐 개통 가능 시간</h4>
+          <table class="guide-time-table">
+            <thead><tr><th>구분</th><th>번호이동</th><th>신규개통</th></tr></thead>
+            <tbody>
+              <tr><td>KT망</td><td>10:00 ~ 19:50</td><td>08:00 ~ 21:50</td></tr>
+              <tr><td>LG망</td><td>10:00 ~ 19:50</td><td>08:00 ~ 21:50</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .guide-modal-overlay { display:none; position:fixed; inset:0; z-index:1500; background:rgba(0,0,0,.6); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
+    .guide-modal-overlay.active { display:flex; }
+    .guide-modal { background:#fff; border-radius:20px; width:100%; max-width:680px; max-height:88vh; overflow-y:auto; position:relative; box-shadow:0 24px 64px rgba(0,0,0,.3); animation:gmIn .3s ease; }
+    @keyframes gmIn { from{opacity:0;transform:scale(.9) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .guide-modal-close { position:absolute; top:16px; right:16px; z-index:10; background:#f0f0f0; border:none; border-radius:50%; width:34px; height:34px; font-size:1rem; cursor:pointer; }
+    .guide-modal-close:hover { background:#ddd; }
+    .guide-modal-header { background:linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%); color:#fff; padding:32px 32px 24px; border-radius:20px 20px 0 0; }
+    .guide-modal-header h2 { font-size:1.4rem; font-weight:900; margin-bottom:6px; }
+    .guide-modal-header p  { opacity:.85; font-size:.9rem; }
+    .guide-tabs { display:flex; border-bottom:2px solid #eef; padding:0 24px; gap:4px; }
+    .guide-tab { padding:14px 18px; font-size:.87rem; font-weight:700; border:none; background:none; cursor:pointer; color:#888; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color .2s,border-color .2s; }
+    .guide-tab.active { color:#1a56db; border-bottom-color:#1a56db; }
+    .guide-tab-content { display:none; padding:28px 28px 24px; }
+    .guide-tab-content.active { display:block; }
+    .guide-img-2col { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+    .guide-img-2col img { width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.12); }
+    .guide-cta-row { text-align:center; margin-top:8px; }
+    .guide-cta-btn { display:inline-block; background:linear-gradient(135deg,#4f8ef7 0%,#1a56db 50%,#6c2fd4 100%); color:#fff; font-weight:800; font-size:1rem; padding:14px 36px; border-radius:12px; box-shadow:0 4px 16px rgba(79,142,247,.35); transition:transform .15s; }
+    .guide-cta-btn:hover { transform:translateY(-2px); }
+    .guide-notice-box { background:#fff8e1; border-left:4px solid #f59e0b; border-radius:10px; padding:16px 18px; margin-bottom:22px; font-size:.88rem; line-height:1.7; color:#555; }
+    .guide-steps { display:flex; align-items:flex-start; justify-content:center; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+    .guide-step { display:flex; flex-direction:column; align-items:center; gap:6px; background:#e8f0fe; border-radius:14px; padding:16px 14px; min-width:110px; flex:1; max-width:140px; text-align:center; }
+    .guide-step-num { width:24px; height:24px; background:#1a56db; color:#fff; border-radius:50%; font-size:.75rem; font-weight:800; display:flex; align-items:center; justify-content:center; }
+    .guide-step-icon { font-size:1.8rem; }
+    .guide-step-text strong { display:block; font-size:.85rem; font-weight:800; color:#1a1a2e; margin-bottom:2px; }
+    .guide-step-text span  { font-size:.75rem; color:#666; line-height:1.4; }
+    .guide-step-arrow { font-size:1.2rem; color:#bbb; align-self:center; padding-top:8px; }
+    .guide-face-caution { margin-top:28px; padding-top:24px; border-top:2px solid #e8f0fe; }
+    .guide-face-caution h4 { font-size:1.05rem; font-weight:900; text-align:center; margin-bottom:20px; color:#1a1a2e; }
+    .guide-caution-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .guide-caution-card { background:#f4f6fb; border-radius:14px; padding:20px 14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px; }
+    .guide-caution-card img { width:100%; max-width:140px; }
+    .guide-caution-card p { font-size:.82rem; color:#444; line-height:1.5; font-weight:600; }
+    .guide-check-list { background:#f4f6fb; border-radius:14px; padding:20px 22px; margin-bottom:20px; }
+    .guide-check-list h4 { font-size:1rem; font-weight:800; margin-bottom:14px; color:#1a1a2e; }
+    .guide-check-list ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .guide-check-list li { font-size:.88rem; color:#444; padding-left:22px; position:relative; line-height:1.5; }
+    .guide-check-list li::before { content:'✔'; position:absolute; left:0; color:#1a56db; font-size:.8rem; }
+    .guide-time-box { background:#e8f0fe; border-radius:14px; padding:20px 22px; }
+    .guide-time-box h4 { font-size:1rem; font-weight:800; margin-bottom:14px; color:#1a1a2e; }
+    .guide-time-table { width:100%; border-collapse:collapse; font-size:.88rem; }
+    .guide-time-table th { background:#1a56db; color:#fff; padding:10px 14px; text-align:center; }
+    .guide-time-table td { padding:10px 14px; text-align:center; border-bottom:1px solid rgba(79,142,247,.15); }
+    .guide-time-table tr:last-child td { border-bottom:none; }
+
+    /* ── 가이드 준비물 탭 ── */
+    .gprep-list { display:flex; flex-direction:column; gap:14px; }
+    .gprep-item { display:flex; gap:16px; align-items:flex-start; background:#f7f9ff; border-radius:14px; padding:18px 20px; }
+    .gprep-icon { font-size:1.8rem; flex-shrink:0; margin-top:2px; }
+    .gprep-body { flex:1; }
+    .gprep-body strong { display:block; font-size:.95rem; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
+    .gprep-body p { font-size:.85rem; color:#555; line-height:1.6; margin-top:6px; }
+    .gprep-rows { display:flex; flex-direction:column; gap:8px; }
+    .gprep-row { display:flex; align-items:flex-start; gap:8px; font-size:.84rem; color:#333; line-height:1.5; }
+    .gprep-badge { flex-shrink:0; font-size:.72rem; font-weight:800; padding:2px 10px; border-radius:12px; background:#1a56db; color:#fff; margin-top:1px; }
+    .gprep-badge.lg { background:#e91e8c; }
+    .gprep-certs { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; }
+    .gprep-cert { padding:4px 12px; border-radius:20px; font-size:.78rem; font-weight:700; }
+    .gprep-cert.kakao { background:#FEE500; color:#3C1E1E; }
+    .gprep-cert.toss  { background:#0064FF; color:#fff; }
+    .gprep-cert.pass  { background:#E5004F; color:#fff; }
+    .gprep-cert.kb    { background:#FFBC00; color:#5C3D00; }
+    .gprep-cert.sol   { background:#0071BC; color:#fff; }
+    .gprep-warn { font-size:.8rem !important; color:#e53e3e !important; font-weight:600; margin-top:8px !important; }
+    /* 준비물 섹션 - 유심 버튼 */
+    .prep-usim-btn { margin-top:14px; background:linear-gradient(135deg,#4f8ef7,#1a56db); color:#fff; border:none; border-radius:10px; padding:10px 0; font-size:.84rem; font-weight:700; cursor:pointer; width:100%; text-align:center; transition:opacity .2s; display:block; }
+    .prep-usim-btn:hover { opacity:.88; }
+
+    /* 준비물 탭 - 유심 요약 */
+    .gprep-usim-summary { display:flex; flex-direction:column; gap:7px; margin-top:10px; }
+    .gprep-usim-row { display:flex; align-items:center; gap:8px; font-size:.83rem; color:#333; }
+    .usim-detail-btn { margin-top:12px; background:linear-gradient(135deg,#4f8ef7,#1a56db); color:#fff; border:none; border-radius:10px; padding:9px 18px; font-size:.82rem; font-weight:700; cursor:pointer; width:100%; text-align:center; transition:opacity .2s; }
+    .usim-detail-btn:hover { opacity:.88; }
+
+    /* 유심 상세 팝업 */
+    .usim-info-overlay { display:none; position:fixed; inset:0; z-index:4000; background:rgba(0,0,0,.65); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px; }
+    .usim-info-overlay.active { display:flex; }
+    .usim-info-box { background:#fff; border-radius:20px; width:100%; max-width:720px; max-height:90vh; overflow-y:auto; box-shadow:0 24px 64px rgba(0,0,0,.35); animation:gmIn .3s ease; }
+    .usim-info-header { display:flex; justify-content:space-between; align-items:center; padding:18px 22px 14px; border-bottom:1px solid #eee; }
+    .usim-info-header h3 { font-size:1.05rem; font-weight:800; color:#1a1a2e; }
+    .usim-info-close { background:none; border:none; font-size:1.1rem; color:#aaa; cursor:pointer; padding:4px 8px; border-radius:8px; }
+    .usim-info-close:hover { background:#f0f0f0; color:#333; }
+    .usim-info-cards { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    @media(max-width:560px) { .usim-info-cards { grid-template-columns:1fr; } }
+    .usim-ic { padding:18px 18px 16px; }
+    .usim-ic.kt-ic { background:linear-gradient(160deg,#f0f6ff,#e3eeff); border-right:1px solid #dde8ff; }
+    .usim-ic.lg-ic { background:linear-gradient(160deg,#fff0f8,#fce4f0); }
+    .usim-ic-top { margin-bottom:8px; }
+    .usim-ic-badge { display:inline-block; font-size:.72rem; font-weight:800; border-radius:20px; padding:3px 12px; }
+    .usim-ic-badge.kt-b { background:#1a56db; color:#fff; }
+    .usim-ic-badge.lg-b { background:#e91e8c; color:#fff; }
+    .usim-ic-title-bar { border-radius:10px; padding:8px 14px; font-size:.88rem; font-weight:800; text-align:center; margin-bottom:12px; }
+    .kt-bar { background:#1a56db; color:#fff; }
+    .lg-bar { background:#e91e8c; color:#fff; }
+    .usim-ic-name { font-size:.95rem; font-weight:800; color:#1a1a2e; margin:6px 0 12px; }
+    .usim-ic-img-wrap { overflow:hidden; height:240px; margin-bottom:14px; }
+    .usim-ic-img { width:100%; height:auto; border-radius:10px; display:block; }
+    .usim-ic-points { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+    .usim-point { display:flex; align-items:flex-start; gap:8px; font-size:.82rem; color:#333; line-height:1.5; }
+    .upc { flex-shrink:0; font-weight:900; font-size:.88rem; margin-top:1px; }
+    .kt-point .upc { color:#1a56db; }
+    .lg-point .upc { color:#e91e8c; }
+    .usim-ic-stores { font-size:.76rem; font-weight:600; border-radius:8px; padding:8px 12px; margin-top:4px; }
+    .kt-stores { background:#e8f0fe; color:#1a56db; }
+    .lg-stores { background:#fce4ec; color:#e91e8c; }
+
+    /* ════════════════════════════════
+       요금제 비교 모달
+    ════════════════════════════════ */
+    .plan-cmp-overlay { display:none; position:fixed; inset:0; z-index:2500; background:rgba(0,0,0,.78); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:16px; }
+    .plan-cmp-overlay.active { display:flex; }
+    .plan-cmp-modal { background:#f0f4ff; border-radius:24px; width:100%; max-width:880px; max-height:92vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 32px 80px rgba(0,0,0,.45); animation:gmIn .3s ease; }
+
+    /* 헤더 */
+    .plan-cmp-header { padding:22px 28px 18px; background:var(--grad-hero); color:#fff; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-shrink:0; }
+    .plan-cmp-header h2 { font-size:1.25rem; font-weight:900; margin-bottom:3px; }
+    .plan-cmp-header p { font-size:.85rem; opacity:.82; }
+    .plan-cmp-close { background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.3); border-radius:50%; width:36px; height:36px; font-size:1.1rem; cursor:pointer; color:#fff; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .plan-cmp-close:hover { background:rgba(255,255,255,.35); }
+
+    /* 망 탭 */
+    .plan-net-tabs { display:flex; gap:10px; padding:16px 24px 0; background:#fff; flex-shrink:0; }
+    .plan-net-tab { flex:1; padding:11px; border-radius:12px; border:2px solid #e0e0e0; font-weight:800; font-size:.92rem; cursor:pointer; background:#f7f7f7; color:#999; transition:all .2s; }
+    .plan-net-tab.active.kt { background:#e8f0fe; border-color:#1a56db; color:#1a56db; }
+    .plan-net-tab.active.lg { background:#fce4ec; border-color:#e91e8c; color:#e91e8c; }
+
+    /* 타입 탭 */
+    .plan-type-tabs { display:flex; gap:6px; padding:10px 24px 12px; background:#fff; border-bottom:1px solid #eef; flex-shrink:0; }
+    .plan-type-tab { padding:6px 16px; border-radius:20px; border:none; cursor:pointer; font-size:.82rem; font-weight:700; background:#f0f0f0; color:#666; transition:all .2s; }
+    .plan-type-tab.active { background:var(--grad-main); color:#fff; }
+
+    /* 본문 */
+    .plan-cmp-body { flex:1; overflow-y:auto; padding:20px 24px; }
+    .plan-section { display:none; }
+    .plan-section.active { display:block; }
+    .plan-note { background:#fff8e1; border-left:3px solid #f59e0b; border-radius:8px; padding:9px 14px; font-size:.82rem; color:#666; margin-bottom:16px; }
+
+    /* 카드 그리드 */
+    .plan-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:13px; }
+    @media(max-width:580px) { .plan-cards { grid-template-columns:1fr; } }
+
+    .plan-card { background:#fff; border-radius:16px; padding:16px 16px 14px; box-shadow:0 3px 14px rgba(0,0,0,.07); transition:transform .2s,box-shadow .2s; position:relative; border-top:3px solid transparent; display:flex; flex-direction:column; }
+    .plan-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(79,142,247,.18); }
+    .plan-card.kt-card { border-top-color:#1a56db; }
+    .plan-card.lg-card { border-top-color:#e91e8c; }
+    .plan-card.popular { box-shadow:0 4px 20px rgba(79,142,247,.2); }
+    .plan-card.popular.lg-card { box-shadow:0 4px 20px rgba(233,30,140,.18); }
+
+    .pc-popular { position:absolute; top:0; right:14px; background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#fff; font-size:.66rem; font-weight:800; padding:3px 9px; border-radius:0 0 8px 8px; }
+    .pc-popular-lg { background:linear-gradient(135deg,#e91e8c,#f06292); }
+
+    /* 새 카드 레이아웃 */
+    .pc-badge-sm { display:inline-block; font-size:.68rem; font-weight:800; border-radius:5px; padding:2px 8px; margin-bottom:7px; }
+    .kt-badge-sm { background:#e8f0fe; color:#1a56db; }
+    .lg-badge-sm { background:#fce4ec; color:#e91e8c; }
+
+    .pc-name { font-size:.98rem; font-weight:900; color:#1a1a2e; margin-bottom:3px; line-height:1.3; }
+    .pc-desc { font-size:.74rem; color:#888; margin-bottom:10px; }
+
+    .pc-specs-detail { display:flex; flex-direction:column; gap:7px; border-top:1px solid #f0f0f0; padding-top:10px; flex:1; }
+    .pc-spec-row { display:flex; gap:8px; font-size:.79rem; }
+    .pc-spec-label { flex-shrink:0; width:30px; color:#888; font-weight:700; padding-top:2px; }
+    .pc-spec-val { flex:1; }
+    .pc-spec-val b { color:#222; font-weight:700; display:block; line-height:1.4; }
+    .pc-spec-val small { color:#999; font-size:.69rem; line-height:1.3; display:block; margin-top:1px; }
+    .hl-kt .pc-spec-val b { color:#1a56db; }
+    .hl-lg .pc-spec-val b { color:#e91e8c; }
+
+    .pc-footer { display:flex; justify-content:space-between; align-items:flex-end; margin-top:12px; padding-top:10px; border-top:1px solid #f0f0f0; }
+    .pc-daily { font-size:.72rem; color:#aaa; line-height:1.5; }
+    .pc-price-wrap { text-align:right; }
+    .pc-price-prefix { font-size:.68rem; font-weight:600; color:#888; display:block; }
+    .pc-price { font-size:1.25rem; font-weight:900; color:#1a1a2e; }
+
+    /* 하단 푸터 */
+    .plan-cmp-footer { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; background:#fff; border-top:1px solid #eef; flex-shrink:0; gap:12px; }
+    .plan-cmp-footer span { font-size:.85rem; color:#888; }
+    .plan-cmp-cta { background:var(--grad-main); color:#fff; font-weight:800; font-size:.9rem; padding:10px 22px; border-radius:10px; box-shadow:0 4px 14px rgba(79,142,247,.35); transition:transform .15s; white-space:nowrap; }
+    .plan-cmp-cta:hover { transform:translateY(-2px); }
+
+    /* ── 안면인식 영상 버튼 ── */
+    .face-video-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg,#1a56db 0%,#6c2fd4 100%);
+      color:#fff; font-weight:800; font-size:.95rem;
+      padding:13px 28px; border-radius:12px; border:none; cursor:pointer;
+      box-shadow:0 4px 16px rgba(79,142,247,.4);
+      transition:transform .15s, box-shadow .15s;
+    }
+    .face-video-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(79,142,247,.5); }
+
+    /* ── 영상 모달 ── */
+    .video-modal-overlay { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,.8); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:20px; }
+    .video-modal-overlay.active { display:flex; }
+    .video-modal { background:#fff; border-radius:20px; width:100%; max-width:760px; box-shadow:0 32px 80px rgba(0,0,0,.5); animation:gmIn .3s ease; overflow:hidden; }
+    .video-modal-header { display:flex; align-items:center; justify-content:space-between; padding:20px 24px 16px; background:linear-gradient(140deg,#4f8ef7 0%,#1a56db 45%,#5b21b6 100%); }
+    .video-modal-header h3 { font-size:1.1rem; font-weight:900; color:#fff; margin-bottom:2px; }
+    .video-modal-sub { font-size:.82rem; color:rgba(255,255,255,.8); }
+    .video-modal-close { background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.3); border-radius:50%; width:34px; height:34px; font-size:1rem; cursor:pointer; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s; }
+    .video-modal-close:hover { background:rgba(255,255,255,.35); }
+    .video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; }
+    .video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
+    .video-modal-footer { padding:12px 20px; background:#f7f9ff; text-align:center; font-size:.82rem; color:#666; }
+  </style>
+
+  <script>
+    /* ── 요금제 모달 ── */
+    var _planNet = 0, _planType = 0;
+    function openPlanModal() {
+      document.getElementById('planCmpModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePlanModal() {
+      document.getElementById('planCmpModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function switchPlanNet(idx) {
+      _planNet = idx;
+      document.querySelectorAll('.plan-net-tab').forEach(function(b,i){ b.classList.toggle('active',i===idx); });
+      _updatePlanSection();
+    }
+    function switchPlanType(idx) {
+      _planType = idx;
+      document.querySelectorAll('.plan-type-tab').forEach(function(b,i){ b.classList.toggle('active',i===idx); });
+      _updatePlanSection();
+    }
+    function _updatePlanSection() {
+      document.querySelectorAll('.plan-section').forEach(function(s){ s.classList.remove('active'); });
+      var el = document.getElementById('pn'+_planNet+'t'+_planType);
+      if(el) el.classList.add('active');
+    }
+    function openUsimInfo() {
+      document.getElementById('usimInfoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeUsimInfo() {
+      document.getElementById('usimInfoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openVideoModal() {
+      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/vTsXP8Y5JXQ?autoplay=1';
+      document.getElementById('videoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      document.getElementById('videoFrame').src = '';
+      document.getElementById('videoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openGuideModal() { document.getElementById('guideModal').classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeGuideModal() { document.getElementById('guideModal').classList.remove('active'); document.body.style.overflow=''; }
+    function switchGuideTab(idx) {
+      document.querySelectorAll('.guide-tab').forEach(function(t,i){ t.classList.toggle('active',i===idx); });
+      ['sgtab0','sgtab1','sgtab2','sgtab3'].forEach(function(id,i){ document.getElementById(id).classList.toggle('active',i===idx); });
+    }
+    document.getElementById('guideModal').addEventListener('click', function(e){ if(e.target===this) closeGuideModal(); });
+  </script>
+
+</body>
+</html>
