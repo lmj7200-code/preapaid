@@ -525,14 +525,23 @@
       nav { display: none !important; }
       .menu-toggle { display: flex; }
 
+      /* 헤더 완전 불투명으로 */
+      header { background: #fff !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
       .hero { padding: 40px 20px 64px; }
       .hero-tagline { font-size: 1rem; }
       .hero-question { font-size: 1.1rem; margin-bottom: 20px; }
 
-      .cert-grid { flex-direction: column; gap: 14px; }
-      .cert-card { min-width: unset; width: 100%; padding: 28px 20px; }
-      .cert-icon-wrap { width: 70px; height: 70px; font-size: 2.1rem; margin-bottom: 14px; }
-      .cert-card h3 { font-size: 1.15rem; }
+      /* 인증서 카드 가로 2열 배치 — 컴팩트 */
+      .cert-grid { flex-direction: row; gap: 10px; align-items: stretch; flex-wrap: nowrap; }
+      .cert-card { flex: 1; min-width: unset; width: auto; padding: 20px 12px; border-radius: 18px; }
+      .cert-icon-wrap { width: 52px; height: 52px; font-size: 1.5rem; margin: 0 auto 10px; box-shadow: none; }
+      .cert-card h3 { font-size: .95rem; margin-bottom: 6px; }
+      /* 모바일에서 부제목·설명·앱배지 숨김 — 버튼만 */
+      .cert-subtitle { display: none; }
+      .cert-apps { display: none; }
+      .cert-card p { display: none; }
+      .cert-btn { font-size: .72rem; padding: 10px 6px; border-radius: 10px; margin-top: 6px; letter-spacing: -.02em; }
 
       .hero-guide-box { margin-top: 20px; }
       .hero-guide-btn { width: 100%; justify-content: center; }
@@ -633,7 +642,7 @@
         <div class="cert-card has">
           <div class="cert-icon-wrap">✅</div>
           <h3>네, 있어요</h3>
-          <p style="font-weight:700;color:var(--blue);margin-bottom:12px;">간편인증서 보유</p>
+          <p class="cert-subtitle" style="font-weight:700;color:var(--blue);margin-bottom:12px;">간편인증서 보유</p>
           <div class="cert-apps">
             <span class="cert-app-tag">카카오</span>
             <span class="cert-app-tag">토스</span>
@@ -648,7 +657,7 @@
         <div class="cert-card none">
           <div class="cert-icon-wrap">🪪</div>
           <h3>아뇨, 없어요</h3>
-          <p style="font-weight:700;color:var(--purple);margin-bottom:12px;">신분증만 보유</p>
+          <p class="cert-subtitle" style="font-weight:700;color:var(--purple);margin-bottom:12px;">신분증만 보유</p>
           <p>
             간편인증서가 없어도 괜찮아요.<br>
             본인명의 신분증 하나만 있으면<br>
