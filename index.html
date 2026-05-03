@@ -478,12 +478,113 @@
     .footer-kakao:hover { transform: translateY(-2px); }
     .footer-bottom { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.07); color: #555; }
 
-    @media (max-width: 680px) {
-      nav a:not(.nav-cta) { display: none; }
-      .hero { padding: 64px 18px 80px; }
-      .cert-card { min-width: 100%; }
-      .anyone-inner { flex-direction: column; gap: 32px; }
+    /* ── 햄버거 메뉴 ── */
+    .menu-toggle {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px;
+      transition: background .2s; flex-shrink: 0;
+    }
+    .menu-toggle:hover { background: var(--blue-light); }
+    .menu-toggle span {
+      display: block; width: 22px; height: 2.5px;
+      background: var(--blue); border-radius: 2px; transition: all .3s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ── 모바일 내비게이션 패널 ── */
+    .mobile-nav-bg {
+      display: none; position: fixed; inset: 0; top: 68px;
+      background: rgba(0,0,0,.4); z-index: 198; backdrop-filter: blur(2px);
+    }
+    .mobile-nav-bg.open { display: block; }
+    .mobile-nav-panel {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
+      background: #fff; padding: 8px 16px 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      border-radius: 0 0 24px 24px;
+      transform: translateY(-110%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-nav-panel.open { transform: translateY(0); }
+    .mobile-nav-panel a {
+      display: block; padding: 12px 16px; font-size: .95rem; font-weight: 600;
+      color: #333; border-radius: 12px; transition: background .15s;
+    }
+    .mobile-nav-panel a:hover { background: var(--blue-light); color: var(--blue); }
+    .mobile-nav-divider { height: 1px; background: #eef0f6; margin: 6px 0; }
+    .mobile-nav-cta {
+      background: var(--grad-main) !important; color: #fff !important;
+      text-align: center; font-weight: 800 !important; border-radius: 12px !important;
+      font-size: .97rem; margin-top: 4px;
+      box-shadow: 0 4px 14px rgba(79,142,247,.35);
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 768px) {
+      nav { display: none !important; }
+      .menu-toggle { display: flex; }
+
+      .hero { padding: 40px 20px 64px; }
+      .hero-tagline { font-size: 1rem; }
+      .hero-question { font-size: 1.1rem; margin-bottom: 20px; }
+
+      .cert-grid { flex-direction: column; gap: 14px; }
+      .cert-card { min-width: unset; width: 100%; padding: 28px 20px; }
+      .cert-icon-wrap { width: 70px; height: 70px; font-size: 2.1rem; margin-bottom: 14px; }
+      .cert-card h3 { font-size: 1.15rem; }
+
+      .hero-guide-box { margin-top: 20px; }
+      .hero-guide-btn { width: 100%; justify-content: center; }
+
+      .action-section { padding: 44px 20px; }
+      .action-grid { gap: 12px; }
+      .action-card { flex: 0 0 calc(50% - 6px); min-width: unset; max-width: calc(50% - 6px); padding: 20px 14px; }
+      .action-icon { width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 10px; }
+      .action-card h3 { font-size: .88rem; }
+      .action-card p { font-size: .74rem; }
+
+      .anyone-section { padding: 48px 20px; }
+      .anyone-inner { flex-direction: column; gap: 24px; }
+      .anyone-text h2 { font-size: 1.5rem; }
+      .anyone-text br { display: none; }
+
+      .guide-section { padding: 56px 20px; }
+      .guide-caution-grid { grid-template-columns: 1fr 1fr; }
+
+      .faq-section { padding: 48px 20px; }
+      details { padding: 14px 16px; }
+      summary { font-size: .88rem; }
+      details p { font-size: .82rem; padding-left: 24px; }
+
+      .cta-section { padding: 48px 20px; }
+      .cta-btns { flex-direction: column; align-items: stretch; }
+      .btn-cta-main, .btn-cta-sub { width: 100%; text-align: center; padding: 14px; }
+
+      footer { padding: 32px 20px; }
       .footer-inner { flex-direction: column; gap: 16px; }
+
+      .kakao-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.4rem; }
+
+      /* 모달 */
+      .guide-modal { border-radius: 16px; margin: 0 12px; }
+      .guide-modal-header { padding: 24px 20px 18px; }
+      .guide-modal-header h2 { font-size: 1.2rem; }
+      .guide-tab { padding: 12px 12px; font-size: .82rem; }
+      .guide-tab-content { padding: 20px 16px; }
+      .guide-img-2col { grid-template-columns: 1fr; }
+      .guide-caution-grid { grid-template-columns: 1fr; }
+      .guide-steps { gap: 4px; }
+      .guide-step-arrow { display: none; }
+      .guide-step { min-width: calc(33% - 4px); padding: 12px 8px; }
+      .guide-step-icon { font-size: 1.4rem; }
+
+      .entry-popup { max-width: 340px; }
+    }
+
+    @media (max-width: 480px) {
+      .cert-card { padding: 22px 16px; }
+      .hero h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -498,14 +599,29 @@
       </a>
       <nav>
         <a href="sunbulpon-gaetong.html">셀프개통 방법</a>
-        <a href="sunbulpon-gaetong.html#plans">K망 / L망 요금제</a>
-        <a href="#">유심구매</a>
+        <a href="plans.html">K망 / L망 요금제</a>
+        <a href="usim-guide.html">유심구매</a>
         <a href="#faq">FAQ</a>
         <a href="news.html">소식</a>
         <a href="sunbulpon-gaetong.html" class="nav-cta">즉시개통하기 →</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- 모바일 내비게이션 -->
+  <div class="mobile-nav-bg" id="mobileNavBg" onclick="closeMobileNav()"></div>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="sunbulpon-gaetong.html">📱 셀프개통 방법</a>
+    <a href="plans.html">📋 K망 / L망 요금제</a>
+    <a href="usim-guide.html">📦 유심구매</a>
+    <a href="#faq" onclick="closeMobileNav()">❓ FAQ</a>
+    <a href="news.html">📰 소식</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="sunbulpon-gaetong.html" class="mobile-nav-cta">⚡ 즉시개통하기 →</a>
+  </div>
 
   <!-- 히어로 배너 + 인증서 유무 -->
   <section class="hero">
@@ -867,6 +983,27 @@
     }
     document.getElementById('guideModal').addEventListener('click', function(e){
       if (e.target === this) closeGuideModal();
+    });
+
+    /* 햄버거 메뉴 */
+    function toggleMobileNav() {
+      var panel = document.getElementById('mobileNavPanel');
+      var bg = document.getElementById('mobileNavBg');
+      var toggle = document.getElementById('menuToggle');
+      panel.classList.toggle('open');
+      bg.classList.toggle('open');
+      toggle.classList.toggle('open');
+      document.body.style.overflow = panel.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMobileNav() {
+      document.getElementById('mobileNavPanel').classList.remove('open');
+      document.getElementById('mobileNavBg').classList.remove('open');
+      document.getElementById('menuToggle').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    /* 모바일 메뉴 열렸을 때 스크롤 링크 클릭 시 닫기 */
+    document.querySelectorAll('.mobile-nav-panel a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', closeMobileNav);
     });
 
     var popupChecked = false;

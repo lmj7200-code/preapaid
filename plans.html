@@ -143,11 +143,79 @@
 
     footer { background:#1a1a2e; color:rgba(255,255,255,.5); text-align:center; padding:28px 24px; font-size:.82rem; }
 
-    @media(max-width:600px) {
-      .hero h1 { font-size:1.6rem; }
-      nav { gap:10px; }
-      nav a { font-size:.75rem; }
-      .net-tab { padding:11px 24px; font-size:.9rem; }
+    /* ── 햄버거 메뉴 ── */
+    .menu-toggle {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px;
+      transition: background .2s; flex-shrink: 0;
+    }
+    .menu-toggle:hover { background: var(--blue-light); }
+    .menu-toggle span {
+      display: block; width: 22px; height: 2.5px;
+      background: var(--blue); border-radius: 2px; transition: all .3s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .mobile-nav-bg {
+      display: none; position: fixed; inset: 0; top: 68px;
+      background: rgba(0,0,0,.4); z-index: 198; backdrop-filter: blur(2px);
+    }
+    .mobile-nav-bg.open { display: block; }
+    .mobile-nav-panel {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
+      background: #fff; padding: 8px 16px 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      border-radius: 0 0 24px 24px;
+      transform: translateY(-110%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-nav-panel.open { transform: translateY(0); }
+    .mobile-nav-panel a {
+      display: block; padding: 12px 16px; font-size: .95rem; font-weight: 600;
+      color: #333; border-radius: 12px; transition: background .15s;
+    }
+    .mobile-nav-panel a:hover { background: var(--blue-light); color: var(--blue); }
+    .mobile-nav-panel a.active { background: var(--blue-light); color: var(--blue); }
+    .mobile-nav-divider { height: 1px; background: #eef0f6; margin: 6px 0; }
+    .mobile-nav-cta {
+      background: var(--grad-main) !important; color: #fff !important;
+      text-align: center; font-weight: 800 !important; border-radius: 12px !important;
+      margin-top: 4px; box-shadow: 0 4px 14px rgba(79,142,247,.35);
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none !important; }
+      .menu-toggle { display: flex; }
+
+      .hero { padding: 40px 20px 56px; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero p { font-size: .9rem; }
+      .hero-badges { gap: 8px; }
+      .hero-badge { padding: 6px 14px; font-size: .8rem; }
+
+      .net-tabs-wrap { padding: 32px 0 0; }
+      .net-tabs { gap: 8px; }
+      .net-tab { padding: 11px 28px; font-size: .9rem; flex: 1; text-align: center; }
+
+      .type-tabs-wrap { width: 100%; border-radius: 12px; overflow-x: auto; }
+      .type-tab { padding: 8px 16px; font-size: .82rem; white-space: nowrap; }
+
+      .plan-note { font-size: .8rem; padding: 10px 14px; }
+
+      .plan-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+      .cta-section { padding: 40px 0; }
+      .cta-box { padding: 28px 20px; border-radius: 16px; }
+      .cta-box h3 { font-size: 1.25rem; }
+      .cta-box p { font-size: .88rem; }
+
+      footer { padding: 24px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .plan-cards { grid-template-columns: 1fr; }
+      .net-tab { padding: 11px 0; }
     }
   </style>
 </head>
@@ -167,10 +235,26 @@
       <a href="#" onclick="openVideoModal();return false;">😊 안면인식</a>
       <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">FAQ</a>
       <a href="news.html">소식</a>
-      <a href="#" class="nav-cta">개통 신청 →</a>
+      <a href="sunbulpon-gaetong.html" class="nav-cta">개통 신청 →</a>
     </nav>
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- 모바일 내비게이션 -->
+<div class="mobile-nav-bg" id="mobileNavBg" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <a href="sunbulpon-gaetong.html">📱 셀프개통 방법</a>
+  <a href="plans.html" class="active">📋 K망 / L망 요금제</a>
+  <a href="usim-guide.html">📦 유심구매</a>
+  <a href="#" onclick="openVideoModal();closeMobileNav();return false;">😊 안면인식 가이드</a>
+  <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">❓ FAQ</a>
+  <a href="news.html">📰 소식</a>
+  <div class="mobile-nav-divider"></div>
+  <a href="sunbulpon-gaetong.html" class="mobile-nav-cta">⚡ 개통 신청 →</a>
+</div>
 
 <!-- 안면인식 영상 모달 -->
 <div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
@@ -652,6 +736,23 @@
   function closeVideoModal() {
     document.getElementById('videoFrame').src = '';
     document.getElementById('videoModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* 햄버거 메뉴 */
+  function toggleMobileNav() {
+    var panel = document.getElementById('mobileNavPanel');
+    var bg = document.getElementById('mobileNavBg');
+    var toggle = document.getElementById('menuToggle');
+    panel.classList.toggle('open');
+    bg.classList.toggle('open');
+    toggle.classList.toggle('open');
+    document.body.style.overflow = panel.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMobileNav() {
+    document.getElementById('mobileNavPanel').classList.remove('open');
+    document.getElementById('mobileNavBg').classList.remove('open');
+    document.getElementById('menuToggle').classList.remove('open');
     document.body.style.overflow = '';
   }
 </script>

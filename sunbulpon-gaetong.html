@@ -726,14 +726,80 @@
     .proc-kakao-btn:hover { transform:translateY(-2px); }
 
     /* ── 반응형 ── */
-    @media (max-width: 680px) {
-      nav a:not(.nav-cta) { display: none; }
-      .hero { padding: 64px 18px 80px; }
-      .section { padding: 56px 18px; }
-      .features { padding: 40px 18px; }
-      .proc-item { padding:20px 18px; gap:14px; }
-      .proc-num { width:36px; height:36px; font-size:1rem; }
-      .usim-cards { flex-direction:column; }
+    /* ── 햄버거 메뉴 ── */
+    .menu-toggle {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px;
+      transition: background .2s; flex-shrink: 0;
+    }
+    .menu-toggle:hover { background: var(--blue-light); }
+    .menu-toggle span {
+      display: block; width: 22px; height: 2.5px;
+      background: var(--blue); border-radius: 2px; transition: all .3s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .mobile-nav-bg {
+      display: none; position: fixed; inset: 0; top: 68px;
+      background: rgba(0,0,0,.4); z-index: 198; backdrop-filter: blur(2px);
+    }
+    .mobile-nav-bg.open { display: block; }
+    .mobile-nav-panel {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
+      background: #fff; padding: 8px 16px 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      border-radius: 0 0 24px 24px;
+      transform: translateY(-110%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-nav-panel.open { transform: translateY(0); }
+    .mobile-nav-panel a {
+      display: block; padding: 12px 16px; font-size: .95rem; font-weight: 600;
+      color: #333; border-radius: 12px; transition: background .15s;
+    }
+    .mobile-nav-panel a:hover { background: var(--blue-light); color: var(--blue); }
+    .mobile-nav-panel a.active { background: var(--blue-light); color: var(--blue); }
+    .mobile-nav-divider { height: 1px; background: #eef0f6; margin: 6px 0; }
+    .mobile-nav-cta {
+      background: var(--grad-main) !important; color: #fff !important;
+      text-align: center; font-weight: 800 !important; border-radius: 12px !important;
+      margin-top: 4px; box-shadow: 0 4px 14px rgba(79,142,247,.35);
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none !important; }
+      .menu-toggle { display: flex; }
+
+      .hero { padding: 44px 20px 72px; }
+      .hero h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+      .hero p { font-size: .93rem; }
+      .hero-sub { font-size: .88rem; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { padding: 6px 14px; font-size: .8rem; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns a, .hero-btns button { width: 100%; text-align: center; justify-content: center; }
+      .hero-guide-box { margin-top: 18px; }
+      .hero-guide-btn { width: 100%; justify-content: center; }
+
+      .section { padding: 48px 20px; }
+      .features { padding: 36px 20px; }
+
+      .proc-item { padding: 18px 16px; gap: 12px; }
+      .proc-num { width: 36px; height: 36px; font-size: 1rem; }
+
+      .usim-cards { flex-direction: column; }
+
+      /* 모달 */
+      .usim-popup { max-width: 100%; border-radius: 20px 20px 0 0; }
+      .usim-popup-overlay { align-items: flex-end; padding: 0; }
+
+      footer { padding: 32px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero-badge { font-size: .72rem; padding: 5px 12px; letter-spacing: -.01em; max-width: 320px; text-align: center; line-height: 1.5; }
     }
   </style>
 </head>
@@ -755,8 +821,24 @@
         <a href="news.html">소식</a>
         <a href="#" class="nav-cta">개통 신청 →</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- 모바일 내비게이션 -->
+  <div class="mobile-nav-bg" id="mobileNavBg" onclick="closeMobileNav()"></div>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="sunbulpon-gaetong.html" class="active">📱 셀프개통 방법</a>
+    <a href="plans.html">📋 K망 / L망 요금제</a>
+    <a href="usim-guide.html">📦 유심구매</a>
+    <a href="#" onclick="openVideoModal();closeMobileNav();return false;">😊 안면인식 가이드</a>
+    <a href="https://www.n-telecom.co.kr/thesmall/view/service/faq.aspx##" target="_blank">❓ FAQ</a>
+    <a href="news.html">📰 소식</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="#" class="mobile-nav-cta">⚡ 개통 신청 →</a>
+  </div>
 
   <!-- 히어로 -->
   <section class="hero">
@@ -2152,7 +2234,7 @@
         <div class="usim-ic kt-ic">
           <span class="usim-ic-badge kt-b">K망 전용 · 8,800원</span>
           <p class="usim-ic-name">KT 바로유심 (NFC)</p>
-          <div class="usim-ic-img-wrap"><img src="https://ntelecomsafe.com/kt-usim-guide.png" class="usim-ic-img" alt="KT 바로유심" onerror="this.style.display='none'"></div>
+          <div class="usim-ic-img-wrap"><img src="kt-usim.png" class="usim-ic-img" alt="KT 바로유심" onerror="this.style.display='none'"></div>
           <div class="usim-ic-points">
             <div class="usim-point kt-point"><span class="upc">✓</span><span>이마트24 또는 CU편의점 방문</span></div>
             <div class="usim-point kt-point"><span class="upc">✓</span><span>[진열대 또는 카운터] 문의</span></div>
@@ -2165,7 +2247,7 @@
         <div class="usim-ic lg-ic">
           <span class="usim-ic-badge lg-b">L망 전용 · 8,800원</span>
           <p class="usim-ic-name">LG 원칩 — 모두의 유심 (NFC)</p>
-          <div class="usim-ic-img-wrap"><img src="https://ntelecomsafe.com/lg-usim-guide.png" class="usim-ic-img" alt="LG 원칩" onerror="this.style.display='none'"></div>
+          <div class="usim-ic-img-wrap"><img src="lg-usim.png" class="usim-ic-img" alt="LG 원칩" onerror="this.style.display='none'"></div>
           <div class="usim-ic-points">
             <div class="usim-point lg-point"><span class="upc">✓</span><span>지하철 역사 내 KORAIL 자판기</span></div>
             <div class="usim-point lg-point"><span class="upc">✓</span><span>[편의점] 이마트24, 스토리웨이</span></div>
@@ -2422,8 +2504,8 @@
     .kt-bar { background:#1a56db; color:#fff; }
     .lg-bar { background:#e91e8c; color:#fff; }
     .usim-ic-name { font-size:.95rem; font-weight:800; color:#1a1a2e; margin:6px 0 12px; }
-    .usim-ic-img-wrap { overflow:hidden; height:240px; margin-bottom:14px; }
-    .usim-ic-img { width:100%; height:auto; border-radius:10px; display:block; }
+    .usim-ic-img-wrap { margin-bottom:14px; }
+    .usim-ic-img { width:100%; border-radius:10px; display:block; }
     .usim-ic-points { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
     .usim-point { display:flex; align-items:flex-start; gap:8px; font-size:.82rem; color:#333; line-height:1.5; }
     .upc { flex-shrink:0; font-weight:900; font-size:.88rem; margin-top:1px; }
@@ -2583,6 +2665,23 @@
       ['sgtab0','sgtab1','sgtab2','sgtab3'].forEach(function(id,i){ document.getElementById(id).classList.toggle('active',i===idx); });
     }
     document.getElementById('guideModal').addEventListener('click', function(e){ if(e.target===this) closeGuideModal(); });
+
+    /* 햄버거 메뉴 */
+    function toggleMobileNav() {
+      var panel = document.getElementById('mobileNavPanel');
+      var bg = document.getElementById('mobileNavBg');
+      var toggle = document.getElementById('menuToggle');
+      panel.classList.toggle('open');
+      bg.classList.toggle('open');
+      toggle.classList.toggle('open');
+      document.body.style.overflow = panel.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMobileNav() {
+      document.getElementById('mobileNavPanel').classList.remove('open');
+      document.getElementById('mobileNavBg').classList.remove('open');
+      document.getElementById('menuToggle').classList.remove('open');
+      document.body.style.overflow = '';
+    }
   </script>
 
 </body>

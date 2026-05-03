@@ -117,6 +117,12 @@
     .empty-state.show { display: block; }
     .empty-state p { font-size: .9rem; margin-top: 8px; }
 
+    /* 로딩 */
+    .loading-state { text-align:center; padding:64px 24px; color:#aaa; font-size:.9rem; display:none; }
+    .loading-state.show { display:block; }
+    .loading-spinner { width:36px; height:36px; border:3px solid #e0e7ff; border-top-color:#1a56db; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 14px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
     /* 글쓰기 안내 (관리자용) */
     .write-tip {
       background: linear-gradient(135deg, #e8f0fe, #f3e8ff);
@@ -137,8 +143,17 @@
     footer strong { color: #aaa; }
 
     @media (max-width: 600px) {
-      .post-item { padding: 18px 18px; }
+      .post-item { padding: 16px 16px; }
+      .page-hero { padding: 32px 20px 0; }
       .page-hero h1 { font-size: 1.5rem; }
+      .page-hero p { font-size: .85rem; }
+      .posts-section { padding: 24px 20px 48px; }
+      .filter-btn { padding: 6px 14px; font-size: .78rem; }
+      .post-title { font-size: .97rem; }
+      .post-summary { font-size: .82rem; }
+      footer { padding: 22px 16px; }
+      .write-tip { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .write-tip .tip-icon { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -173,15 +188,19 @@
   <section class="posts-section">
     <div class="container">
 
-      <!-- ✏️ 글 추가 안내 -->
+      <!-- WordPress 연동 안내 -->
       <div class="write-tip">
-        <div class="tip-icon">✏️</div>
+        <div class="tip-icon">🔗</div>
         <div>
-          <h4>새 글 추가하는 방법</h4>
-          <p>이 파일(news.html) 하단 &lt;script&gt; 안의 <strong>posts 배열</strong>에 항목을 추가하면 바로 목록에 나타납니다.</p>
+          <h4>WordPress 연동 글쓰기</h4>
+          <p>WordPress에서 글을 작성하면 이 페이지에 자동으로 반영됩니다. 카테고리명을 <strong>개통가이드 / 선불폰 / 유심 / 요금제 / 꿀팁</strong> 중 하나로 맞춰주세요.</p>
         </div>
       </div>
 
+      <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p>글을 불러오는 중...</p>
+      </div>
       <div class="posts-list" id="postsList"></div>
       <div class="empty-state" id="emptyState">
         <div style="font-size:2.5rem">📭</div>
@@ -198,17 +217,23 @@
 
   <script>
     // ============================================================
-    // ✏️ 글 추가 방법:
-    // 아래 posts 배열에 객체를 하나 추가하세요.
-    // {
-    //   title: "글 제목",
-    //   cat: "카테고리",        // 개통가이드 / 선불폰 / 유심 / 요금제 / 꿀팁
-    //   date: "2026.04.22",
-    //   summary: "요약 내용",
-    //   link: "연결할 파일명.html"  // 없으면 "" 로 비워두세요
-    // }
+    // 🔗 WordPress 연동 설정
+    // 아래 WP_SITE_URL에 워드프레스 사이트 주소를 입력하세요.
+    // 예) const WP_SITE_URL = 'https://blog.example.com';
+    //
+    // WordPress 준비사항:
+    // 1. 카테고리를 아래 이름으로 생성하세요:
+    //    개통가이드 / 선불폰 / 유심 / 요금제 / 꿀팁
+    // 2. CORS 허용 플러그인 설치 (권장: "WP CORS" 또는 "WP-CORS")
+    //    또는 functions.php에 아래 코드 추가:
+    //    add_action('init', function(){
+    //      header('Access-Control-Allow-Origin: *');
+    //    });
     // ============================================================
-    const posts = [
+    const WP_SITE_URL = ''; // ← 여기에 워드프레스 주소 입력 (예: https://your-site.com)
+
+    // WordPress 미연동 시 표시할 기본 게시물
+    const fallbackPosts = [
       {
         title: "편의점 선불유심 구매 방법 CU·GS25·이마트24 구매부터 개통까지",
         cat: "개통가이드",
@@ -288,11 +313,28 @@
       },
     ];
 
+    let allPosts = [];
+    let currentCat = '전체';
+
+    // 날짜 포맷 변환 (WordPress → 2026.04.20)
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    }
+
+    // HTML 태그 제거
+    function stripTags(html) {
+      return html.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').trim();
+    }
+
     // 렌더링
     function renderPosts(cat) {
       const list = document.getElementById('postsList');
       const empty = document.getElementById('emptyState');
-      const filtered = cat === '전체' ? posts : posts.filter(p => p.cat === cat);
+      const filtered = cat === '전체' ? allPosts : allPosts.filter(p => p.cat === cat);
       list.innerHTML = '';
       if (filtered.length === 0) { empty.classList.add('show'); return; }
       empty.classList.remove('show');
@@ -308,9 +350,45 @@
           <div class="post-summary">${p.summary}</div>
           <div class="post-author">마크통신 선불폰</div>
         `;
-        if (p.link) el.onclick = () => location.href = p.link;
+        if (p.link) el.style.cursor = 'pointer';
+        if (p.link) el.onclick = () => window.open(p.link, '_blank');
         list.appendChild(el);
       });
+    }
+
+    // WordPress REST API에서 포스트 불러오기
+    async function loadFromWordPress() {
+      const loading = document.getElementById('loadingState');
+      loading.classList.add('show');
+      try {
+        // 카테고리 목록 가져오기
+        const catRes = await fetch(`${WP_SITE_URL}/wp-json/wp/v2/categories?per_page=100`);
+        if (!catRes.ok) throw new Error('카테고리 로드 실패');
+        const categories = await catRes.json();
+        const catMap = {};
+        categories.forEach(c => { catMap[c.id] = c.name; });
+
+        // 포스트 가져오기
+        const postRes = await fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?per_page=50&status=publish&orderby=date&order=desc`);
+        if (!postRes.ok) throw new Error('포스트 로드 실패');
+        const wpPosts = await postRes.json();
+
+        allPosts = wpPosts.map(p => ({
+          title: stripTags(p.title.rendered),
+          cat: p.categories.length > 0 ? (catMap[p.categories[0]] || '전체') : '전체',
+          date: formatDate(p.date),
+          summary: stripTags(p.excerpt.rendered),
+          link: p.link
+        }));
+
+        loading.classList.remove('show');
+        renderPosts(currentCat);
+      } catch (err) {
+        console.warn('WordPress 연동 실패, 기본 게시물 표시:', err.message);
+        loading.classList.remove('show');
+        allPosts = fallbackPosts;
+        renderPosts(currentCat);
+      }
     }
 
     // 카테고리 필터
@@ -319,10 +397,17 @@
       if (!btn) return;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderPosts(btn.dataset.cat);
+      currentCat = btn.dataset.cat;
+      renderPosts(currentCat);
     });
 
-    renderPosts('전체');
+    // 초기 로드
+    if (WP_SITE_URL) {
+      loadFromWordPress();
+    } else {
+      allPosts = fallbackPosts;
+      renderPosts('전체');
+    }
   </script>
 
 </body>
