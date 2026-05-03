@@ -772,6 +772,20 @@
       .menu-toggle { display: flex; }
       header { background: #fff !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
 
+      /* 준비물 세로 나열 */
+      .prep-list { flex-direction: column; gap: 12px; }
+      .prep-item {
+        max-width: 100%; padding: 18px 18px;
+        display: flex; align-items: flex-start; gap: 16px;
+        text-align: left;
+      }
+      .prep-item .icon { font-size: 2.2rem; margin-bottom: 0; flex-shrink: 0; padding-top: 0; line-height: 1; }
+      .prep-body { flex: 1; min-width: 0; }
+      .prep-body .prep-title { font-size: .97rem; margin-bottom: 6px; }
+      .prep-body .prep-desc { font-size: .8rem; line-height: 1.65; margin-bottom: 0; }
+      .prep-cert { justify-content: flex-start; margin-top: 10px; gap: 10px; }
+      .prep-usim-btn { margin-top: 10px; font-size: .78rem; padding: 8px 14px; }
+
       .hero { padding: 44px 20px 72px; }
       .hero h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
       .hero p { font-size: .93rem; }
@@ -875,47 +889,48 @@
       <div class="prep-list">
         <div class="prep-item">
           <div class="icon">📶</div>
-          <p class="prep-title">① 호환 유심</p>
-          <p class="prep-desc">
-            <strong>K망:</strong> 바로유심<br>
-            (이마트24 / GS25 / CU 편의점에서 구매 가능)<br><br>
-            <strong>L망:</strong> 원칩<br>
-            (이마트24 / 스토리웨이 / 배민B마트 / 지하철자판기에서 구매 가능)
-          </p>
-          <button class="prep-usim-btn" onclick="openUsimInfo()">🛒 유심 구매처 & 사진 보기</button>
+          <div class="prep-body">
+            <p class="prep-title">① 호환 유심</p>
+            <p class="prep-desc">
+              <strong>K망:</strong> 바로유심 (이마트24 / GS25 / CU)<br>
+              <strong>L망:</strong> 원칩 (이마트24 / 스토리웨이 / 배민B마트)
+            </p>
+            <button class="prep-usim-btn" onclick="openUsimInfo()">🛒 유심 구매처 & 사진 보기</button>
+          </div>
         </div>
         <div class="prep-item">
           <div class="icon">🪪</div>
-          <p class="prep-title">② 신분증</p>
-          <p class="prep-desc">
-            주민등록증 또는 운전면허증<br>
-            2개 중 1개 필요
-          </p>
+          <div class="prep-body">
+            <p class="prep-title">② 신분증</p>
+            <p class="prep-desc">주민등록증 또는 운전면허증 중 1개</p>
+          </div>
         </div>
         <div class="prep-item">
           <div class="icon">🔐</div>
-          <p class="prep-title">③ 간편인증서 1개</p>
-          <p class="prep-desc">아래 인증서 중 1개 필요</p>
-          <div class="prep-cert">
-            <div class="cert-item">
-              <div class="cert-logo kakao">TALK</div>
-              <span class="cert-name">카카오</span>
-            </div>
-            <div class="cert-item">
-              <div class="cert-logo toss">토스</div>
-              <span class="cert-name">토스</span>
-            </div>
-            <div class="cert-item">
-              <div class="cert-logo pass">PASS</div>
-              <span class="cert-name">PASS</span>
-            </div>
-            <div class="cert-item">
-              <div class="cert-logo kb">KB</div>
-              <span class="cert-name">KB국민</span>
-            </div>
-            <div class="cert-item">
-              <div class="cert-logo sol">SOL<br>Bank</div>
-              <span class="cert-name">SOL신한</span>
+          <div class="prep-body">
+            <p class="prep-title">③ 간편인증서 1개</p>
+            <p class="prep-desc">아래 인증서 중 1개 필요</p>
+            <div class="prep-cert">
+              <div class="cert-item">
+                <div class="cert-logo kakao">TALK</div>
+                <span class="cert-name">카카오</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-logo toss">토스</div>
+                <span class="cert-name">토스</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-logo pass">PASS</div>
+                <span class="cert-name">PASS</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-logo kb">KB</div>
+                <span class="cert-name">KB국민</span>
+              </div>
+              <div class="cert-item">
+                <div class="cert-logo sol">SOL<br>Bank</div>
+                <span class="cert-name">SOL신한</span>
+              </div>
             </div>
           </div>
         </div>
