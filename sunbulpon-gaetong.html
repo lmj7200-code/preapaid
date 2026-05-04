@@ -781,8 +781,9 @@
       /* 유심 정보 표 — 세로 카드형 */
       .usim-info-table { display: block; box-shadow: none; }
       .usim-info-table thead { display: none; }
-      .usim-info-table tbody { display: flex; flex-direction: column; gap: 10px; }
+      .usim-info-table tbody { display: flex; flex-direction: row; gap: 10px; }
       .usim-info-table tbody tr {
+        flex: 1;
         display: grid; grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
         background: #fff; border-radius: 12px;
