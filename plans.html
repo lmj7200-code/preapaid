@@ -9,11 +9,11 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; color: #1a1a2e; line-height: 1.6; background: #f4fde8; }
+    body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; color: #1a1a2e; line-height: 1.6; background: #fafef8; }
     a { text-decoration: none; color: inherit; }
 
     :root {
-      --blue: #4a6580; --blue-light: #eaf8d4;
+      --blue: #4a6580; --blue-light: #f5fef0;
       --pink: #e91e8c; --pink-light: #fce4ec;
       --grad-main: linear-gradient(135deg,#8fa8c0 0%,#4a6580 50%,#2e4c68 100%);
       --radius: 20px; --shadow: 0 8px 32px rgba(74,101,128,.15);
@@ -47,7 +47,7 @@
     .video-modal-close { background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1rem; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .video-wrap { position:relative; padding-bottom:56.25%; height:0; }
     .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; }
-    .video-modal-footer { padding:12px 20px; background:#f8fee8; font-size:.8rem; color:#666; text-align:center; }
+    .video-modal-footer { padding:12px 20px; background:#fdfef9; font-size:.8rem; color:#666; text-align:center; }
 
     /* ── HERO ── */
     .hero {
@@ -77,7 +77,7 @@
     }
     .net-tab.active.kt { background: var(--blue); color:#fff; box-shadow: 0 6px 20px rgba(46,76,104,.35); }
     .net-tab.active.lg { background: var(--pink); color:#fff; box-shadow: 0 6px 20px rgba(233,30,140,.35); }
-    .net-tab:not(.active):hover { background:#f4fde8; color:#555; }
+    .net-tab:not(.active):hover { background:#fafef8; color:#555; }
 
     /* ── 타입 탭 ── */
     .type-tabs-wrap { display:flex; justify-content:center; margin-bottom:36px; background:#fff; border-radius:16px; padding:6px; box-shadow:0 2px 12px rgba(0,0,0,.06); width:fit-content; margin-left:auto; margin-right:auto; }
@@ -320,34 +320,68 @@
 
     /* 스크롤바 스타일 (프리미엄) */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f4fde8; }
+    ::-webkit-scrollbar-track { background: #fafef8; }
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(180deg,#b0c0d0,#7a96ae);
       border-radius: 3px;
     }
 
-    /* ── 따뜻한 연두+노랑 바디 그라데이션 배경 ── */
+    /* ── 초연한 크림-그린 멀티 그라데이션 배경 ── */
     body {
-      background: linear-gradient(160deg, #eef9d8 0%, #f8fde0 40%, #fdfae4 100%) fixed !important;
+      background:
+        linear-gradient(150deg,
+          #f6fef2 0%,
+          #fafef6 20%,
+          #fcfef8 40%,
+          #fefef9 60%,
+          #fffffb 80%,
+          #ffffff 100%
+        ) fixed !important;
     }
 
-    /* ── 실버-화이트 카드 (흰색+회색 3D 느낌) ── */
+    /* ── 실버-화이트 카드 — 섬세한 3D ── */
     .cert-card, .action-card, .step-card,
     .guide-card, .usim-card, .faq-item,
     .feature-item, .service-card {
-      background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%) !important;
+      background: linear-gradient(160deg, #ffffff 0%, #f6f8fb 100%) !important;
+      border: 1px solid rgba(200,212,224,.45) !important;
     }
 
-    /* ── 히어로: 실버-슬레이트 그라데이션 ── */
+    /* ── 히어로: 정제된 슬레이트-실버 ── */
     .hero {
-      background: linear-gradient(140deg, #7a96ae 0%, #4a6580 45%, #2e4c68 100%) !important;
-      box-shadow: 0 20px 60px rgba(46,76,104,.3) !important;
+      background: linear-gradient(140deg,
+        #7e9ab2 0%,
+        #516e87 35%,
+        #3a5570 65%,
+        #283f58 100%) !important;
+      box-shadow: 0 24px 64px rgba(40,63,88,.35) !important;
     }
 
-    /* ── 섹션 배경: 연두-노랑 그라데이션 ── */
+    /* ── 히어로 오버레이: 미세 골드 반사광 ── */
+    .hero::before {
+      background:
+        radial-gradient(ellipse at 10% 30%, rgba(255,230,120,.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 70%, rgba(180,210,240,.12) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 0%,  rgba(255,255,255,.06) 0%, transparent 60%) !important;
+    }
+
+    /* ── 섹션 교차 배경 ── */
     section, .section-wrap, .features-section,
     .faq-section, .service-section {
       background: transparent !important;
+    }
+
+    /* ── 짝수 섹션 약한 크림 ── */
+    .features-section, .faq-section {
+      background: linear-gradient(180deg, rgba(246,254,242,.6) 0%, rgba(255,255,251,.6) 100%) !important;
+    }
+
+    /* ── 헤더 유리 효과 정제 ── */
+    header {
+      background: rgba(255,255,255,.94) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(180,200,220,.2) !important;
     }
   </style>
 </head>

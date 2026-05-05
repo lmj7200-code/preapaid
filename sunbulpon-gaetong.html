@@ -13,20 +13,20 @@
       font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
       color: #1a1a2e;
       line-height: 1.6;
-      background: #f4fde8;
+      background: #fafef8;
     }
     a { text-decoration: none; color: inherit; }
 
     /* ── 변수 ── */
     :root {
       --grad-main:  linear-gradient(135deg, #8fa8c0 0%, #4a6580 50%, #2e4c68 100%);
-      --grad-card:  linear-gradient(160deg, #ffffff 0%, #eefbe0 100%);
+      --grad-card:  linear-gradient(160deg, #ffffff 0%, #f7fef4 100%);
       --grad-hero:  linear-gradient(140deg, #8fa8c0 0%, #4a6580 45%, #0e2038 100%);
       --blue:       #4a6580;
       --blue-dark:  #1c3452;
-      --blue-light: #eaf8d4;
+      --blue-light: #f5fef0;
       --purple:     #2e4c68;
-      --gray-bg:    #eefbe0;
+      --gray-bg:    #f7fef4;
       --gray:       #555;
       --radius:     16px;
       --shadow-sm:  0 2px 8px rgba(74,101,128,.12);
@@ -101,7 +101,7 @@
     .hero::after {
       content: '';
       position: absolute; bottom: -2px; left: 0; right: 0; height: 60px;
-      background: linear-gradient(to bottom right, transparent 49%, #f4fde8 50%);
+      background: linear-gradient(to bottom right, transparent 49%, #fafef8 50%);
       pointer-events: none;
     }
     .hero-badge {
@@ -288,7 +288,7 @@
       padding: 4px 14px; border-radius: 20px;
       margin-bottom: 14px;
     }
-    .net-badge.kt { background: #eaf8d4; color: #4a6580; }
+    .net-badge.kt { background: #f5fef0; color: #4a6580; }
     .net-badge.lg { background: #fce4ec; color: #e91e8c; }
     .net-card h3 {
       font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; letter-spacing: -.02em;
@@ -301,7 +301,7 @@
       margin-bottom: 18px;
     }
     .net-feat {
-      background: #f8fee8; border-radius: 12px;
+      background: #fdfef9; border-radius: 12px;
       padding: 14px 12px; text-align: center;
     }
     .net-feat .nf-icon { font-size: 1.5rem; margin-bottom: 6px; }
@@ -312,7 +312,7 @@
       margin-bottom: 12px;
       display: flex; align-items: center; gap: 8px;
     }
-    .net-highlight.blue { background: #eaf8d4; color: #4a6580; }
+    .net-highlight.blue { background: #f5fef0; color: #4a6580; }
     .net-highlight.pink { background: #fce4ec; color: #c2185b; }
     .net-warning {
       background: #fff3f3; border-radius: 10px;
@@ -324,7 +324,7 @@
     }
 
     /* ── 단계 프로세스 ── */
-    .steps-bg { background: linear-gradient(160deg, #e8eeff 0%, #f4fde8 100%); }
+    .steps-bg { background: linear-gradient(160deg, #e8eeff 0%, #fafef8 100%); }
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -688,7 +688,7 @@
     .usim-info-list.check li::before { content:'✔'; color:#2e4c68; font-size:.8rem; top:1px; }
     .usim-highlight { background:#fff176; color:#333; font-weight:700; padding:0 3px; border-radius:3px; }
     .usim-card-footer { background:rgba(255,255,255,.75); padding:16px 20px; border-top:1px solid rgba(0,0,0,.06); display:flex; flex-direction:column; gap:4px; }
-    .usim-network-tag { font-size:.74rem; font-weight:700; color:#4a6580; background:#eaf8d4; border-radius:12px; padding:2px 10px; display:inline-block; width:fit-content; }
+    .usim-network-tag { font-size:.74rem; font-weight:700; color:#4a6580; background:#f5fef0; border-radius:12px; padding:2px 10px; display:inline-block; width:fit-content; }
     .usim-network-tag.lg-tag { color:#e91e8c; background:#fce4ec; }
     .usim-card-footer strong { font-size:1.05rem; font-weight:900; color:#1a1a2e; }
     .usim-price { font-size:.85rem; color:#555; }
@@ -708,7 +708,7 @@
     .proc-warning { background:#fff8e1; border-left:3px solid #f59e0b; border-radius:8px; padding:10px 14px; font-size:.82rem; color:#666; margin-top:12px; line-height:1.5; }
     .proc-warning.warn-red { background:#fff3f3; border-left-color:#e53e3e; }
     .proc-warning a { color:#4a6580; font-weight:700; }
-    .proc-link { display:inline-block; margin-top:12px; color:#4a6580; font-weight:700; font-size:.87rem; padding:8px 16px; background:#eaf8d4; border-radius:8px; transition:background .2s; }
+    .proc-link { display:inline-block; margin-top:12px; color:#4a6580; font-weight:700; font-size:.87rem; padding:8px 16px; background:#f5fef0; border-radius:8px; transition:background .2s; }
     .proc-link:hover { background:#d0e1fc; }
     .proc-cert-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
     .proc-cert { padding:5px 14px; border-radius:20px; font-size:.8rem; font-weight:700; }
@@ -963,34 +963,68 @@
 
     /* 스크롤바 스타일 (프리미엄) */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f4fde8; }
+    ::-webkit-scrollbar-track { background: #fafef8; }
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(180deg,#b0c0d0,#7a96ae);
       border-radius: 3px;
     }
 
-    /* ── 따뜻한 연두+노랑 바디 그라데이션 배경 ── */
+    /* ── 초연한 크림-그린 멀티 그라데이션 배경 ── */
     body {
-      background: linear-gradient(160deg, #eef9d8 0%, #f8fde0 40%, #fdfae4 100%) fixed !important;
+      background:
+        linear-gradient(150deg,
+          #f6fef2 0%,
+          #fafef6 20%,
+          #fcfef8 40%,
+          #fefef9 60%,
+          #fffffb 80%,
+          #ffffff 100%
+        ) fixed !important;
     }
 
-    /* ── 실버-화이트 카드 (흰색+회색 3D 느낌) ── */
+    /* ── 실버-화이트 카드 — 섬세한 3D ── */
     .cert-card, .action-card, .step-card,
     .guide-card, .usim-card, .faq-item,
     .feature-item, .service-card {
-      background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%) !important;
+      background: linear-gradient(160deg, #ffffff 0%, #f6f8fb 100%) !important;
+      border: 1px solid rgba(200,212,224,.45) !important;
     }
 
-    /* ── 히어로: 실버-슬레이트 그라데이션 ── */
+    /* ── 히어로: 정제된 슬레이트-실버 ── */
     .hero {
-      background: linear-gradient(140deg, #7a96ae 0%, #4a6580 45%, #2e4c68 100%) !important;
-      box-shadow: 0 20px 60px rgba(46,76,104,.3) !important;
+      background: linear-gradient(140deg,
+        #7e9ab2 0%,
+        #516e87 35%,
+        #3a5570 65%,
+        #283f58 100%) !important;
+      box-shadow: 0 24px 64px rgba(40,63,88,.35) !important;
     }
 
-    /* ── 섹션 배경: 연두-노랑 그라데이션 ── */
+    /* ── 히어로 오버레이: 미세 골드 반사광 ── */
+    .hero::before {
+      background:
+        radial-gradient(ellipse at 10% 30%, rgba(255,230,120,.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 70%, rgba(180,210,240,.12) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 0%,  rgba(255,255,255,.06) 0%, transparent 60%) !important;
+    }
+
+    /* ── 섹션 교차 배경 ── */
     section, .section-wrap, .features-section,
     .faq-section, .service-section {
       background: transparent !important;
+    }
+
+    /* ── 짝수 섹션 약한 크림 ── */
+    .features-section, .faq-section {
+      background: linear-gradient(180deg, rgba(246,254,242,.6) 0%, rgba(255,255,251,.6) 100%) !important;
+    }
+
+    /* ── 헤더 유리 효과 정제 ── */
+    header {
+      background: rgba(255,255,255,.94) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(180,200,220,.2) !important;
     }
   </style>
 </head>
@@ -2622,24 +2656,24 @@
     .guide-cta-btn:hover { transform:translateY(-2px); }
     .guide-notice-box { background:#fff8e1; border-left:4px solid #f59e0b; border-radius:10px; padding:16px 18px; margin-bottom:22px; font-size:.88rem; line-height:1.7; color:#555; }
     .guide-steps { display:flex; align-items:flex-start; justify-content:center; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-    .guide-step { display:flex; flex-direction:column; align-items:center; gap:6px; background:#eaf8d4; border-radius:14px; padding:16px 14px; min-width:110px; flex:1; max-width:140px; text-align:center; }
+    .guide-step { display:flex; flex-direction:column; align-items:center; gap:6px; background:#f5fef0; border-radius:14px; padding:16px 14px; min-width:110px; flex:1; max-width:140px; text-align:center; }
     .guide-step-num { width:24px; height:24px; background:#4a6580; color:#fff; border-radius:50%; font-size:.75rem; font-weight:800; display:flex; align-items:center; justify-content:center; }
     .guide-step-icon { font-size:1.8rem; }
     .guide-step-text strong { display:block; font-size:.85rem; font-weight:800; color:#1a1a2e; margin-bottom:2px; }
     .guide-step-text span  { font-size:.75rem; color:#666; line-height:1.4; }
     .guide-step-arrow { font-size:1.2rem; color:#bbb; align-self:center; padding-top:8px; }
-    .guide-face-caution { margin-top:28px; padding-top:24px; border-top:2px solid #eaf8d4; }
+    .guide-face-caution { margin-top:28px; padding-top:24px; border-top:2px solid #f5fef0; }
     .guide-face-caution h4 { font-size:1.05rem; font-weight:900; text-align:center; margin-bottom:20px; color:#1a1a2e; }
     .guide-caution-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .guide-caution-card { background:#f4fde8; border-radius:14px; padding:20px 14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px; }
+    .guide-caution-card { background:#fafef8; border-radius:14px; padding:20px 14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px; }
     .guide-caution-card img { width:100%; max-width:140px; }
     .guide-caution-card p { font-size:.82rem; color:#444; line-height:1.5; font-weight:600; }
-    .guide-check-list { background:#f4fde8; border-radius:14px; padding:20px 22px; margin-bottom:20px; }
+    .guide-check-list { background:#fafef8; border-radius:14px; padding:20px 22px; margin-bottom:20px; }
     .guide-check-list h4 { font-size:1rem; font-weight:800; margin-bottom:14px; color:#1a1a2e; }
     .guide-check-list ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
     .guide-check-list li { font-size:.88rem; color:#444; padding-left:22px; position:relative; line-height:1.5; }
     .guide-check-list li::before { content:'✔'; position:absolute; left:0; color:#4a6580; font-size:.8rem; }
-    .guide-time-box { background:#eaf8d4; border-radius:14px; padding:20px 22px; }
+    .guide-time-box { background:#f5fef0; border-radius:14px; padding:20px 22px; }
     .guide-time-box h4 { font-size:1rem; font-weight:800; margin-bottom:14px; color:#1a1a2e; }
     .guide-time-table { width:100%; border-collapse:collapse; font-size:.88rem; }
     .guide-time-table th { background:#4a6580; color:#fff; padding:10px 14px; text-align:center; }
@@ -2648,7 +2682,7 @@
 
     /* ── 가이드 준비물 탭 ── */
     .gprep-list { display:flex; flex-direction:column; gap:14px; }
-    .gprep-item { display:flex; gap:16px; align-items:flex-start; background:#f8fee8; border-radius:14px; padding:18px 20px; }
+    .gprep-item { display:flex; gap:16px; align-items:flex-start; background:#fdfef9; border-radius:14px; padding:18px 20px; }
     .gprep-icon { font-size:1.8rem; flex-shrink:0; margin-top:2px; }
     .gprep-body { flex:1; }
     .gprep-body strong { display:block; font-size:.95rem; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
@@ -2686,7 +2720,7 @@
     .usim-info-cards { display:grid; grid-template-columns:1fr 1fr; gap:0; }
     @media(max-width:560px) { .usim-info-cards { grid-template-columns:1fr; } }
     .usim-ic { padding:18px 18px 16px; }
-    .usim-ic.kt-ic { background:linear-gradient(160deg,#f0f6ff,#e3eeff); border-right:1px solid #eaf8d4; }
+    .usim-ic.kt-ic { background:linear-gradient(160deg,#f0f6ff,#e3eeff); border-right:1px solid #f5fef0; }
     .usim-ic.lg-ic { background:linear-gradient(160deg,#fff0f8,#fce4f0); }
     .usim-ic-top { margin-bottom:8px; }
     .usim-ic-badge { display:inline-block; font-size:.72rem; font-weight:800; border-radius:20px; padding:3px 12px; }
@@ -2704,7 +2738,7 @@
     .kt-point .upc { color:#4a6580; }
     .lg-point .upc { color:#e91e8c; }
     .usim-ic-stores { font-size:.76rem; font-weight:600; border-radius:8px; padding:8px 12px; margin-top:4px; }
-    .kt-stores { background:#eaf8d4; color:#4a6580; }
+    .kt-stores { background:#f5fef0; color:#4a6580; }
     .lg-stores { background:#fce4ec; color:#e91e8c; }
 
     /* ════════════════════════════════
@@ -2712,7 +2746,7 @@
     ════════════════════════════════ */
     .plan-cmp-overlay { display:none; position:fixed; inset:0; z-index:2500; background:rgba(0,0,0,.78); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:16px; }
     .plan-cmp-overlay.active { display:flex; }
-    .plan-cmp-modal { background:#f4fde8; border-radius:24px; width:100%; max-width:880px; max-height:92vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 32px 80px rgba(0,0,0,.45); animation:gmIn .3s ease; }
+    .plan-cmp-modal { background:#fafef8; border-radius:24px; width:100%; max-width:880px; max-height:92vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 32px 80px rgba(0,0,0,.45); animation:gmIn .3s ease; }
 
     /* 헤더 */
     .plan-cmp-header { padding:22px 28px 18px; background:var(--grad-hero); color:#fff; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-shrink:0; }
@@ -2724,7 +2758,7 @@
     /* 망 탭 */
     .plan-net-tabs { display:flex; gap:10px; padding:16px 24px 0; background:#fff; flex-shrink:0; }
     .plan-net-tab { flex:1; padding:11px; border-radius:12px; border:2px solid #e0e0e0; font-weight:800; font-size:.92rem; cursor:pointer; background:#f7f7f7; color:#999; transition:all .2s; }
-    .plan-net-tab.active.kt { background:#eaf8d4; border-color:#4a6580; color:#4a6580; }
+    .plan-net-tab.active.kt { background:#f5fef0; border-color:#4a6580; color:#4a6580; }
     .plan-net-tab.active.lg { background:#fce4ec; border-color:#e91e8c; color:#e91e8c; }
 
     /* 타입 탭 */
@@ -2754,7 +2788,7 @@
 
     /* 새 카드 레이아웃 */
     .pc-badge-sm { display:inline-block; font-size:.68rem; font-weight:800; border-radius:5px; padding:2px 8px; margin-bottom:7px; }
-    .kt-badge-sm { background:#eaf8d4; color:#4a6580; }
+    .kt-badge-sm { background:#f5fef0; color:#4a6580; }
     .lg-badge-sm { background:#fce4ec; color:#e91e8c; }
 
     .pc-name { font-size:.98rem; font-weight:900; color:#1a1a2e; margin-bottom:3px; line-height:1.3; }
@@ -2803,7 +2837,7 @@
     .video-modal-close:hover { background:rgba(255,255,255,.35); }
     .video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000; }
     .video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
-    .video-modal-footer { padding:12px 20px; background:#f8fee8; text-align:center; font-size:.82rem; color:#666; }
+    .video-modal-footer { padding:12px 20px; background:#fdfef9; text-align:center; font-size:.82rem; color:#666; }
   </style>
 
   <script>
