@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -13,19 +13,19 @@
     a { text-decoration: none; color: inherit; }
 
     :root {
-      --blue:        #1a56db;
-      --blue-dark:   #0e3fa8;
-      --blue-light:  #e8f0fe;
-      --blue-mid:    #4f8ef7;
-      --purple:      #6c2fd4;
-      --grad-main:   linear-gradient(135deg, #4f8ef7 0%, #1a56db 50%, #6c2fd4 100%);
-      --grad-hero:   linear-gradient(140deg, #4f8ef7 0%, #1a56db 45%, #5b21b6 100%);
-      --gray-bg:     #f4f6fb;
+      --blue:        #5a9e18;
+      --blue-dark:   #3d7a0a;
+      --blue-light:  #e8f6cc;
+      --blue-mid:    #8cc828;
+      --purple:      #6aab1a;
+      --grad-main:   linear-gradient(135deg, #8cc828 0%, #5a9e18 50%, #6aab1a 100%);
+      --grad-hero:   linear-gradient(140deg, #8cc828 0%, #5a9e18 45%, #4a9010 100%);
+      --gray-bg:     #f2f9e6;
       --gray:        #666;
       --radius:      16px;
-      --shadow:      0 4px 20px rgba(79,142,247,.13);
-      --shadow-md:   0 8px 32px rgba(79,142,247,.18);
-      --shadow-3d:   0 10px 36px rgba(79,142,247,.2), 0 2px 0 rgba(255,255,255,.7) inset;
+      --shadow:      0 4px 20px rgba(140,200,40,.13);
+      --shadow-md:   0 8px 32px rgba(140,200,40,.18);
+      --shadow-3d:   0 10px 36px rgba(140,200,40,.2), 0 2px 0 rgba(255,255,255,.7) inset;
     }
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -34,9 +34,9 @@
       position: sticky; top: 0; z-index: 200;
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(79,142,247,.12);
+      border-bottom: 1px solid rgba(140,200,40,.12);
       height: 68px; display: flex; align-items: center;
-      box-shadow: 0 2px 20px rgba(79,142,247,.08);
+      box-shadow: 0 2px 20px rgba(140,200,40,.08);
     }
     .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .logo {
@@ -56,10 +56,10 @@
     .nav-cta {
       background: var(--grad-main); color: #fff !important;
       padding: 9px 20px; border-radius: 10px; font-weight: 700; font-size: .87rem;
-      box-shadow: 0 4px 14px rgba(79,142,247,.35); white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(140,200,40,.35); white-space: nowrap;
       transition: transform .15s, box-shadow .15s !important;
     }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,142,247,.45) !important; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(140,200,40,.45) !important; }
 
     /* ── 히어로 ── */
     .hero {
@@ -74,7 +74,7 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(108,47,212,.38) 0%, transparent 55%),
+      background: radial-gradient(ellipse at 20% 50%, rgba(106,171,26,.38) 0%, transparent 55%),
                   radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.08) 0%, transparent 50%);
       pointer-events: none;
     }
@@ -90,14 +90,14 @@
       font-size: .82rem; font-weight: 600; margin-bottom: 24px;
       backdrop-filter: blur(8px);
     }
-    .hero-dot { width: 7px; height: 7px; background: #6ee7b7; border-radius: 50%; box-shadow: 0 0 8px #6ee7b7; animation: pulse 2s infinite; }
+    .hero-dot { width: 7px; height: 7px; background: #c8e840; border-radius: 50%; box-shadow: 0 0 8px #c8e840; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900;
       letter-spacing: -.03em; line-height: 1.2; margin-bottom: 16px;
       text-shadow: 0 2px 16px rgba(0,0,0,.2);
     }
-    .hero h1 em { font-style: normal; color: #a5f3fc; }
+    .hero h1 em { font-style: normal; color: #d4f888; }
     .hero-sub {
       font-size: 1.05rem; opacity: .9; margin-bottom: 36px; font-weight: 500; line-height: 1.7;
     }
@@ -144,7 +144,7 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
-      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+      box-shadow: 0 3px 10px rgba(140,200,40,.3);
     }
     .guide-title h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 8px; }
     .guide-title p  { color: var(--gray); font-size: .93rem; margin-bottom: 44px; }
@@ -158,22 +158,22 @@
     }
     .cert-card:hover { transform: translateY(-8px); }
     .cert-card.has {
-      background: linear-gradient(145deg, #eef3ff 0%, #dce8ff 100%);
-      border: 2px solid rgba(79,142,247,.25);
-      box-shadow: 0 8px 32px rgba(79,142,247,.15);
+      background: linear-gradient(145deg, #edf8da 0%, #dce8ff 100%);
+      border: 2px solid rgba(140,200,40,.25);
+      box-shadow: 0 8px 32px rgba(140,200,40,.15);
     }
-    .cert-card.has:hover { box-shadow: 0 20px 48px rgba(79,142,247,.25); }
+    .cert-card.has:hover { box-shadow: 0 20px 48px rgba(140,200,40,.25); }
     .cert-card.none {
-      background: linear-gradient(145deg, #f0f4ff 0%, #e4ecff 100%);
-      border: 2px solid rgba(108,47,212,.2);
-      box-shadow: 0 8px 32px rgba(108,47,212,.12);
+      background: linear-gradient(145deg, #f2f9e6 0%, #e4ecff 100%);
+      border: 2px solid rgba(106,171,26,.2);
+      box-shadow: 0 8px 32px rgba(106,171,26,.12);
     }
-    .cert-card.none:hover { box-shadow: 0 20px 48px rgba(108,47,212,.22); }
+    .cert-card.none:hover { box-shadow: 0 20px 48px rgba(106,171,26,.22); }
     .cert-icon-wrap {
       width: 88px; height: 88px; border-radius: 50%;
       margin: 0 auto 22px; display: flex; align-items: center; justify-content: center;
       font-size: 2.8rem; background: #fff;
-      box-shadow: 0 4px 16px rgba(79,142,247,.18);
+      box-shadow: 0 4px 16px rgba(140,200,40,.18);
     }
     .cert-card h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.02em; }
     .cert-card.has  h3 { color: var(--blue); }
@@ -185,7 +185,7 @@
     .cert-app-tag {
       background: #fff; border-radius: 8px; padding: 4px 10px;
       font-size: .75rem; font-weight: 700; color: var(--blue);
-      box-shadow: 0 2px 6px rgba(79,142,247,.15);
+      box-shadow: 0 2px 6px rgba(140,200,40,.15);
     }
     .cert-card p { font-size: .88rem; color: #556; line-height: 1.7; margin-bottom: 26px; }
     .cert-btn {
@@ -194,8 +194,8 @@
       font-weight: 800; font-size: .95rem; color: #fff;
       transition: transform .15s, box-shadow .15s; letter-spacing: -.01em;
     }
-    .cert-card.has  .cert-btn { background: var(--grad-main); box-shadow: 0 4px 16px rgba(79,142,247,.38); }
-    .cert-card.none .cert-btn { background: linear-gradient(135deg, #6c2fd4, #4a1ba0); box-shadow: 0 4px 16px rgba(108,47,212,.38); }
+    .cert-card.has  .cert-btn { background: var(--grad-main); box-shadow: 0 4px 16px rgba(140,200,40,.38); }
+    .cert-card.none .cert-btn { background: linear-gradient(135deg, #6aab1a, #4a1ba0); box-shadow: 0 4px 16px rgba(106,171,26,.38); }
     .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
 
     /* ── 4개 액션 카드 ── */
@@ -207,7 +207,7 @@
       box-shadow: var(--shadow-3d); border: 1px solid rgba(255,255,255,.9);
       transition: transform .2s, box-shadow .2s; cursor: pointer;
     }
-    .action-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(79,142,247,.22); }
+    .action-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(140,200,40,.22); }
     .action-icon {
       width: 60px; height: 60px; border-radius: 16px;
       margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
@@ -227,7 +227,7 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
-      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+      box-shadow: 0 3px 10px rgba(140,200,40,.3);
     }
     .anyone-text h2 {
       font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
@@ -247,7 +247,7 @@
     }
     .anyone-cards { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
     .anyone-card {
-      background: linear-gradient(135deg, #eef3ff, #f4f7ff);
+      background: linear-gradient(135deg, #edf8da, #f4f7ff);
       border-radius: 14px; padding: 18px 20px;
       border-left: 4px solid var(--blue);
       box-shadow: var(--shadow);
@@ -262,14 +262,14 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
-      box-shadow: 0 3px 10px rgba(79,142,247,.3);
+      box-shadow: 0 3px 10px rgba(140,200,40,.3);
     }
     .faq-header h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; }
     .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
     details {
       background: #fff; border-radius: var(--radius);
       padding: 18px 22px; box-shadow: var(--shadow);
-      border: 1px solid rgba(79,142,247,.1);
+      border: 1px solid rgba(140,200,40,.1);
     }
     summary {
       font-weight: 700; font-size: .92rem; list-style: none; cursor: pointer;
@@ -297,7 +297,7 @@
       text-align: center; padding: 80px 24px;
       position: relative; overflow: hidden;
     }
-    .cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(108,47,212,.4) 0%, transparent 60%); pointer-events:none; }
+    .cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(106,171,26,.4) 0%, transparent 60%); pointer-events:none; }
     .cta-section h2 { font-size: clamp(1.5rem,3.5vw,2.2rem); font-weight: 900; margin-bottom: 12px; letter-spacing: -.03em; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
     .cta-section p  { opacity: .88; margin-bottom: 36px; font-size: .97rem; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -414,7 +414,7 @@
     .guide-cta-btn {
       display: inline-block; background: var(--grad-main); color: #fff;
       font-weight: 800; font-size: 1rem; padding: 14px 36px; border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(79,142,247,.35); transition: transform .15s;
+      box-shadow: 0 4px 16px rgba(140,200,40,.35); transition: transform .15s;
     }
     .guide-cta-btn:hover { transform: translateY(-2px); }
     .guide-notice-box {
@@ -433,7 +433,7 @@
     .guide-time-box h4 { font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #1a1a2e; }
     .guide-time-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .guide-time-table th { background: var(--blue); color: #fff; padding: 10px 14px; text-align: center; }
-    .guide-time-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(79,142,247,.15); }
+    .guide-time-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(140,200,40,.15); }
     .guide-time-table tr:last-child td { border-bottom: none; }
 
     /* ── 진입 팝업 ── */
@@ -523,7 +523,7 @@
       background: var(--grad-main) !important; color: #fff !important;
       text-align: center; font-weight: 800 !important; border-radius: 12px !important;
       font-size: .97rem; margin-top: 4px;
-      box-shadow: 0 4px 14px rgba(79,142,247,.35);
+      box-shadow: 0 4px 14px rgba(140,200,40,.35);
     }
 
     /* ── 반응형 ── */
@@ -683,7 +683,7 @@
   <section class="action-section" id="contact">
     <div class="container">
       <div style="text-align:center;margin-bottom:36px;">
-        <div class="tag" style="display:inline-block;background:var(--grad-main);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 3px 10px rgba(79,142,247,.3);">서비스</div>
+        <div class="tag" style="display:inline-block;background:var(--grad-main);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 3px 10px rgba(140,200,40,.3);">서비스</div>
         <h2 style="font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;">마크통신 맞춤형 통신 가이드</h2>
         <p style="color:var(--gray);font-size:.9rem;margin-top:8px;">누구나 제약 없이 이용할 수 있는 선불폰 및 충전식폰 서비스</p>
       </div>

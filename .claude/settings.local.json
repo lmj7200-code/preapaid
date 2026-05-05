@@ -21,7 +21,13 @@
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/kt-usim-guide.png' -OutFile 'kt-usim.png'\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/lg-usim-guide.png' -OutFile 'lg-usim.png'\")"
     ]
   }
 }
