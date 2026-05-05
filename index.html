@@ -13,19 +13,19 @@
     a { text-decoration: none; color: inherit; }
 
     :root {
-      --blue:        #1558CB;
-      --blue-dark:   #082C82;
-      --blue-light:  #E4EFFF;
-      --blue-mid:    #4E8FE8;
-      --purple:      #0D3EA5;
-      --grad-main:   linear-gradient(135deg, #4E8FE8 0%, #1558CB 50%, #0D3EA5 100%);
-      --grad-hero:   linear-gradient(140deg, #4E8FE8 0%, #1558CB 45%, #041A60 100%);
-      --gray-bg:     #F3F8FF;
+      --blue:        #4a6580;
+      --blue-dark:   #1c3452;
+      --blue-light:  #eaf8d4;
+      --blue-mid:    #8fa8c0;
+      --purple:      #2e4c68;
+      --grad-main:   linear-gradient(135deg, #8fa8c0 0%, #4a6580 50%, #2e4c68 100%);
+      --grad-hero:   linear-gradient(140deg, #8fa8c0 0%, #4a6580 45%, #0e2038 100%);
+      --gray-bg:     #f4fde8;
       --gray:        #666;
       --radius:      16px;
-      --shadow:      0 4px 20px rgba(21,88,203,.13);
-      --shadow-md:   0 8px 32px rgba(21,88,203,.18);
-      --shadow-3d:   0 10px 36px rgba(21,88,203,.2), 0 2px 0 rgba(255,255,255,.7) inset;
+      --shadow:      0 4px 20px rgba(74,101,128,.13);
+      --shadow-md:   0 8px 32px rgba(74,101,128,.18);
+      --shadow-3d:   0 10px 36px rgba(74,101,128,.2), 0 2px 0 rgba(255,255,255,.7) inset;
     }
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -34,9 +34,9 @@
       position: sticky; top: 0; z-index: 200;
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(21,88,203,.12);
+      border-bottom: 1px solid rgba(74,101,128,.12);
       height: 68px; display: flex; align-items: center;
-      box-shadow: 0 2px 20px rgba(21,88,203,.08);
+      box-shadow: 0 2px 20px rgba(74,101,128,.08);
     }
     .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .logo {
@@ -56,10 +56,10 @@
     .nav-cta {
       background: var(--grad-main); color: #fff !important;
       padding: 9px 20px; border-radius: 10px; font-weight: 700; font-size: .87rem;
-      box-shadow: 0 4px 14px rgba(21,88,203,.35); white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(74,101,128,.35); white-space: nowrap;
       transition: transform .15s, box-shadow .15s !important;
     }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(21,88,203,.45) !important; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(74,101,128,.45) !important; }
 
     /* ── 히어로 ── */
     .hero {
@@ -74,7 +74,7 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(13,62,165,.38) 0%, transparent 55%),
+      background: radial-gradient(ellipse at 20% 50%, rgba(46,76,104,.38) 0%, transparent 55%),
                   radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.08) 0%, transparent 50%);
       pointer-events: none;
     }
@@ -144,7 +144,7 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
-      box-shadow: 0 3px 10px rgba(21,88,203,.3);
+      box-shadow: 0 3px 10px rgba(74,101,128,.3);
     }
     .guide-title h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 8px; }
     .guide-title p  { color: var(--gray); font-size: .93rem; margin-bottom: 44px; }
@@ -158,22 +158,22 @@
     }
     .cert-card:hover { transform: translateY(-8px); }
     .cert-card.has {
-      background: linear-gradient(145deg, #ECF3FF 0%, #dce8ff 100%);
-      border: 2px solid rgba(21,88,203,.25);
-      box-shadow: 0 8px 32px rgba(21,88,203,.15);
+      background: linear-gradient(145deg, #eefbe0 0%, #dce8ff 100%);
+      border: 2px solid rgba(74,101,128,.25);
+      box-shadow: 0 8px 32px rgba(74,101,128,.15);
     }
-    .cert-card.has:hover { box-shadow: 0 20px 48px rgba(21,88,203,.25); }
+    .cert-card.has:hover { box-shadow: 0 20px 48px rgba(74,101,128,.25); }
     .cert-card.none {
-      background: linear-gradient(145deg, #F3F8FF 0%, #e4ecff 100%);
-      border: 2px solid rgba(13,62,165,.2);
-      box-shadow: 0 8px 32px rgba(13,62,165,.12);
+      background: linear-gradient(145deg, #f4fde8 0%, #e4ecff 100%);
+      border: 2px solid rgba(46,76,104,.2);
+      box-shadow: 0 8px 32px rgba(46,76,104,.12);
     }
-    .cert-card.none:hover { box-shadow: 0 20px 48px rgba(13,62,165,.22); }
+    .cert-card.none:hover { box-shadow: 0 20px 48px rgba(46,76,104,.22); }
     .cert-icon-wrap {
       width: 88px; height: 88px; border-radius: 50%;
       margin: 0 auto 22px; display: flex; align-items: center; justify-content: center;
       font-size: 2.8rem; background: #fff;
-      box-shadow: 0 4px 16px rgba(21,88,203,.18);
+      box-shadow: 0 4px 16px rgba(74,101,128,.18);
     }
     .cert-card h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.02em; }
     .cert-card.has  h3 { color: var(--blue); }
@@ -185,7 +185,7 @@
     .cert-app-tag {
       background: #fff; border-radius: 8px; padding: 4px 10px;
       font-size: .75rem; font-weight: 700; color: var(--blue);
-      box-shadow: 0 2px 6px rgba(21,88,203,.15);
+      box-shadow: 0 2px 6px rgba(74,101,128,.15);
     }
     .cert-card p { font-size: .88rem; color: #556; line-height: 1.7; margin-bottom: 26px; }
     .cert-btn {
@@ -194,8 +194,8 @@
       font-weight: 800; font-size: .95rem; color: #fff;
       transition: transform .15s, box-shadow .15s; letter-spacing: -.01em;
     }
-    .cert-card.has  .cert-btn { background: var(--grad-main); box-shadow: 0 4px 16px rgba(21,88,203,.38); }
-    .cert-card.none .cert-btn { background: linear-gradient(135deg, #0D3EA5, #4a1ba0); box-shadow: 0 4px 16px rgba(13,62,165,.38); }
+    .cert-card.has  .cert-btn { background: var(--grad-main); box-shadow: 0 4px 16px rgba(74,101,128,.38); }
+    .cert-card.none .cert-btn { background: linear-gradient(135deg, #2e4c68, #4a1ba0); box-shadow: 0 4px 16px rgba(46,76,104,.38); }
     .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
 
     /* ── 4개 액션 카드 ── */
@@ -207,7 +207,7 @@
       box-shadow: var(--shadow-3d); border: 1px solid rgba(255,255,255,.9);
       transition: transform .2s, box-shadow .2s; cursor: pointer;
     }
-    .action-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(21,88,203,.22); }
+    .action-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(74,101,128,.22); }
     .action-icon {
       width: 60px; height: 60px; border-radius: 16px;
       margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
@@ -227,7 +227,7 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
-      box-shadow: 0 3px 10px rgba(21,88,203,.3);
+      box-shadow: 0 3px 10px rgba(74,101,128,.3);
     }
     .anyone-text h2 {
       font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
@@ -247,7 +247,7 @@
     }
     .anyone-cards { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
     .anyone-card {
-      background: linear-gradient(135deg, #ECF3FF, #f4f7ff);
+      background: linear-gradient(135deg, #eefbe0, #f4f7ff);
       border-radius: 14px; padding: 18px 20px;
       border-left: 4px solid var(--blue);
       box-shadow: var(--shadow);
@@ -262,14 +262,14 @@
       display: inline-block; background: var(--grad-main); color: #fff;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
-      box-shadow: 0 3px 10px rgba(21,88,203,.3);
+      box-shadow: 0 3px 10px rgba(74,101,128,.3);
     }
     .faq-header h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 900; letter-spacing: -.02em; }
     .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
     details {
       background: #fff; border-radius: var(--radius);
       padding: 18px 22px; box-shadow: var(--shadow);
-      border: 1px solid rgba(21,88,203,.1);
+      border: 1px solid rgba(74,101,128,.1);
     }
     summary {
       font-weight: 700; font-size: .92rem; list-style: none; cursor: pointer;
@@ -297,7 +297,7 @@
       text-align: center; padding: 80px 24px;
       position: relative; overflow: hidden;
     }
-    .cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(13,62,165,.4) 0%, transparent 60%); pointer-events:none; }
+    .cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(46,76,104,.4) 0%, transparent 60%); pointer-events:none; }
     .cta-section h2 { font-size: clamp(1.5rem,3.5vw,2.2rem); font-weight: 900; margin-bottom: 12px; letter-spacing: -.03em; text-shadow: 0 2px 12px rgba(0,0,0,.2); }
     .cta-section p  { opacity: .88; margin-bottom: 36px; font-size: .97rem; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -414,7 +414,7 @@
     .guide-cta-btn {
       display: inline-block; background: var(--grad-main); color: #fff;
       font-weight: 800; font-size: 1rem; padding: 14px 36px; border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(21,88,203,.35); transition: transform .15s;
+      box-shadow: 0 4px 16px rgba(74,101,128,.35); transition: transform .15s;
     }
     .guide-cta-btn:hover { transform: translateY(-2px); }
     .guide-notice-box {
@@ -433,7 +433,7 @@
     .guide-time-box h4 { font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #1a1a2e; }
     .guide-time-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .guide-time-table th { background: var(--blue); color: #fff; padding: 10px 14px; text-align: center; }
-    .guide-time-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(21,88,203,.15); }
+    .guide-time-table td { padding: 10px 14px; text-align: center; border-bottom: 1px solid rgba(74,101,128,.15); }
     .guide-time-table tr:last-child td { border-bottom: none; }
 
     /* ── 진입 팝업 ── */
@@ -523,7 +523,7 @@
       background: var(--grad-main) !important; color: #fff !important;
       text-align: center; font-weight: 800 !important; border-radius: 12px !important;
       font-size: .97rem; margin-top: 4px;
-      box-shadow: 0 4px 14px rgba(21,88,203,.35);
+      box-shadow: 0 4px 14px rgba(74,101,128,.35);
     }
 
     /* ── 반응형 ── */
@@ -612,10 +612,10 @@
     .faq-item, .guide-card, .usim-card {
       box-shadow:
         0 1px 0 rgba(255,255,255,.85) inset,
-        0 -1px 0 rgba(13,62,165,.06) inset,
-        0 4px 8px rgba(13,62,165,.06),
-        0 12px 32px rgba(13,62,165,.1),
-        0 32px 56px rgba(13,62,165,.06);
+        0 -1px 0 rgba(46,76,104,.06) inset,
+        0 4px 8px rgba(46,76,104,.06),
+        0 12px 32px rgba(46,76,104,.1),
+        0 32px 56px rgba(46,76,104,.06);
       transition: transform .4s cubic-bezier(.34,1.56,.64,1),
                   box-shadow .4s cubic-bezier(.34,1.56,.64,1);
     }
@@ -625,9 +625,9 @@
       transform: perspective(1200px) translateY(-12px) scale(1.018) rotateX(1.5deg);
       box-shadow:
         0 1px 0 rgba(255,255,255,.95) inset,
-        0 -1px 0 rgba(13,62,165,.04) inset,
-        0 20px 60px rgba(13,62,165,.18),
-        0 40px 80px rgba(13,62,165,.1),
+        0 -1px 0 rgba(46,76,104,.04) inset,
+        0 20px 60px rgba(46,76,104,.18),
+        0 40px 80px rgba(46,76,104,.1),
         0 60px 100px rgba(0,0,0,.05);
     }
 
@@ -637,7 +637,7 @@
       box-shadow:
         0 1px 0 rgba(255,255,255,.25) inset,
         0 -4px 0 rgba(0,0,0,.22) inset,
-        0 6px 20px rgba(13,62,165,.32);
+        0 6px 20px rgba(46,76,104,.32);
       transition: transform .15s, box-shadow .15s;
     }
     .cert-btn:hover, .btn-hero-main:hover {
@@ -645,13 +645,13 @@
       box-shadow:
         0 1px 0 rgba(255,255,255,.3) inset,
         0 -4px 0 rgba(0,0,0,.22) inset,
-        0 14px 40px rgba(13,62,165,.45);
+        0 14px 40px rgba(46,76,104,.45);
     }
     .cert-btn:active, .btn-hero-main:active {
       transform: translateY(3px);
       box-shadow:
         0 -1px 0 rgba(0,0,0,.1) inset,
-        0 2px 6px rgba(13,62,165,.2);
+        0 2px 6px rgba(46,76,104,.2);
     }
 
     /* ✨ 골드 CTA 버튼 (즉시개통 / 최상위 행동유도) */
@@ -677,8 +677,8 @@
     header {
       box-shadow:
         0 1px 0 rgba(255,255,255,.6) inset,
-        0 4px 24px rgba(13,62,165,.12),
-        0 12px 40px rgba(13,62,165,.07) !important;
+        0 4px 24px rgba(46,76,104,.12),
+        0 12px 40px rgba(46,76,104,.07) !important;
     }
 
     /* 섹션 레이블 골드 포인트 */
@@ -697,10 +697,34 @@
 
     /* 스크롤바 스타일 (프리미엄) */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f0f4ff; }
+    ::-webkit-scrollbar-track { background: #f4fde8; }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg,#4E8FE8,#1558CB);
+      background: linear-gradient(180deg,#b0c0d0,#7a96ae);
       border-radius: 3px;
+    }
+
+    /* ── 따뜻한 연두+노랑 바디 그라데이션 배경 ── */
+    body {
+      background: linear-gradient(160deg, #eef9d8 0%, #f8fde0 40%, #fdfae4 100%) fixed !important;
+    }
+
+    /* ── 실버-화이트 카드 (흰색+회색 3D 느낌) ── */
+    .cert-card, .action-card, .step-card,
+    .guide-card, .usim-card, .faq-item,
+    .feature-item, .service-card {
+      background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%) !important;
+    }
+
+    /* ── 히어로: 실버-슬레이트 그라데이션 ── */
+    .hero {
+      background: linear-gradient(140deg, #7a96ae 0%, #4a6580 45%, #2e4c68 100%) !important;
+      box-shadow: 0 20px 60px rgba(46,76,104,.3) !important;
+    }
+
+    /* ── 섹션 배경: 연두-노랑 그라데이션 ── */
+    section, .section-wrap, .features-section,
+    .faq-section, .service-section {
+      background: transparent !important;
     }
   </style>
 </head>
@@ -784,7 +808,7 @@
   <section class="action-section" id="contact">
     <div class="container">
       <div style="text-align:center;margin-bottom:36px;">
-        <div class="tag" style="display:inline-block;background:var(--grad-main);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 3px 10px rgba(21,88,203,.3);">서비스</div>
+        <div class="tag" style="display:inline-block;background:var(--grad-main);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 3px 10px rgba(74,101,128,.3);">서비스</div>
         <h2 style="font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;letter-spacing:-.02em;">마크통신 맞춤형 통신 가이드</h2>
         <p style="color:var(--gray);font-size:.9rem;margin-top:8px;">누구나 제약 없이 이용할 수 있는 선불폰 및 충전식폰 서비스</p>
       </div>

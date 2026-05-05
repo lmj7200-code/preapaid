@@ -11,15 +11,15 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-      color: #1a1a2e; background: #F3F8FF; line-height: 1.6;
+      color: #1a1a2e; background: #f4fde8; line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
     :root {
-      --grad-main: linear-gradient(135deg, #4E8FE8 0%, #1558CB 50%, #0D3EA5 100%);
-      --blue: #1558CB;
-      --blue-light: #E4EFFF;
+      --grad-main: linear-gradient(135deg, #8fa8c0 0%, #4a6580 50%, #2e4c68 100%);
+      --blue: #4a6580;
+      --blue-light: #eaf8d4;
       --radius: 16px;
-      --shadow: 0 4px 20px rgba(21,88,203,.12);
+      --shadow: 0 4px 20px rgba(74,101,128,.12);
     }
     .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
 
@@ -27,10 +27,10 @@
     header {
       background: rgba(255,255,255,.9);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(21,88,203,.15);
+      border-bottom: 1px solid rgba(74,101,128,.15);
       height: 64px; display: flex; align-items: center;
       position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 16px rgba(21,88,203,.08);
+      box-shadow: 0 2px 16px rgba(74,101,128,.08);
     }
     .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .logo {
@@ -70,7 +70,7 @@
     }
     .filter-btn.active, .filter-btn:hover {
       background: var(--grad-main); color: #fff; border-color: transparent;
-      box-shadow: 0 4px 12px rgba(21,88,203,.3);
+      box-shadow: 0 4px 12px rgba(74,101,128,.3);
     }
     .filter-divider { border: none; border-top: 1px solid #eef0f6; margin: 0; }
 
@@ -88,7 +88,7 @@
     }
     .post-item:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(21,88,203,.18);
+      box-shadow: 0 8px 32px rgba(74,101,128,.18);
     }
     .post-item.hidden { display: none; }
     .post-top { display: flex; align-items: center; gap: 10px; }
@@ -96,8 +96,8 @@
       display: inline-block;
       font-size: .72rem; font-weight: 700; padding: 3px 12px; border-radius: 20px;
     }
-    .cat-개통가이드 { background: #E4EFFF; color: #1558CB; }
-    .cat-선불폰    { background: #f3e8ff; color: #0D3EA5; }
+    .cat-개통가이드 { background: #eaf8d4; color: #4a6580; }
+    .cat-선불폰    { background: #f3e8ff; color: #2e4c68; }
     .cat-유심      { background: #e8fff3; color: #0a7c4a; }
     .cat-요금제    { background: #fff3e8; color: #b45309; }
     .cat-꿀팁      { background: #fce8ff; color: #a21caf; }
@@ -120,15 +120,15 @@
     /* 로딩 */
     .loading-state { text-align:center; padding:64px 24px; color:#aaa; font-size:.9rem; display:none; }
     .loading-state.show { display:block; }
-    .loading-spinner { width:36px; height:36px; border:3px solid #e0e7ff; border-top-color:#1558CB; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 14px; }
+    .loading-spinner { width:36px; height:36px; border:3px solid #e0e7ff; border-top-color:#4a6580; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 14px; }
     @keyframes spin { to { transform:rotate(360deg); } }
 
     /* 글쓰기 안내 (관리자용) */
     .write-tip {
-      background: linear-gradient(135deg, #E4EFFF, #f3e8ff);
+      background: linear-gradient(135deg, #eaf8d4, #f3e8ff);
       border-radius: var(--radius); padding: 20px 24px;
       margin-bottom: 24px;
-      border: 1px dashed rgba(21,88,203,.3);
+      border: 1px dashed rgba(74,101,128,.3);
       display: flex; align-items: center; gap: 14px;
     }
     .write-tip .tip-icon { font-size: 1.6rem; flex-shrink: 0; }
@@ -166,10 +166,10 @@
     .faq-item, .guide-card, .usim-card {
       box-shadow:
         0 1px 0 rgba(255,255,255,.85) inset,
-        0 -1px 0 rgba(13,62,165,.06) inset,
-        0 4px 8px rgba(13,62,165,.06),
-        0 12px 32px rgba(13,62,165,.1),
-        0 32px 56px rgba(13,62,165,.06);
+        0 -1px 0 rgba(46,76,104,.06) inset,
+        0 4px 8px rgba(46,76,104,.06),
+        0 12px 32px rgba(46,76,104,.1),
+        0 32px 56px rgba(46,76,104,.06);
       transition: transform .4s cubic-bezier(.34,1.56,.64,1),
                   box-shadow .4s cubic-bezier(.34,1.56,.64,1);
     }
@@ -179,9 +179,9 @@
       transform: perspective(1200px) translateY(-12px) scale(1.018) rotateX(1.5deg);
       box-shadow:
         0 1px 0 rgba(255,255,255,.95) inset,
-        0 -1px 0 rgba(13,62,165,.04) inset,
-        0 20px 60px rgba(13,62,165,.18),
-        0 40px 80px rgba(13,62,165,.1),
+        0 -1px 0 rgba(46,76,104,.04) inset,
+        0 20px 60px rgba(46,76,104,.18),
+        0 40px 80px rgba(46,76,104,.1),
         0 60px 100px rgba(0,0,0,.05);
     }
 
@@ -191,7 +191,7 @@
       box-shadow:
         0 1px 0 rgba(255,255,255,.25) inset,
         0 -4px 0 rgba(0,0,0,.22) inset,
-        0 6px 20px rgba(13,62,165,.32);
+        0 6px 20px rgba(46,76,104,.32);
       transition: transform .15s, box-shadow .15s;
     }
     .cert-btn:hover, .btn-hero-main:hover {
@@ -199,13 +199,13 @@
       box-shadow:
         0 1px 0 rgba(255,255,255,.3) inset,
         0 -4px 0 rgba(0,0,0,.22) inset,
-        0 14px 40px rgba(13,62,165,.45);
+        0 14px 40px rgba(46,76,104,.45);
     }
     .cert-btn:active, .btn-hero-main:active {
       transform: translateY(3px);
       box-shadow:
         0 -1px 0 rgba(0,0,0,.1) inset,
-        0 2px 6px rgba(13,62,165,.2);
+        0 2px 6px rgba(46,76,104,.2);
     }
 
     /* ✨ 골드 CTA 버튼 (즉시개통 / 최상위 행동유도) */
@@ -231,8 +231,8 @@
     header {
       box-shadow:
         0 1px 0 rgba(255,255,255,.6) inset,
-        0 4px 24px rgba(13,62,165,.12),
-        0 12px 40px rgba(13,62,165,.07) !important;
+        0 4px 24px rgba(46,76,104,.12),
+        0 12px 40px rgba(46,76,104,.07) !important;
     }
 
     /* 섹션 레이블 골드 포인트 */
@@ -251,10 +251,34 @@
 
     /* 스크롤바 스타일 (프리미엄) */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f0f4ff; }
+    ::-webkit-scrollbar-track { background: #f4fde8; }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg,#4E8FE8,#1558CB);
+      background: linear-gradient(180deg,#b0c0d0,#7a96ae);
       border-radius: 3px;
+    }
+
+    /* ── 따뜻한 연두+노랑 바디 그라데이션 배경 ── */
+    body {
+      background: linear-gradient(160deg, #eef9d8 0%, #f8fde0 40%, #fdfae4 100%) fixed !important;
+    }
+
+    /* ── 실버-화이트 카드 (흰색+회색 3D 느낌) ── */
+    .cert-card, .action-card, .step-card,
+    .guide-card, .usim-card, .faq-item,
+    .feature-item, .service-card {
+      background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%) !important;
+    }
+
+    /* ── 히어로: 실버-슬레이트 그라데이션 ── */
+    .hero {
+      background: linear-gradient(140deg, #7a96ae 0%, #4a6580 45%, #2e4c68 100%) !important;
+      box-shadow: 0 20px 60px rgba(46,76,104,.3) !important;
+    }
+
+    /* ── 섹션 배경: 연두-노랑 그라데이션 ── */
+    section, .section-wrap, .features-section,
+    .faq-section, .service-section {
+      background: transparent !important;
     }
   </style>
 </head>
