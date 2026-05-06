@@ -1438,5 +1438,71 @@ a[href*="kakao"][class*="chat"] {
   -webkit-text-fill-color: #1A1000 !important;
 }
 </style>
+<style>
+/* CERT CARD 차별화 배경색 */
+
+/* 네, 있어요 → 연핑크 테마 */
+.cert-card.has {
+  background: linear-gradient(145deg, #FFF0F7 0%, #FFE4F2 100%) !important;
+  border: 1.5px solid rgba(224,64,160,.18) !important;
+  box-shadow: 0 4px 24px rgba(224,64,160,.12), 0 1px 0 rgba(255,255,255,.9) inset !important;
+}
+.cert-card.has:hover {
+  border-color: rgba(224,64,160,.35) !important;
+  box-shadow: 0 16px 48px rgba(224,64,160,.2) !important;
+  transform: translateY(-10px) scale(1.015) !important;
+}
+.cert-card.has .cert-icon-wrap {
+  background: linear-gradient(135deg, #FFD6EE 0%, #FFC0E5 100%) !important;
+  box-shadow: 0 4px 14px rgba(224,64,160,.22) !important;
+}
+.cert-card.has h3 {
+  color: #C0207E !important;
+  -webkit-text-fill-color: #C0207E !important;
+}
+.cert-card.has .cert-subtitle {
+  color: #C0207E !important;
+  -webkit-text-fill-color: #C0207E !important;
+}
+.cert-card.has .cert-app-tag {
+  background: rgba(224,64,160,.1) !important;
+  border-color: rgba(224,64,160,.25) !important;
+  color: #C0207E !important;
+  -webkit-text-fill-color: #C0207E !important;
+}
+.cert-card.has .cert-btn {
+  background: linear-gradient(135deg, #E040A0 0%, #C0207E 100%) !important;
+  box-shadow: 0 4px 18px rgba(224,64,160,.42) !important;
+}
+
+/* 아뇨, 없어요 → 연민트/스카이 테마 */
+.cert-card.none {
+  background: linear-gradient(145deg, #EEF9FF 0%, #DCF2F8 100%) !important;
+  border: 1.5px solid rgba(20,184,200,.2) !important;
+  box-shadow: 0 4px 24px rgba(20,184,200,.1), 0 1px 0 rgba(255,255,255,.9) inset !important;
+}
+.cert-card.none:hover {
+  border-color: rgba(20,184,200,.4) !important;
+  box-shadow: 0 16px 48px rgba(20,184,200,.2) !important;
+  transform: translateY(-10px) scale(1.015) !important;
+}
+.cert-card.none .cert-icon-wrap {
+  background: linear-gradient(135deg, #C4EDF8 0%, #A8E2F4 100%) !important;
+  box-shadow: 0 4px 14px rgba(20,184,200,.2) !important;
+}
+.cert-card.none h3 {
+  color: #0E8FAA !important;
+  -webkit-text-fill-color: #0E8FAA !important;
+}
+.cert-card.none .cert-subtitle {
+  color: #0E8FAA !important;
+  -webkit-text-fill-color: #0E8FAA !important;
+}
+.cert-card.none .cert-btn {
+  background: linear-gradient(135deg, #14B8C8 0%, #0A8FA8 100%) !important;
+  box-shadow: 0 4px 18px rgba(20,184,200,.38) !important;
+}
+.cert-card.none p { color: #336677 !important; }
+</style>
 </body>
 </html>
