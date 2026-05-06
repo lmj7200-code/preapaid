@@ -922,5 +922,229 @@
     document.body.style.overflow = '';
   }
 </script>
+<style>
+/* ══════════════════════════════════════════
+   DARK TECH THEME — Digital Twin API Style
+   딥 네이비 + 일렉트릭 시안 + 퍼플 글로우
+══════════════════════════════════════════ */
+html { background: #060D1C !important; }
+
+/* 배경: 딥 다크 + 미묘한 방사형 빛 */
+body {
+  background:
+    radial-gradient(ellipse 90% 60% at 10% -5%, rgba(0,130,255,.13) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 110%, rgba(110,30,230,.1) 0%, transparent 55%),
+    #060D1C !important;
+  color: #E4EFFF !important;
+}
+
+/* 도트 그리드 패턴 오버레이 */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background: radial-gradient(circle, rgba(0,200,255,.055) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+body > * { position:relative; z-index:1; }
+
+/* 헤더 — 다크 글래스 */
+header {
+  background: rgba(6,13,28,.88) !important;
+  border-bottom: 1px solid rgba(0,180,255,.2) !important;
+  box-shadow: 0 1px 0 rgba(0,180,255,.1), 0 8px 40px rgba(0,0,0,.6) !important;
+  backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important;
+}
+
+/* 로고 그라데이션 */
+.logo {
+  background: linear-gradient(120deg, #5DD5FF 0%, #B06FFF 100%) !important;
+  -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* 네비 */
+nav a { color: rgba(200,225,255,.65) !important; }
+nav a:hover, nav a:hover * { color: #5DD5FF !important; -webkit-text-fill-color: #5DD5FF !important; }
+nav a.active { color: #5DD5FF !important; border-bottom-color: #5DD5FF !important; }
+
+/* 모바일 네비 */
+.mobile-nav-panel {
+  background: rgba(6,13,28,.97) !important;
+  border-bottom: 1px solid rgba(0,180,255,.2) !important;
+}
+.mobile-nav-panel a { color: rgba(200,225,255,.8) !important; }
+
+/* 히어로 */
+.hero {
+  background:
+    radial-gradient(ellipse 100% 90% at 50% -10%, rgba(0,120,240,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 5% 100%, rgba(100,20,220,.13) 0%, transparent 55%),
+    linear-gradient(160deg, #0B1830 0%, #080F20 55%, #050C18 100%) !important;
+  box-shadow: 0 40px 100px rgba(0,0,0,.7) !important;
+}
+.hero::before {
+  background:
+    radial-gradient(circle at 20% 40%, rgba(0,150,255,.1) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(120,40,240,.08) 0%, transparent 45%) !important;
+}
+.hero::after { background: linear-gradient(to bottom right, transparent 49%, #060D1C 50%) !important; }
+.hero h1, .hero-tagline, .hero-question {
+  color: #F0F8FF !important; -webkit-text-fill-color: #F0F8FF !important;
+}
+.hero h1 em { color: #5DD5FF !important; -webkit-text-fill-color: #5DD5FF !important; }
+.hero-sub, .hero p { color: rgba(180,215,255,.75) !important; -webkit-text-fill-color: rgba(180,215,255,.75) !important; }
+.hero-eyebrow, .hero-tag {
+  background: rgba(0,180,255,.12) !important;
+  border-color: rgba(0,180,255,.35) !important;
+  color: #5DD5FF !important; -webkit-text-fill-color: #5DD5FF !important;
+}
+.hero-dot { background: #5DD5FF !important; box-shadow: 0 0 10px #5DD5FF !important; }
+
+/* 히어로 배지 */
+.hero-badge { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.18) !important; }
+
+/* 카드 — 글래스모피즘 */
+.cert-card, .action-card, .step-card, .plan-card,
+.guide-card, .usim-card, .faq-item, .feature-item,
+.service-card, .prep-item {
+  background: rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(0,180,255,.2) !important;
+  backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 32px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.07) inset !important;
+  color: #E4EFFF !important;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .3s !important;
+}
+.cert-card:hover, .action-card:hover, .step-card:hover, .plan-card:hover, .guide-card:hover {
+  background: rgba(0,160,255,.07) !important;
+  border-color: rgba(0,200,255,.45) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 50px rgba(0,180,255,.18) !important;
+  transform: translateY(-12px) scale(1.02) !important;
+}
+
+/* 텍스트 */
+h1,h2,h3,h4,h5,h6 { color: #EEF6FF !important; -webkit-text-fill-color: #EEF6FF !important; }
+p, li, span, td, label, small { color: rgba(190,218,255,.78) !important; }
+strong, b { color: #EEF6FF !important; -webkit-text-fill-color: #EEF6FF !important; }
+
+/* 섹션 배경 */
+.features-section, .faq-section { background: rgba(0,0,0,.3) !important; }
+section, .section-wrap, .prep-section, .process-section { background: transparent !important; }
+.step-box, .proc-box { background: rgba(255,255,255,.04) !important; border-color: rgba(0,180,255,.18) !important; }
+
+/* 섹션 라벨 */
+.section-label, .step-label, .badge-tag, .hero-eyebrow,
+.cert-type, .cert-subtitle { 
+  background: rgba(0,180,255,.12) !important;
+  border-color: rgba(0,180,255,.3) !important;
+  color: #5DD5FF !important; -webkit-text-fill-color: #5DD5FF !important;
+}
+.mark-badge { background: linear-gradient(135deg,rgba(0,160,255,.2),rgba(100,30,220,.2)) !important; }
+
+/* 메인 버튼 — 시안→퍼플 글로우 */
+.cert-btn, .btn-hero-main, .prep-usim-btn, .proc-btn {
+  background: linear-gradient(135deg, #0090CC 0%, #5B20C0 100%) !important;
+  color: #fff !important; -webkit-text-fill-color: #fff !important;
+  box-shadow: 0 4px 20px rgba(0,130,200,.4), 0 1px 0 rgba(255,255,255,.18) inset, 0 -3px 0 rgba(0,0,0,.25) inset !important;
+}
+.cert-btn:hover, .btn-hero-main:hover {
+  box-shadow: 0 10px 40px rgba(0,130,200,.6), 0 0 60px rgba(80,30,200,.3) !important;
+}
+.btn-hero-sub {
+  background: rgba(255,255,255,.09) !important;
+  border-color: rgba(255,255,255,.28) !important;
+  color: #fff !important; -webkit-text-fill-color: #fff !important;
+}
+
+/* 즉시개통 골드 유지 */
+.nav-cta {
+  background: linear-gradient(135deg,#F7DC6F 0%,#D4A843 50%,#B8892A 100%) !important;
+  color: #2c1800 !important; -webkit-text-fill-color: #2c1800 !important;
+}
+.mobile-nav-cta {
+  background: linear-gradient(135deg,#F7DC6F,#D4A843) !important;
+  color: #2c1800 !important; -webkit-text-fill-color: #2c1800 !important;
+}
+
+/* 가이드 바 */
+.guide-bar, [class*="guide-btn"] {
+  background: rgba(255,255,255,.07) !important;
+  border-color: rgba(0,180,255,.2) !important;
+  color: rgba(190,218,255,.8) !important;
+}
+
+/* FAQ */
+details {
+  background: rgba(255,255,255,.035) !important;
+  border-color: rgba(0,180,255,.18) !important;
+}
+details summary { color: #E4EFFF !important; }
+details[open] { background: rgba(0,160,255,.06) !important; }
+details summary::after, details summary + * { color: rgba(190,218,255,.75) !important; }
+
+/* 탭 (plans) */
+.net-tab:not(.active), .plan-net-tab:not(.active) {
+  background: rgba(255,255,255,.06) !important;
+  color: rgba(180,210,255,.55) !important; box-shadow: none !important;
+}
+.net-tab.active.kt, .plan-net-tab.active.kt {
+  background: linear-gradient(135deg,#0090CC,#5B20C0) !important;
+  box-shadow: 0 0 24px rgba(0,144,204,.5) !important;
+}
+.net-tab:not(.active):hover { background: rgba(0,180,255,.1) !important; color: #5DD5FF !important; }
+
+/* 요금제 카드 */
+.plan-card.kt-card { border-top-color: #0090CC !important; }
+.plan-card.popular { box-shadow: 0 4px 24px rgba(0,144,204,.3), 0 0 0 1px rgba(0,180,255,.4) !important; }
+.pc-name, .pc-price { color: #EEF6FF !important; -webkit-text-fill-color: #EEF6FF !important; }
+.kt-badge-sm { background: rgba(0,144,204,.2) !important; color: #5DD5FF !important; }
+.pc-spec-val b { color: #EEF6FF !important; -webkit-text-fill-color: #EEF6FF !important; }
+
+/* 모달 */
+.video-modal, .plan-compare-modal, .usim-modal {
+  background: rgba(8,15,30,.95) !important;
+  border: 1px solid rgba(0,180,255,.2) !important;
+}
+.video-modal-header {
+  background: linear-gradient(135deg,#0090CC,#5B20C0) !important;
+}
+.video-modal-footer { background: rgba(255,255,255,.04) !important; color: rgba(180,210,255,.6) !important; }
+
+/* 푸터 */
+footer, .site-footer {
+  background: #030810 !important;
+  border-top: 1px solid rgba(0,180,255,.12) !important;
+  color: rgba(160,200,255,.6) !important;
+}
+footer a, footer p, footer span, footer strong { color: rgba(160,200,255,.7) !important; -webkit-text-fill-color: rgba(160,200,255,.7) !important; }
+footer strong { color: #E4EFFF !important; -webkit-text-fill-color: #E4EFFF !important; }
+
+/* 플로팅 버튼 */
+.float-kakao, .chat-float {
+  background: linear-gradient(135deg,#0090CC,#5B20C0) !important;
+  box-shadow: 0 4px 20px rgba(0,130,200,.5) !important;
+}
+
+/* 인풋 */
+input, select, textarea {
+  background: rgba(255,255,255,.07) !important;
+  border-color: rgba(0,180,255,.25) !important;
+  color: #EEF6FF !important;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar-track { background: #040810 !important; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#0090CC,#5B20C0) !important; box-shadow: 0 0 8px rgba(0,144,204,.6) !important; }
+
+/* 유심 정보 표 */
+.usim-info-table tbody tr {
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(0,180,255,.18) !important;
+}
+.usim-info-table tbody td:nth-child(1) {
+  background: linear-gradient(135deg,#0090CC,#5B20C0) !important;
+}
+
+/* 체크마크 / 아이콘 */
+.check-icon, .cert-check { background: rgba(0,180,255,.15) !important; }
+</style>
 </body>
 </html>

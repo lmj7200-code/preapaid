@@ -27,7 +27,10 @@
       "Bash(git branch *)",
       "Bash(git push *)",
       "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/kt-usim-guide.png' -OutFile 'kt-usim.png'\")",
-      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/lg-usim-guide.png' -OutFile 'lg-usim.png'\")"
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/lg-usim-guide.png' -OutFile 'lg-usim.png'\")",
+      "WebFetch(domain:land-book.com)",
+      "WebSearch",
+      "WebFetch(domain:www.digitaltwins.app)"
     ]
   }
 }
