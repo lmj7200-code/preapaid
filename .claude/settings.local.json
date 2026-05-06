@@ -30,7 +30,8 @@
       "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://ntelecomsafe.com/lg-usim-guide.png' -OutFile 'lg-usim.png'\")",
       "WebFetch(domain:land-book.com)",
       "WebSearch",
-      "WebFetch(domain:www.digitaltwins.app)"
+      "WebFetch(domain:www.digitaltwins.app)",
+      "Bash(gh repo *)"
     ]
   }
 }

@@ -627,13 +627,8 @@ body {
   color: #E4EFFF !important;
 }
 
-/* 도트 그리드 패턴 오버레이 */
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background: radial-gradient(circle, rgba(0,200,255,.055) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
-body > * { position:relative; z-index:1; }
+/* 도트 그리드: 히어로 배경에만 적용 */
+.hero { isolation: isolate; }
 
 /* 헤더 — 다크 글래스 */
 header {
