@@ -3049,5 +3049,105 @@ input, select, textarea { background: #ffffff !important; border-color: rgba(0,0
 /* ── 가이드 바 ── */
 .guide-bar { background: #f0f2f8 !important; border-color: rgba(0,0,0,.07) !important; color: #334155 !important; }
 </style>
+<style>
+/* ════════════════════════════════════════
+   ICON & BUTTON VISIBILITY FIX
+   아이콘/버튼 가시성 수정
+════════════════════════════════════════ */
+
+/* ── 셀프개통 시작하기 버튼 → 핑크 그라데이션 ── */
+.btn-white, .btn-hero-main, a.btn-white {
+  background: linear-gradient(135deg,#E040A0 0%,#9030C0 100%) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(224,64,160,.4), 0 1px 0 rgba(255,255,255,.22) inset !important;
+  border: none !important;
+}
+.btn-white:hover, .btn-hero-main:hover {
+  box-shadow: 0 10px 36px rgba(224,64,160,.58) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* ── 1:1 문의하기 버튼 (btn-outline / btn-hero-sub) → 다크 버튼 ── */
+.btn-outline, .btn-hero-sub, a.btn-outline {
+  background: #0D0D1A !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 1.5px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.22) !important;
+  backdrop-filter: none !important;
+}
+.btn-outline:hover, .btn-hero-sub:hover {
+  background: #1a1a30 !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.3) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ── 이모지 아이콘 컨테이너 : webkit-text-fill-color 초기화 ── */
+.proc-icon, .nf-icon, .gprep-icon,
+.cert-icon-wrap, .action-icon, .guide-step-icon,
+.step-icon, .feat-card .icon, .prep-item .icon,
+.icon, .usim-icon, .plan-icon, .news-icon {
+  -webkit-text-fill-color: initial !important;
+  color: initial !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+/* ── 💬 문의 플로팅 버튼 → 노란색 ── */
+.kakao-float, .chat-float, .float-kakao {
+  background: linear-gradient(135deg,#FFD600 0%,#FFA800 100%) !important;
+  color: #1A1000 !important;
+  -webkit-text-fill-color: #1A1000 !important;
+  box-shadow: 0 4px 20px rgba(255,180,0,.5) !important;
+  border: none !important;
+}
+.kakao-float:hover, .chat-float:hover, .float-kakao:hover {
+  box-shadow: 0 8px 32px rgba(255,180,0,.65) !important;
+  transform: scale(1.1) !important;
+}
+
+/* ── action-icon 💬 (index.html) → 노란 배경 ── */
+.action-icon {
+  background: #EEF2FF !important;
+}
+.action-card:nth-child(3) .action-icon,
+.action-icon[style*="FFF9C4"],
+.action-icon[style*="fff9"] {
+  background: linear-gradient(135deg,#FFD600 0%,#FFC000 100%) !important;
+  box-shadow: 0 4px 16px rgba(255,200,0,.35) !important;
+}
+
+/* ── proc-icon 배경 원 ── */
+.proc-icon {
+  font-size: 1.8rem !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.15)) !important;
+}
+
+/* ── cert-icon-wrap 배경 ── */
+.cert-icon-wrap {
+  -webkit-text-fill-color: initial !important;
+  color: initial !important;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.12)) !important;
+}
+
+/* ── 카카오 문의하기 버튼 (footer etc) ── */
+.footer-kakao, .proc-kakao-btn {
+  background: linear-gradient(135deg,#FFD600 0%,#FFA800 100%) !important;
+  color: #1A1000 !important;
+  -webkit-text-fill-color: #1A1000 !important;
+}
+
+/* ── 플로팅 카카오 문의 연결 버튼 ── */
+a[href*="kakao"][class*="float"],
+a[href*="kakao"][class*="chat"] {
+  background: linear-gradient(135deg,#FFD600 0%,#FFA800 100%) !important;
+  color: #1A1000 !important;
+  -webkit-text-fill-color: #1A1000 !important;
+}
+</style>
 </body>
 </html>
