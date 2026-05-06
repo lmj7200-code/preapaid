@@ -3304,5 +3304,53 @@ a[href*="kakao"][class*="chat"] {
   box-shadow: 0 4px 16px rgba(224,64,160,.38) !important;
 }
 </style>
+<style>
+/* ════════════════════════════════════════
+   L망=핑크 / K망=파란색 테이블 + 셀프개통 버튼
+════════════════════════════════════════ */
+
+/* ── 유심 테이블 L망 행 (첫번째 tr) → 핑크 ── */
+.usim-info-table tbody tr:first-child td:first-child,
+.usim-info-table tbody tr:nth-child(1) td:nth-child(1) {
+  background: linear-gradient(160deg, #F050B0 0%, #C030A0 100%) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* ── 유심 테이블 K망 행 (두번째 tr) → 파란색 ── */
+.usim-info-table tbody tr:last-child td:first-child,
+.usim-info-table tbody tr:nth-child(2) td:nth-child(1) {
+  background: linear-gradient(160deg, #1A78D4 0%, #0B55B0 100%) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* ── 셀프개통 시작하기 버튼 → 강조 ── */
+.cta-btn,
+a.cta-btn,
+.plan-cmp-cta,
+a.plan-cmp-cta {
+  background: linear-gradient(135deg, #E040A0 0%, #9030C0 100%) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 6px 24px rgba(224,64,160,.45), 0 1px 0 rgba(255,255,255,.2) inset !important;
+  border: none !important;
+  letter-spacing: -.01em !important;
+  animation: ctaPulse 2.4s ease-in-out infinite !important;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(224,64,160,.45); }
+  50%       { box-shadow: 0 10px 36px rgba(224,64,160,.75), 0 0 0 4px rgba(224,64,160,.15); }
+}
+.cta-btn:hover,
+a.cta-btn:hover,
+.plan-cmp-cta:hover,
+a.plan-cmp-cta:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 14px 40px rgba(224,64,160,.65) !important;
+  animation: none !important;
+}
+</style>
 </body>
 </html>
