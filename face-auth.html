@@ -819,5 +819,160 @@ a[href*="kakao"][class*="chat"] {
   -webkit-text-fill-color: #1A1000 !important;
 }
 </style>
+<style>
+/* ════════════════════════════════════════
+   KT=파란색 / LG=핑크색 + 데이터 한줄
+════════════════════════════════════════ */
+
+/* ── 데이터 라벨 한줄 고정 ── */
+.pc-spec-label {
+  white-space: nowrap !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ═══ KT = 파란색 ═══ */
+:root {
+  --kt-blue: #0B65C2;
+  --kt-blue-light: #EBF3FF;
+  --kt-blue-mid: rgba(11,101,194,.15);
+}
+
+/* KT 탭 */
+.net-tab.active.kt,
+.plan-net-tab.active.kt {
+  background: linear-gradient(135deg, #1A78D4 0%, #0B55B0 100%) !important;
+  box-shadow: 0 4px 18px rgba(11,101,194,.4) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.net-tab.active.kt:hover,
+.plan-net-tab.active.kt:hover {
+  box-shadow: 0 8px 28px rgba(11,101,194,.55) !important;
+}
+
+/* KT 비활성 호버 */
+.net-tab.kt:not(.active):hover,
+.plan-net-tab.kt:not(.active):hover {
+  background: rgba(11,101,194,.08) !important;
+  color: #0B65C2 !important;
+  -webkit-text-fill-color: #0B65C2 !important;
+}
+
+/* KT 배지 */
+.kt-badge-sm {
+  background: rgba(11,101,194,.1) !important;
+  color: #0B55B0 !important;
+  -webkit-text-fill-color: #0B55B0 !important;
+  border-color: rgba(11,101,194,.25) !important;
+}
+.kt-badge {
+  background: linear-gradient(135deg,#1A78D4,#0B55B0) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* KT 카드 상단 포인트 */
+.plan-card.kt-card {
+  border-top-color: #1A78D4 !important;
+}
+.kt-card.popular,
+.plan-card.kt-card.popular {
+  box-shadow: 0 4px 24px rgba(11,101,194,.22), 0 0 0 1px rgba(11,101,194,.3) !important;
+}
+.kt-card .pc-popular {
+  background: linear-gradient(135deg,#1A78D4,#0B55B0) !important;
+}
+
+/* KT 하이라이트 스펙값 */
+.hl-kt .pc-spec-val b {
+  color: #0B65C2 !important;
+  -webkit-text-fill-color: #0B65C2 !important;
+}
+
+/* KT 섹션 배경/구분선 */
+.usim-info-table thead.kt-head th,
+.usim-info-table tbody td:nth-child(1).kt {
+  background: linear-gradient(135deg,#1A78D4,#0B55B0) !important;
+}
+
+/* ═══ LG = 핑크색 ═══ */
+
+/* LG 탭 */
+.net-tab.active.lg,
+.plan-net-tab.active.lg {
+  background: linear-gradient(135deg, #F050B0 0%, #C030A0 100%) !important;
+  box-shadow: 0 4px 18px rgba(224,64,160,.45) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.net-tab.active.lg:hover,
+.plan-net-tab.active.lg:hover {
+  box-shadow: 0 8px 28px rgba(224,64,160,.6) !important;
+}
+
+/* LG 비활성 호버 */
+.net-tab.lg:not(.active):hover,
+.plan-net-tab.lg:not(.active):hover {
+  background: rgba(224,64,160,.08) !important;
+  color: #C030A0 !important;
+  -webkit-text-fill-color: #C030A0 !important;
+}
+
+/* LG 배지 */
+.lg-badge-sm {
+  background: rgba(224,64,160,.1) !important;
+  color: #C030A0 !important;
+  -webkit-text-fill-color: #C030A0 !important;
+  border-color: rgba(224,64,160,.25) !important;
+}
+.lg-badge {
+  background: linear-gradient(135deg,#F050B0,#C030A0) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* LG 카드 상단 포인트 */
+.plan-card.lg-card {
+  border-top-color: #E040A0 !important;
+}
+.lg-card.popular,
+.plan-card.lg-card.popular {
+  box-shadow: 0 4px 24px rgba(224,64,160,.22), 0 0 0 1px rgba(224,64,160,.3) !important;
+}
+.lg-card .pc-popular {
+  background: linear-gradient(135deg,#F050B0,#C030A0) !important;
+}
+
+/* LG 하이라이트 스펙값 */
+.hl-lg .pc-spec-val b {
+  color: #C030A0 !important;
+  -webkit-text-fill-color: #C030A0 !important;
+}
+
+/* ── 비활성 탭 공통 ── */
+.net-tab:not(.active),
+.plan-net-tab:not(.active) {
+  background: #f0f4fb !important;
+  color: #556070 !important;
+  box-shadow: none !important;
+}
+
+/* ── KT 요금제 CTA 버튼 → 파란색 ── */
+.kt-card .cert-btn,
+.kt-card .plan-cmp-cta,
+.kt-card .prep-usim-btn {
+  background: linear-gradient(135deg,#1A78D4 0%,#0B55B0 100%) !important;
+  box-shadow: 0 4px 16px rgba(11,101,194,.38) !important;
+}
+/* ── LG 요금제 CTA 버튼 → 핑크 ── */
+.lg-card .cert-btn,
+.lg-card .plan-cmp-cta,
+.lg-card .prep-usim-btn {
+  background: linear-gradient(135deg,#F050B0 0%,#C030A0 100%) !important;
+  box-shadow: 0 4px 16px rgba(224,64,160,.38) !important;
+}
+</style>
 </body>
 </html>
